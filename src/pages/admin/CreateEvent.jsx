@@ -35,7 +35,7 @@ const CreateEvent = () => {
         eventData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      console.log('Event created:', response.data);
+     
       navigate('/admin/events');
     } catch (error) {
       console.error('Error creating event:', error);

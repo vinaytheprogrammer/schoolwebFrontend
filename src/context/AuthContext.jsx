@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
 
   const isAuthenticated = !!user;
 
-  console.log("Current User:", user);
   useEffect(() => {
     const checkUserLoggedIn = async () => {
       try {
@@ -44,14 +43,13 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      console.log("Logging in...");
-      console.log(`${import.meta.env.VITE_API_BASE_URL}`)
+    
   
       const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login`, {
         email // it contains email and password both
       });
 
-      console.log("Logged in successfully", res.data);
+     
 
       localStorage.setItem("token", res.data.token);
       setUser(res.data.user);
@@ -72,13 +70,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const isAdmin = () => {
-    console.log("Checking isAdmin:", user?.role);
+  
     return user?.role === "admin";
   };
   
   
 
-  // console.log(user, loading, error, login, logout,isAdmin )
+ 
   return (
     <AuthContext.Provider value={{ user, loading, error, login, logout,isAdmin,isAuthenticated  }}>
       {children}

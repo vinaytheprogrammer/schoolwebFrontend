@@ -26,7 +26,7 @@ const Login = () => {
       if (credentials.email === 'vinay@a.com' && credentials.password === '1') {
       const success = await  login({ id: '1', name: 'Admin User', email: credentials.email, password: credentials.password , role: 'admin' });
       if (success){
-          console.log('success in navigating')
+        
           navigate('/admin/dashboard');
         }
       } else {

@@ -28,13 +28,12 @@ const AdminGalleryView = () => {
       const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/uploadImageLinks/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      console.log(response.data.images);
+      
       let temp = response.data.images;
       temp.map((image) => {
         image.imageUrl = image.imageAddress;
       });
-      console.log(temp, 'temp');
-      // setImages(temp);
+    
     } catch (error) {
       console.error('Error fetching image link:', error);
     }
@@ -58,7 +57,7 @@ const AdminGalleryView = () => {
       const imagesResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/photos/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      console.log(imagesResponse.data);
+    
       setImages(imagesResponse.data);
     } catch (error) {
       console.error('Error fetching album details:', error);

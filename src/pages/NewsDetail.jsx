@@ -22,12 +22,11 @@ const NewsDetail = () => {
           const response = await axios.get(  `${import.meta.env.VITE_API_BASE_URL}/api/news`, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          console.log(response.data, 'response');
+       
 
 
           const selectedNews = response.data.find(item => item._id === id);
-          console.log(selectedNews, 'selectedNews');
-          // Get related news (excluding current one)
+      
           const related = response.data
             .filter(item => item._id !== id)
             .slice(0, 2);

@@ -25,7 +25,7 @@ const AdminEvents = () => {
       const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response.data, 'response events');
+      
       setEvents(response.data); // Set events from API response
       // Mock data for demonstration
       

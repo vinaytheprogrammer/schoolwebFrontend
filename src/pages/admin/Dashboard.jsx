@@ -63,7 +63,7 @@ const Dashboard = () => {
       const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/news`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      console.log(response.data, 'response news');
+    
       setNewsArticles(response.data);
     } catch (error) {
       console.error('Error fetching news articles:', error);
@@ -80,7 +80,6 @@ const Dashboard = () => {
       const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response.data, 'response events');
       setEvents(response.data); // Set events from API response
       // Mock data for demonstration
       
@@ -108,7 +107,7 @@ const Dashboard = () => {
         admissionsCount: 85,
         galleryItemsCount: galleryItems.length
       });
-      console.log(galleryItems,"check it")
+     
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     } finally {

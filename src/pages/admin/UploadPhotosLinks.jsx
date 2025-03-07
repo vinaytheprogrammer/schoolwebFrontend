@@ -50,8 +50,7 @@ const UploadPhotosLinks = () => {
   
 
 const uploadImages = async (galleryItemId, token) => {
-    console.log("uploadImages -> galleryItemId", galleryItemId);
-    console.log("image addresses", imageAddresses);
+   
      const payload = {
         galleryItemId: galleryItemId,
         imageAddresses: imageAddresses,

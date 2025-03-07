@@ -19,7 +19,7 @@ const News = () => {
           const response = await axios.get(  `${import.meta.env.VITE_API_BASE_URL}/api/news`, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          console.log(response.data, 'response');
+         
 
           setNews(response.data);
           setTotalPages(Math.ceil(response.data.length / 6));

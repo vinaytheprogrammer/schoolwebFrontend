@@ -148,7 +148,7 @@ const EventDetail = () => {
         text: event.description,
         url: window.location.href,
       })
-      .catch((error) => console.log('Error sharing', error));
+     
     } else {
       alert('Web Share API not supported in your browser');
     }
