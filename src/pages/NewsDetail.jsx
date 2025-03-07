@@ -18,25 +18,6 @@ const NewsDetail = () => {
     const fetchNewsDetail = async () => {
       try {
        
-        
-          // const mockNews = [
-          //   {
-          //     _id: '1',
-          //     title: 'Annual Science Exhibition Showcases Student Innovation',
-          //     content: `
-          //       <p>The annual science exhibition featured over 50 innovative projects from students across all grades. The event drew large crowds including parents, educators from neighboring institutions, and representatives from local tech companies.</p>
-          //       <p>This year's exhibition centered around the theme "Sustainable Innovation for the Future," challenging students to address real-world problems with environmentally conscious solutions. Projects ranged from renewable energy solutions to AI-powered educational tools and biodegradable packaging alternatives.</p>
-          //       <p>Eighth-grader Maya Johnson won the Best Innovation award for her solar-powered water purification system designed for use in rural communities. "I was inspired by the global water crisis and wanted to create something that could help communities without reliable access to clean water," Maya explained.</p>
-          //       <p>The high school division was dominated by a team of eleventh-grade students who developed a machine learning algorithm to predict crop yields based on weather patterns, soil conditions, and historical data. Their project garnered attention from agricultural technology companies, with two representatives offering summer internships to the team members.</p>
-          //       <p>Education Institute Principal Dr. Sarah Williams expressed pride in the students' achievements. "What makes this exhibition special is that we're seeing young minds tackle complex global challenges with creativity and scientific rigor. These students aren't just learning science; they're using it to make a difference."</p>
-          //       <p>The science department has already announced next year's theme, "Health Innovations," which will focus on medical and wellness technologies. Students have already begun brainstorming ideas for next year's exhibition.</p>
-          //     `,
-          //     image: 'https://source.unsplash.com/random/1200x600/?science',
-          //     date: '2023-10-15',
-          //     author: 'Admin Staff',
-          //     category: 'Academic',
-          //   }
-          // ];
           const token = localStorage.getItem('token');
           const response = await axios.get(  `${import.meta.env.VITE_API_BASE_URL}/api/news`, {
             headers: { Authorization: `Bearer ${token}` }
