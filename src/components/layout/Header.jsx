@@ -38,7 +38,8 @@ const Header = () => {
   return (
     <>
       {/* Header */}
-      <header className={`w-full fixed top-0 z-[1000] transition-all duration-300 ${isScrolled ? 'bg-yellow-500 shadow-lg py-3' : 'bg-yellow-500 py-4'}`}>
+      <header className={`w-full fixed top-0 z-[1050] transition-all duration-300 ${isScrolled ? 'bg-yellow-500 shadow-lg py-3' : 'bg-yellow-500 py-4'}`}>
+  
         <div className="container mx-auto px-4 flex justify-between items-center">
           
           {/* Logo */}
@@ -115,11 +116,12 @@ const Header = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-yellow-500 shadow-lg fixed top-16 left-0 w-full"
-          >
+  initial={{ opacity: 0, height: 0 }}
+  animate={{ opacity: 1, height: 'auto' }}
+  exit={{ opacity: 0, height: 0 }}
+  className="lg:hidden bg-yellow-500 shadow-lg fixed top-16 left-0 w-full z-[1050]"
+>
+
             <div className="container mx-auto px-4 py-4">
               <nav className="flex flex-col space-y-3">
                 {navigationItems.map((item) => (

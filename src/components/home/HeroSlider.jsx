@@ -5,14 +5,15 @@ import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   // Slider data
   const slides = [
     {
       id: 1,
       title: 'Excellence in Education',
       subtitle: 'Shaping Minds, Building Futures',
-      description: 'Join our institution for a transformative educational experience that prepares students for success in a global world.',
+      description:
+        'Join our institution for a transformative educational experience that prepares students for success in a global world.',
       image: 'https://source.unsplash.com/random/1920x1080/?school,students',
       cta: {
         text: 'Apply Now',
@@ -23,7 +24,8 @@ const HeroSlider = () => {
       id: 2,
       title: 'Innovative Learning',
       subtitle: 'Beyond Textbooks',
-      description: 'Our innovative teaching methods and modern facilities create an engaging learning environment for all students.',
+      description:
+        'Our innovative teaching methods and modern facilities create an engaging learning environment for all students.',
       image: 'https://source.unsplash.com/random/1920x1080/?classroom,learning',
       cta: {
         text: 'Explore Programs',
@@ -34,7 +36,8 @@ const HeroSlider = () => {
       id: 3,
       title: 'Vibrant Campus Life',
       subtitle: 'Growing Together',
-      description: 'Experience a diverse and inclusive community with countless opportunities for personal and academic growth.',
+      description:
+        'Experience a diverse and inclusive community with countless opportunities for personal and academic growth.',
       image: 'https://source.unsplash.com/random/1920x1080/?campus,college',
       cta: {
         text: 'View Gallery',
@@ -48,7 +51,7 @@ const HeroSlider = () => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
     }, 6000);
-    
+
     return () => clearInterval(interval);
   }, [slides.length]);
 
@@ -65,62 +68,58 @@ const HeroSlider = () => {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden z-[1]">
+    <section className="relative h-screen overflow-hidden z-[0]">
+
       <AnimatePresence mode="wait">
-        {slides.map((slide, index) => (
-          currentSlide === index && (
-            <motion.div
-              key={slide.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-              className="absolute inset-0"
-            >
-              {/* Background image with overlay */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center" 
-                style={{ 
-                  backgroundImage: `url(${slide.image})`,
-                }}
+        {slides.map(
+          (slide, index) =>
+            currentSlide === index && (
+              <motion.div
+                key={slide.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0"
               >
-              <div className="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
+                {/* Background image with overlay */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(${slide.image})`
+                  }}
+                >
+                <div className="absolute inset-0 bg-black opacity-40 pointer-events-auto"></div>
 
-              </div>
-              
-              {/* Content */}
-              <div className="relative h-full flex items-center">
-              <div className="container mx-auto px-4 text-center md:text-left">
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                    className="max-w-3xl text-#FFAB00"
-                  >
-                    <h3 className="text-xl md:text-2xl font-medium mb-2 text-primary-400">
-                      {slide.subtitle}
-                    </h3>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                      {slide.title}
-                    </h2>
-                    <p className="text-lg md:text-xl mb-6 text-gray-200">
-                      {slide.description}
-                    </p>
-                    <Link
-  to={slide.cta.link}
-  className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
->
-  {slide.cta.text}
-  <FiArrowRight className="ml-2" />
-</Link>
-
-                  </motion.div>
                 </div>
-              </div>
-            </motion.div>
-          )
-        ))}
+
+                {/* Content */}
+                <div className="relative h-full flex items-center">
+                  <div className="container mx-auto px-4 text-center md:text-left">
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
+                      className="max-w-3xl text-#FFAB00"
+                    >
+                      <h3 className="text-xl md:text-2xl font-medium mb-2 text-primary-400">
+                        {slide.subtitle}
+                      </h3>
+                      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">{slide.title}</h2>
+                      <p className="text-lg md:text-xl mb-6 text-gray-200">{slide.description}</p>
+                      <Link
+                        to={slide.cta.link}
+                        className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
+                      >
+                        {slide.cta.text}
+                        <FiArrowRight className="ml-2" />
+                      </Link>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            )
+        )}
       </AnimatePresence>
 
       {/* 
