@@ -32,21 +32,29 @@ const Header = () => {
     { name: 'Notice Board', path: '/news' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Admissions', path: '/admissions' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Contact', path: '/contact' }
   ];
 
   return (
     <>
       {/* Header */}
-      <header className={`w-full fixed top-0 z-[1050] transition-all duration-300 ${isScrolled ? 'bg-yellow-500 shadow-lg py-3' : 'bg-yellow-500 py-4'}`}>
-  
+      <header
+        className={`w-full fixed top-0 z-[1050] transition-all duration-300 ${
+          isScrolled ? 'bg-yellow-500 shadow-lg py-3' : 'bg-yellow-500 py-4'
+        }`}
+      >
         <div className="container mx-auto px-4 flex justify-between items-center">
-          
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <img src="/logo.png" alt="Logo" className="w-14 h-14 rounded shadow-lg hover:scale-105 transition-transform duration-200" />
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="w-14 h-14 rounded shadow-lg hover:scale-105 transition-transform duration-200"
+            />
             <div className="flex flex-col">
-              <h1 className="text-lg lg:text-xl font-semibold text-primary-800 tracking-wide">CIAT CONVENT</h1>
+              <h1 className="text-md lg:text-lg font-semibold text-primary-800 tracking-wide">
+                CIAT CONVENT
+              </h1>
               <p className="text-xs lg:text-sm text-gray-600">Sr. Sec. School</p>
             </div>
           </Link>
@@ -95,7 +103,7 @@ const Header = () => {
             ) : (
               <Link
                 to="/login"
-                className="px-4 py-2 rounded bg-primary-600 text-white hover:bg-primary-700 transition"
+                className="px-4 py-2 rounded font-medium text-lg text-gray-700 transition"
               >
                 Login
               </Link>
@@ -103,8 +111,8 @@ const Header = () => {
           </nav>
 
           {/* Mobile menu button */}
-          <button 
-            className="lg:hidden text-gray-700 hover:text-primary-600 focus:outline-none" 
+          <button
+            className="lg:hidden text-gray-700 hover:text-primary-600 focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
@@ -116,12 +124,11 @@ const Header = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-  initial={{ opacity: 0, height: 0 }}
-  animate={{ opacity: 1, height: 'auto' }}
-  exit={{ opacity: 0, height: 0 }}
-  className="lg:hidden bg-yellow-500 shadow-lg fixed top-16 left-0 w-full z-[1050]"
->
-
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden bg-yellow-500 shadow-lg fixed top-16 left-0 w-full z-[1050]"
+          >
             <div className="container mx-auto px-4 py-4">
               <nav className="flex flex-col space-y-3">
                 {navigationItems.map((item) => (
