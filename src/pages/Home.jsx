@@ -97,7 +97,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="pt-30">
+    <div className="pt-1">
       {/* Hero Slider */}
       <HeroSlider />
 
