@@ -25,7 +25,6 @@ const Header = () => {
   }, []);
 
   const navigationItems = [
-    { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Vision & Mission', path: '/vision-mission' },
     { name: "Principal's Message", path: '/principal-message' },
@@ -39,8 +38,8 @@ const Header = () => {
     <>
       {/* Header */}
       <header
-        className={`w-full fixed top-0 z-[1050] transition-all duration-300 ${
-          isScrolled ? 'bg-yellow-500 shadow-lg py-3' : 'bg-yellow-500 py-4'
+        className={`w-full fixed top-0 z-[1000] transition-all duration-300 ${
+          isScrolled ? 'bg-yellow-500 shadow-lg py-2 md:py-4' : 'bg-yellow-500 py-4 md:py-4'
         }`}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
@@ -49,8 +48,9 @@ const Header = () => {
             <img
               src="/logo.png"
               alt="Logo"
-              className="w-14 h-14 rounded shadow-lg hover:scale-105 transition-transform duration-200"
+              className="w-12 h-12 md:w-14 md:h-14 rounded shadow-lg hover:scale-105 transition-transform duration-200"
             />
+
             <div className="flex flex-col">
               <h1 className="text-md lg:text-lg font-semibold text-primary-800 tracking-wide">
                 CIAT CONVENT
@@ -60,12 +60,12 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-4 lg:space-x-6">
             {navigationItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
-                className={`font-medium text-lg hover:text-primary-600 transition ${
+                className={`font-medium text-sm md:text-md hover:text-primary-600 transition ${
                   location.pathname === item.path ? 'text-primary-600 font-semibold' : 'text-gray-700'
                 }`}
               >
@@ -101,10 +101,7 @@ const Header = () => {
                 </div>
               </div>
             ) : (
-              <Link
-                to="/login"
-                className="px-4 py-2 rounded font-medium text-lg text-gray-700 transition"
-              >
+              <Link to="/login" className="px-4 py-2 rounded font-medium text-lg text-gray-700 transition">
                 Login
               </Link>
             )}
@@ -112,7 +109,7 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <button
-            className="lg:hidden text-gray-700 hover:text-primary-600 focus:outline-none"
+            className="md:hidden text-gray-700 hover:text-primary-600 focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
@@ -174,8 +171,7 @@ const Header = () => {
                 ) : (
                   <Link
                     to="/login"
-                    className="py-2 px-4 rounded bg-primary-600 text-white hover:bg-primary-700 transition"
-                    onClick={() => setIsMenuOpen(false)}
+                    className="px-4 py-2 rounded bg-primary-600 text-white hover:bg-primary-700 transition font-medium text-sm md:text-md "
                   >
                     Login
                   </Link>
