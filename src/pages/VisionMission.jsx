@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 
 const VisionMission = () => {
+  window.scrollTo(0, 0);
   return (
-    <div className="pt-16">
+    <div className="pt-1">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-#FFAB00 py-20">
         <div className="container mx-auto px-4">
@@ -48,7 +49,7 @@ const VisionMission = () => {
               className="rounded-lg overflow-hidden shadow-soft"
             >
               <img
-                src="https://source.unsplash.com/random/800x600/?education,vision"
+                src="https://res.cloudinary.com/dbh02ryca/image/upload/v1741523147/student10_vcyull.jpg"
                 alt="Our Vision"
                 className="w-full h-full object-cover"
               />
@@ -69,7 +70,7 @@ const VisionMission = () => {
               className="rounded-lg overflow-hidden shadow-soft order-2 lg:order-1"
             >
               <img
-                src="https://source.unsplash.com/random/800x600/?education,mission"
+                src="https://res.cloudinary.com/dbh02ryca/image/upload/v1741523149/student2_pbgogd.jpg"
                 alt="Our Mission"
                 className="w-full h-full object-cover"
               />

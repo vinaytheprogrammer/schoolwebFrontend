@@ -3,12 +3,16 @@ import { motion } from 'framer-motion';
 import { FiSend } from 'react-icons/fi';
 
 const Contact = () => {
+
+  window.scrollTo(0, 0);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState({ type: '', text: '' });
 
@@ -40,7 +44,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="pt-16">
+    <div className="pt-1">
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-#FFAB00 py-20 text-center">
         <h1 className="text-4xl font-bold">Contact Us</h1>
@@ -56,9 +60,9 @@ const Contact = () => {
             <h2 className="text-2xl font-semibold text-primary-700 mb-6">Get in Touch</h2>
             <p className="text-gray-600">Feel free to reach out via email or phone, or visit our office during working hours.</p>
             <div className="mt-6 space-y-4">
-              <p><span className="font-semibold">Address:</span> 123 Education St, Learning City</p>
-              <p><span className="font-semibold">Phone:</span> (555) 123-4567</p>
-              <p><span className="font-semibold">Email:</span> info@yourschool.edu</p>
+              <p><span className="font-semibold">Address:</span> Kanjhwala, North West Delhi, 110081</p>
+              <p><span className="font-semibold">Phone:</span> +91 85957 92883</p>
+              <p><span className="font-semibold">Email:</span> Ciatschool1998@gmail.com</p>
               <p><span className="font-semibold">Office Hours:</span> Mon - Fri, 8:00 AM - 4:30 PM</p>
             </div>
           </motion.div>

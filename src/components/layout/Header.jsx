@@ -25,13 +25,13 @@ const Header = () => {
   }, []);
 
   const navigationItems = [
-    { name: 'About Us', path: '/about' },
     { name: 'Vision & Mission', path: '/vision-mission' },
     { name: "Principal's Message", path: '/principal-message' },
     { name: 'Notice Board', path: '/news' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Admissions', path: '/admissions' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Contact', path: '/contact' },
+    { name: 'About Us', path: '/about' }
   ];
 
   return (

@@ -9,21 +9,21 @@ const TestimonialSlider = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Sarah Johnson',
-      role: 'Parent',
+      name: 'Vinay Gupta',
+      role: 'Developer',
       image: 'https://source.unsplash.com/random/100x100/?woman',
       quote: `The teachers at Education Institute have had a profound impact on my child's academic performance and personal growth. The school's approach to education is balanced and holistic.`,
     },
     {
       id: 2,
-      name: 'Michael Chen',
+      name: 'Rishabh Verma',
       role: 'Alumni (Batch of 2020)',
       image: 'https://source.unsplash.com/random/100x100/?man',
       quote: 'My years at Education Institute prepared me well for university life. The critical thinking skills and discipline I developed have been invaluable in my higher education journey.',
     },
     {
       id: 3,
-      name: 'Dr. James Wilson',
+      name: 'Dr. Adarsh Kumar Pandey',
       role: 'Local University Professor',
       image: 'https://source.unsplash.com/random/100x100/?professor',
       quote: 'Students from Education Institute consistently demonstrate exceptional academic foundations and a genuine passion for learning. The institution clearly excels in preparing students for future academic challenges.',
@@ -73,13 +73,7 @@ const TestimonialSlider = () => {
                   className="bg-#FFAB00 p-8 md:p-10 rounded-lg shadow-soft"
                 >
                   <div className="flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-primary-100">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.name} 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    
                     <blockquote className="text-lg md:text-xl text-gray-700 italic mb-6">
                       "{testimonial.quote}"
                     </blockquote>

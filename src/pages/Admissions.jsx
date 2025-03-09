@@ -4,45 +4,14 @@ import { motion } from 'framer-motion';
 import { FiCalendar, FiCheckCircle, FiDownload, FiArrowRight, FiHelpCircle } from 'react-icons/fi';
 
 const Admissions = () => {
+
+  window.scrollTo(0, 0);
+
   const [activeTab, setActiveTab] = useState('process');
   const [activeAccordion, setActiveAccordion] = useState(null);
-  const [formData, setFormData] = useState({
-    studentName: '',
-    parentName: '',
-    email: '',
-    phone: '',
-    gradeApplying: '',
-    message: '',
-  });
-  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const toggleAccordion = (index) => {
     setActiveAccordion(activeAccordion === index ? null : index);
-  };
-
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    // Simulate form submission
-    setTimeout(() => {
-      setFormSubmitted(true);
-      // Reset form after submission
-      setFormData({
-        studentName: '',
-        parentName: '',
-        email: '',
-        phone: '',
-        gradeApplying: '',
-        message: '',
-      });
-    }, 1000);
   };
 
   // Admission Process Steps
@@ -175,7 +144,7 @@ const Admissions = () => {
   ];
 
   return (
-    <div className="pt-16">
+    <div className="pt-1">
       {/* Hero Section */}
       <section className="bg-primary-600 py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
@@ -432,61 +401,7 @@ const Admissions = () => {
             )}
         </div>
       </section>
-      
-      {/* Contact Form */}
-        <section className="bg-gray-100 py-12">
-            <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Contact Admissions</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-#FFAB00 shadow-md p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-800">Send us a message</h3>
-                <form onSubmit={handleFormSubmit}>
-                    <div className="space-y-4">
-                    <div>
-                        <label htmlFor="studentName" className="block text-sm font-medium text-gray-700">Student's Name</label>
-                        <input type="text" id="studentName" name="studentName" value={formData.studentName} onChange={handleFormChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" />
-                    </div>
-                    <div>
-                        <label htmlFor="parentName" className="block text-sm font-medium text-gray-700">Parent's Name</label>
-                        <input type="text" id="parentName" name="parentName" value={formData.parentName} onChange={handleFormChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" />
-                    </div>
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
-                        <input type="email" id="email" name="email" value={formData.email} onChange={handleFormChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" />
-                    </div>
-                    <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleFormChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" />
-                    </div>
-                    <div>
-                        <label htmlFor="gradeApplying" className="block text-sm font-medium text-gray-700">Grade Applying For</label>
-                        <input type="text" id="gradeApplying" name="gradeApplying" value={formData.gradeApplying} onChange={handleFormChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm" />  
-                    </div>
-                    <div>
-                        <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
-                        <textarea id="message" name="message" value={formData.message} onChange={handleFormChange} rows="4" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"></textarea>
-                    </div>
-                    <button type="submit" className="inline-block px-6 py-3 bg-primary-600 text-#FFAB00 rounded-lg hover:bg-primary-700">
-                        Send Message
-                    </button>
-                    </div>
-                </form>
-                </div>
-                <div className="bg-#FFAB00 shadow-md p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-800">Admissions Office</h3>
-                <p className="text-gray-600 mt-2">
-                    For any queries or assistance with the application process, contact our admissions team.
-                </p>
-                <ul className="list-disc list-inside text-gray-600 mt-4">
-                    <li>Phone: +1 123 456 7890</li>
-                    <li>Email: email@gmail.com </li>
-                    <li>Address: 123 Main Street, City, Country</li>
-                </ul>
-                </div>
-            </div>
-            </div>
-        </section>
-
+     
          {/* Calendar Download Section */}
       <section className="py-12 bg-blue-50">
       <div className="container mx-auto px-4 text-center">
@@ -503,6 +418,9 @@ const Admissions = () => {
         </div>
       </div>
     </section>
+
+
+
     </div>
     );
 }

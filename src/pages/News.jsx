@@ -5,6 +5,9 @@ import { FiCalendar, FiArrowRight, FiSearch } from 'react-icons/fi';
 import axios from 'axios';
 
 const News = () => {
+
+  window.scrollTo(0, 0);
+
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -53,7 +56,7 @@ const News = () => {
   const actualTotalPages = Math.ceil(filteredNews.length / newsPerPage);
 
   return (
-    <div className="pt-16">
+    <div className="pt-1">
       {/* Page Header */}
       <section className="bg-primary-600 py-20 text-#FFAB00">
         <div className="container mx-auto px-4 text-center">

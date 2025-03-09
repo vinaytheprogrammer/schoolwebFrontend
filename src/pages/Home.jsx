@@ -91,9 +91,9 @@ const Home = () => {
   // Stats for counter section
   const stats = [
     { label: 'Years of Excellence', value: 25 },
-    { label: 'Qualified Faculty', value: 120 },
-    { label: 'Students', value: 2500 },
-    { label: 'Courses Offered', value: 45 },
+    { label: 'Qualified Faculty', value: 20 },
+    { label: 'Students', value: 500 },
+    { label: 'Courses Offered', value: 5 },
   ];
 
   return (
@@ -137,7 +137,7 @@ const Home = () => {
               className="rounded-lg overflow-hidden shadow-soft"
             >
               <img
-                src="https://source.unsplash.com/random/800x600/?education"
+                src="https://res.cloudinary.com/dbh02ryca/image/upload/v1741523148/student5_p6fne0.jpg"
                 alt="Campus life"
                 className="w-full h-full object-cover"
               />

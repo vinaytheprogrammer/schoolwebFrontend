@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FiArrowRight, FiMail } from 'react-icons/fi';
 
 const PrincipalMessage = () => {
+  window.scrollTo(0, 0);
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -13,7 +14,7 @@ const PrincipalMessage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Principal's Message</h1>
             <div className="w-20 h-1 bg-#FFAB00 mx-auto mb-6"></div>
             <p className="text-xl max-w-3xl mx-auto">
-              A welcome note from our principal, Dr. Sarah Johnson
+              A welcome note from our principal, Anita kumari
             </p>
           </div>
         </div>
@@ -33,15 +34,9 @@ const PrincipalMessage = () => {
             >
               <div className="bg-#FFAB00 rounded-lg overflow-hidden shadow-soft">
                 <div className="p-6">
-                  <div className="mb-6">
-                    <img
-                      src="https://source.unsplash.com/random/400x500/?woman,principal"
-                      alt="Dr. Sarah Johnson - Principal"
-                      className="w-full h-auto rounded-lg"
-                    />
-                  </div>
+                  
                   <h3 className="text-2xl font-semibold text-secondary-900 mb-2">
-                    Dr. Sarah Johnson
+                  Anita kumari
                   </h3>
                   <p className="text-primary-600 font-medium mb-4">Principal</p>
                   <p className="text-gray-600 mb-6">
@@ -51,8 +46,8 @@ const PrincipalMessage = () => {
                   </p>
                   <div className="flex items-center text-gray-600 mb-4">
                     <FiMail className="mr-2" />
-                    <a href="mailto:principal@educationinstitute.com" className="hover:text-primary-600 transition-colors">
-                      principal@educationinstitute.com
+                    <a href="phoneto:080102 82082" className="hover:text-primary-600 transition-colors">
+                    080102 82082
                     </a>
                   </div>
                   <div className="border-t border-gray-200 pt-4 mt-4">
@@ -106,8 +101,8 @@ const PrincipalMessage = () => {
                   Warm regards,
                 </p>
                 <p className="italic">
-                  Dr. Sarah Johnson<br />
-                  Principal, Education Institute
+                  Anita kumari<br />
+                  Principal, CIAT CONVENT SCHOOL
                 </p>
               </div>
 
@@ -131,7 +126,7 @@ const PrincipalMessage = () => {
         </div>
       </section>
 
-      {/* Leadership Team Glimpse */}
+      {/*
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
@@ -200,7 +195,8 @@ const PrincipalMessage = () => {
           </div>
         </div>
       </section>
-
+      */}
+      
       {/* Call to Action */}
       <section className="py-16 bg-primary-600 text-#FFAB00">
         <div className="container mx-auto px-4 text-center">

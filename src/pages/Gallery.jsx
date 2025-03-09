@@ -5,6 +5,9 @@ import { FiImage, FiFilter, FiGrid, FiList } from 'react-icons/fi';
 import axios from 'axios';
 
 const Gallery = () => {
+
+  window.scrollTo(0, 0);
+
   const [galleries, setGalleries] = useState([]);
   const [filteredGalleries, setFilteredGalleries] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -147,7 +150,7 @@ const staticGalleryData = [
   };
 
   return (
-    <div className="pt-16">
+    <div className="pt-1">
       {/* Hero Section */}
       <section className="bg-primary-600 py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">

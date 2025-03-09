@@ -14,7 +14,7 @@ const HeroSlider = () => {
       subtitle: 'Shaping Minds, Building Futures',
       description:
         'Join our institution for a transformative educational experience that prepares students for success in a global world.',
-      image: 'https://source.unsplash.com/random/1920x1080/?school,students',
+      image: 'https://res.cloudinary.com/dbh02ryca/image/upload/v1741523149/prayer1_o7ncps.jpg',
       cta: {
         text: 'Apply Now',
         link: '/admissions'
@@ -26,7 +26,7 @@ const HeroSlider = () => {
       subtitle: 'Beyond Textbooks',
       description:
         'Our innovative teaching methods and modern facilities create an engaging learning environment for all students.',
-      image: 'https://source.unsplash.com/random/1920x1080/?classroom,learning',
+      image: 'https://res.cloudinary.com/dbh02ryca/image/upload/v1741523150/view_g5yk4q.jpg',
       cta: {
         text: 'Explore Programs',
         link: '/about'
@@ -38,7 +38,7 @@ const HeroSlider = () => {
       subtitle: 'Growing Together',
       description:
         'Experience a diverse and inclusive community with countless opportunities for personal and academic growth.',
-      image: 'https://source.unsplash.com/random/1920x1080/?campus,college',
+      image: 'https://res.cloudinary.com/dbh02ryca/image/upload/v1741523150/lab2_papwdu.jpg',
       cta: {
         text: 'View Gallery',
         link: '/gallery'
