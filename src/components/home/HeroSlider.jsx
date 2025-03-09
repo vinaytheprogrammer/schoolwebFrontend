@@ -84,12 +84,14 @@ const HeroSlider = () => {
                   backgroundImage: `url(${slide.image})`,
                 }}
               >
-                <div className="absolute inset-0 bg-black opacity-50"></div>
+              <div className="absolute inset-0 bg-black opacity-40 pointer-events-none"></div>
+
               </div>
               
               {/* Content */}
               <div className="relative h-full flex items-center">
-                <div className="container mx-auto px-4">
+              <div className="container mx-auto px-4 text-center md:text-left">
+
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -106,12 +108,13 @@ const HeroSlider = () => {
                       {slide.description}
                     </p>
                     <Link
-                      to={slide.cta.link}
-                      className="inline-flex items-center px-6 py-3 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors"
-                    >
-                      {slide.cta.text}
-                      <FiArrowRight className="ml-2" />
-                    </Link>
+  to={slide.cta.link}
+  className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
+>
+  {slide.cta.text}
+  <FiArrowRight className="ml-2" />
+</Link>
+
                   </motion.div>
                 </div>
               </div>
