@@ -65,7 +65,7 @@ const HeroSlider = () => {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen overflow-hidden z-[1]">
       <AnimatePresence mode="wait">
         {slides.map((slide, index) => (
           currentSlide === index && (
@@ -120,7 +120,7 @@ const HeroSlider = () => {
         ))}
       </AnimatePresence>
 
-      {/* Navigation arrows */}
+      {/* 
       <button
         className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/30 text-#FFAB00 flex items-center justify-center hover:bg-black/50 transition-colors z-10"
         onClick={prevSlide}
@@ -135,7 +135,7 @@ const HeroSlider = () => {
       >
         <FiChevronRight size={24} />
       </button>
-
+      */}
       {/* Dot indicators */}
       <div className="absolute bottom-8 left-0 right-0 flex justify-center space-x-3 z-10">
         {slides.map((_, index) => (
