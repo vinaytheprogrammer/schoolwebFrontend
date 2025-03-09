@@ -42,7 +42,9 @@ const Header = () => {
   ];
 
   return (
-    <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-#FFAB00  shadow-lg py-3' : 'bg-transparent py-5'}`}>
+    // <header className={`w-full fixed top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-#FFAB00  shadow-lg py-3' : 'bg-transparent py-5'}`}>
+    <header className={`w-full fixed top-0 z-[1000] transition-all duration-300 ${isScrolled ? 'bg-yellow-500 shadow-lg py-3' : 'bg-yellow-500 py-5'}`}>
+  
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center">
           {/* Logo */}

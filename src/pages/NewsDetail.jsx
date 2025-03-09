@@ -74,7 +74,7 @@ const NewsDetail = () => {
           to="/news"
           className="inline-flex items-center px-6 py-3 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors"
         >
-          <FiArrowLeft className="mr-2" /> Back to News
+          <FiArrowLeft className="mr-2" /> Back to Notice Board
         </Link>
       </div>
     );
@@ -87,7 +87,7 @@ const NewsDetail = () => {
         <div className="container mx-auto px-4 text-center">
           <div className="inline-block text-primary-100 mb-4">
             <Link to="/news" className="inline-flex items-center hover:underline">
-              <FiArrowLeft className="mr-2" /> Back to News
+              <FiArrowLeft className="mr-2" /> Back to Notice Board
             </Link>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold mb-4">{news.title}</h1>
@@ -140,7 +140,7 @@ const NewsDetail = () => {
                   to="/news"
                   className="inline-flex items-center text-primary-600 hover:underline"
                 >
-                  Back to News <FiArrowLeft className="ml-2" />
+                  Back to Notice Board<FiArrowLeft className="ml-2" />
                 </Link>
               </div>
             </motion.div>

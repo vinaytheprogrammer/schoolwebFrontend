@@ -9,7 +9,7 @@ const CreateNews = () => {
     summary: '',
     content: '',
     author: '',
-    date: '',
+    date: new Date().toISOString().split('T')[0],
     status: 'draft',
     featured: false,
   });

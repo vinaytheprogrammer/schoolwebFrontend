@@ -109,6 +109,7 @@ const EditNews = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded-md mb-4"
           required
+          disabled
         />
 
         <label className="block mb-2 font-semibold">Status</label>
