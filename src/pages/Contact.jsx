@@ -80,7 +80,7 @@ const Contact = () => {
               <input type="email" name="email" placeholder="Email Address *" value={formData.email} onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500" required />
               <input type="text" name="subject" placeholder="Subject *" value={formData.subject} onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500" required />
               <textarea name="message" placeholder="Your Message *" value={formData.message} onChange={handleChange} rows="5" className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500" required></textarea>
-              <button type="submit" disabled={isSubmitting} className="w-full bg-primary-600 text-#FFAB00 py-3 rounded-md flex items-center justify-center space-x-2 hover:bg-primary-700 transition disabled:opacity-50">
+              <button type="submit" disabled={isSubmitting} className="w-full bg-primary-600 bg-yellow-700 text-#FFAB00 py-3 rounded-md flex items-center justify-center space-x-2 hover:bg-primary-700 transition disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                 <FiSend />
                 <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
               </button>

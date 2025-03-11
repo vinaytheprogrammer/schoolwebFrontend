@@ -102,10 +102,10 @@ const HeroSlider = () => {
                       transition={{ duration: 0.8, delay: 0.3 }}
                       className="max-w-3xl text-#FFAB00"
                     >
-                      <h3 className="text-xl md:text-2xl font-medium mb-2 text-primary-400">
+                      <h3 className="text-xl md:text-2xl text-gray-200 font-medium mb-2 text-primary-400">
                         {slide.subtitle}
                       </h3>
-                      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">{slide.title}</h2>
+                      <h2 className="text-4xl md:text-5xl text-gray-200 lg:text-6xl font-bold mb-4">{slide.title}</h2>
                       <p className="text-lg md:text-xl mb-6 text-gray-200">{slide.description}</p>
                       <Link
                         to={slide.cta.link}
