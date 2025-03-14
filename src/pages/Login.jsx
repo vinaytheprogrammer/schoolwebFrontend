@@ -47,7 +47,7 @@ const Login = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="bg-blue-700 py-6 px-4 text-center">
+        <div className="bg-blue-800 py-6 px-4 text-center">
           <h1 className="text-2xl font-bold text-#FFAB00">Admin Login</h1>
           <p className="text-blue-100 text-sm">Staff and Administrator Access Only</p>
         </div>
@@ -72,7 +72,7 @@ const Login = () => {
                 name="email"
                 value={credentials.email}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800"
                 required
               />
             </div>
@@ -85,7 +85,7 @@ const Login = () => {
                 name="password"
                 value={credentials.password}
                 onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-800"
                 required
               />
             </div>
@@ -93,7 +93,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-#FFAB00 font-bold py-2 px-4 rounded-md transition duration-300 disabled:opacity-50"
+              className="w-full bg-blue-800 hover:bg-blue-900 text-#FFAB00 font-bold py-2 px-4 rounded-md transition duration-300 disabled:opacity-50"
             >
               {isLoading ? 'Logging in...' : 'Login'}
             </button>
@@ -102,7 +102,7 @@ const Login = () => {
           <div className="mt-6 text-center text-gray-600 text-sm">
             <p>For login assistance, please contact the IT department.</p>
             <p className="mt-2">
-              <Link to="/" className="text-blue-600 hover:text-blue-800">← Return to Homepage</Link>
+              <Link to="/" className="text-blue-800 hover:text-blue-900">← Return to Homepage</Link>
             </p>
           </div>
         </div>
