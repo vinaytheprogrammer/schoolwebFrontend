@@ -80,18 +80,18 @@ const Header = () => {
                   <FiUser size={20} />
                   <span className="hidden lg:block">{user.name}</span>
                 </button>
-                <div className="absolute right-0 mt-2 w-48 bg-yellow-500 rounded-md shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                <div className="absolute right-0 mt-2 w-48 bg-yellow-600 rounded-md shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                   {isAdmin() && (
                     <Link
                       to="/admin/dashboard"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-300 hover:text-primary-600"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-700 hover:text-primary-600"
                     >
                       Admin Dashboard
                     </Link>
                   )}
                   <button
                     onClick={logout}
-                    className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-300 hover:text-primary-600"
+                    className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-700 hover:text-primary-600"
                   >
                     <div className="flex items-center space-x-1">
                       <FiLogOut size={14} />
