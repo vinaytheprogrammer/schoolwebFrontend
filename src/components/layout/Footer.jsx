@@ -11,11 +11,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {/* Column 1: School Identity */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center space-x-3 group">
+            <Link to="/" className="flex items-center space-x-3.5 group focus:outline-none">
               <img
                 src="/logo.png"
-                alt="CIAT Convent Logo"
-                className="w-13 h-13 rounded-lg bg-white p-1 shadow-md object-contain"
+                alt="CIAT Convent School Crest"
+                className="w-13 h-13 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-200"
               />
               <div className="flex flex-col">
                 <span className="text-xl font-black text-white tracking-wide">

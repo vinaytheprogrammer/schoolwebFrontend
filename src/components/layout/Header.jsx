@@ -88,11 +88,11 @@ const Header = () => {
         >
           <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12 flex justify-between items-center gap-6">
             {/* School Brand / Crest */}
-            <Link to="/" className="flex items-center space-x-3.5 shrink-0 group">
+            <Link to="/" className="flex items-center space-x-3.5 shrink-0 group focus:outline-none">
               <img
                 src="/logo.png"
-                alt="CIAT Convent Logo"
-                className="w-11 h-11 md:w-12 md:h-12 rounded-xl object-contain shadow-xs group-hover:scale-105 transition-transform duration-200 p-0.5 border border-orange-200 bg-white"
+                alt="CIAT Convent School Crest"
+                className="w-12 h-12 md:w-13 md:h-13 object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-200"
               />
 
               <div className="flex flex-col">
