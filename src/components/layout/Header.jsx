@@ -31,6 +31,7 @@ const Header = () => {
     { name: 'About Our School', path: '/about', desc: 'Our 25-year history, legacy & campus' },
     { name: 'Vision & Mission', path: '/vision-mission', desc: 'Core philosophy & institutional values' },
     { name: "Principal's Desk", path: '/principal-message', desc: 'Welcome address by the Principal' },
+    { name: 'Platform Features & Licensing', path: '/product-showcase', desc: 'Acquire this portal for your school' },
   ];
 
   const mainNavItems = [
@@ -75,6 +76,13 @@ const Header = () => {
                 className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-2.5 py-0.5 rounded text-[11px] transition shadow-xs"
               >
                 Admissions 2026-27 Open
+              </Link>
+              <span className="text-slate-600">•</span>
+              <Link
+                to="/product-showcase"
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black px-2.5 py-0.5 rounded text-[11px] transition shadow-xs flex items-center gap-1"
+              >
+                <span>✨ Get This Portal</span>
               </Link>
             </div>
           </div>

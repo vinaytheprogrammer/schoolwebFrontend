@@ -20,6 +20,7 @@ import Gallery from './pages/Gallery';
 import Admissions from './pages/Admissions';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
+import ProductShowcase from './pages/ProductShowcase';
 import Dashboard from './pages/admin/Dashboard';
 import NotFound from './pages/NotFound';
 import PrivateRoute from './context/PrivateRoute';
@@ -61,6 +62,9 @@ function App() {
                 <Route path="/admissions" element={<Admissions />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/product-showcase" element={<ProductShowcase />} />
+                <Route path="/features" element={<ProductShowcase />} />
+                <Route path="/buy" element={<ProductShowcase />} />
 
                 {/* Admin Routes */}
                 <Route

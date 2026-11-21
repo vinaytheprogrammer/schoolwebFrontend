@@ -85,6 +85,11 @@ const Footer = () => {
               <li><Link to="/events" className="hover:text-white transition flex items-center gap-1.5"><span>›</span> School Calendar & Events</Link></li>
               <li><Link to="/gallery" className="hover:text-white transition flex items-center gap-1.5"><span>›</span> Campus Photo Gallery</Link></li>
               <li><Link to="/contact" className="hover:text-white transition flex items-center gap-1.5"><span>›</span> Contact Administration</Link></li>
+              <li className="pt-1.5 border-t border-orange-800/60">
+                <Link to="/product-showcase" className="text-amber-300 font-bold hover:text-white transition flex items-center gap-1.5">
+                  <span>★</span> Acquire This Software Platform
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -153,6 +158,8 @@ const Footer = () => {
             <Link to="/contact" className="hover:text-white transition">Contact</Link>
             <span>•</span>
             <Link to="/login" className="text-orange-300 hover:text-white font-bold transition">Staff Portal</Link>
+            <span>•</span>
+            <Link to="/product-showcase" className="text-amber-300 hover:text-white font-bold transition">Acquire Source Code</Link>
           </div>
         </div>
       </div>
