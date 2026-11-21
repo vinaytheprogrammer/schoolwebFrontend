@@ -101,7 +101,7 @@ const EditNews = () => {
         <input
           type="date"
           name="date"
-          value={article.date.split('T')[0]}
+          value={article.date ? article.date.split('T')[0] : ''}
           onChange={handleChange}
           className="w-full p-2 border rounded-md mb-4"
           required

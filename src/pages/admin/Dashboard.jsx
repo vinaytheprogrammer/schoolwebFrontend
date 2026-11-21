@@ -15,11 +15,26 @@ const Dashboard = () => {
     galleryItemsCount: 0,
     messagesCount: 0,
   });
+  const [details, setDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchDashboardData = useCallback(async () => {
     setIsLoading(true);
     try {
+      // First attempt fast consolidated stats endpoint
+      try {
+        const statsRes = await api.get('/api/dashboard/stats');
+        if (statsRes.data?.success && statsRes.data?.counts) {
+          setStats(statsRes.data.counts);
+          setDetails(statsRes.data);
+          setIsLoading(false);
+          return;
+        }
+      } catch (err) {
+        console.warn('Consolidated stats endpoint unavailable, falling back:', err.message);
+      }
+
+      // Fallback to individual endpoints
       const [newsRes, eventsRes, galleryRes, admissionsRes, contactRes] = await Promise.allSettled([
         api.get('/api/news'),
         api.get('/api/events'),

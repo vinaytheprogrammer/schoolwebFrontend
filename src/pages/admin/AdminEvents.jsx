@@ -46,22 +46,12 @@ const AdminEvents = () => {
       });
   
       // Remove the event from state after deletion
-      setEvents(events.filter(event => event.id !== id));
+      setEvents(events.filter(event => (event._id || event.id) !== id));
     } catch (error) {
       console.error('Error deleting event:', error);
     }
   };
   
-  // const publishEvent = (id) => {
-  //   setEvents(
-  //     events.map(event => 
-  //       event.id === id 
-  //         ? { ...event, status: 'published' } 
-  //         : event
-  //     )
-  //   );
-  // };
-
   const publishEvent = async (id) => {
     try {
       const token = localStorage.getItem('token');
@@ -74,7 +64,7 @@ const AdminEvents = () => {
       );
   
       // Update state after successful API response
-      setEvents(events.map(event => (event.id === id ? response.data : event)));
+      setEvents(events.map(event => ((event._id || event.id) === id ? response.data : event)));
     } catch (error) {
       console.error('Error publishing event:', error);
     }

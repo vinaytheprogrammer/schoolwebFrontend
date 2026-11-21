@@ -15,7 +15,13 @@ const Admissions = () => {
     notes: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState({ type: '', text: '' });
+  const [submitStatus, setSubmitStatus] = useState({ type: '', text: '', applicationId: '' });
+
+  // Status tracking state
+  const [trackQuery, setTrackQuery] = useState({ applicationId: '', email: '', phone: '' });
+  const [trackingResult, setTrackingResult] = useState(null);
+  const [trackingLoading, setTrackingLoading] = useState(false);
+  const [trackingError, setTrackingError] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,13 +31,15 @@ const Admissions = () => {
   const handleApplicationSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus({ type: '', text: '' });
+    setSubmitStatus({ type: '', text: '', applicationId: '' });
 
     try {
       const res = await api.post('/api/admissions', formData);
+      const appId = res.data.application?._id || '';
       setSubmitStatus({
         type: 'success',
         text: res.data.message || 'Application submitted successfully! Our admissions coordinator will reach out to you.',
+        applicationId: appId,
       });
       setFormData({
         studentName: '',
@@ -46,9 +54,42 @@ const Admissions = () => {
       setSubmitStatus({
         type: 'error',
         text: err.response?.data?.message || 'Failed to submit application. Please check the fields and try again.',
+        applicationId: '',
       });
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleTrackApplication = async (e) => {
+    e.preventDefault();
+    setTrackingLoading(true);
+    setTrackingError('');
+    setTrackingResult(null);
+
+    try {
+      let queryParams = {};
+      if (trackQuery.applicationId.trim()) {
+        queryParams.applicationId = trackQuery.applicationId.trim();
+      } else if (trackQuery.email.trim() && trackQuery.phone.trim()) {
+        queryParams.email = trackQuery.email.trim();
+        queryParams.phone = trackQuery.phone.trim();
+      } else {
+        setTrackingError('Please enter either your Application ID or both registered Email and Phone.');
+        setTrackingLoading(false);
+        return;
+      }
+
+      const res = await api.get('/api/admissions/track/status', { params: queryParams });
+      if (res.data?.success && res.data?.application) {
+        setTrackingResult(res.data.application);
+      } else {
+        setTrackingError('No application found with these details.');
+      }
+    } catch (err) {
+      setTrackingError(err.response?.data?.message || 'Unable to find an application matching your details.');
+    } finally {
+      setTrackingLoading(false);
     }
   };
 
@@ -157,6 +198,7 @@ const Admissions = () => {
             {[
               { id: 'process', label: 'Admission Process' },
               { id: 'apply', label: 'Apply Online' },
+              { id: 'track', label: 'Track Status' },
               { id: 'fees', label: 'Fee Structure' },
               { id: 'dates', label: 'Important Dates' },
               { id: 'documents', label: 'Required Documents' },
@@ -198,7 +240,22 @@ const Admissions = () => {
                         : 'bg-red-50 text-red-800 border border-red-200'
                     }`}
                   >
-                    {submitStatus.text}
+                    <p className="font-medium">{submitStatus.text}</p>
+                    {submitStatus.applicationId && (
+                      <div className="mt-2.5 pt-2 border-t border-green-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+                        <span>Application Reference ID: <strong className="font-mono">{submitStatus.applicationId}</strong></span>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setTrackQuery((prev) => ({ ...prev, applicationId: submitStatus.applicationId }));
+                            setActiveTab('track');
+                          }}
+                          className="px-2.5 py-1 bg-green-700 text-white font-bold rounded hover:bg-green-800 transition"
+                        >
+                          Track Status Now →
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -318,6 +375,154 @@ const Admissions = () => {
                     <span>{isSubmitting ? 'Submitting Application...' : 'Submit Admission Application'}</span>
                   </button>
                 </form>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Track Application Status */}
+          {activeTab === 'track' && (
+            <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+              <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-md border border-gray-100 p-8">
+                <div className="text-center mb-6">
+                  <span className="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-100 px-3 py-1 rounded-full mb-2 inline-block">
+                    Application Tracking Portal
+                  </span>
+                  <h2 className="text-2xl font-bold text-gray-900">Check Admission Status</h2>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Enter your Application Reference ID, or your registered Email and Phone number.
+                  </p>
+                </div>
+
+                {trackingError && (
+                  <div className="p-4 rounded-xl mb-6 text-sm bg-red-50 text-red-800 border border-red-200">
+                    {trackingError}
+                  </div>
+                )}
+
+                <form onSubmit={handleTrackApplication} className="space-y-4">
+                  <div>
+                    <label className="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-1">
+                      Option 1: Application ID
+                    </label>
+                    <input
+                      type="text"
+                      value={trackQuery.applicationId}
+                      onChange={(e) => setTrackQuery({ ...trackQuery, applicationId: e.target.value })}
+                      placeholder="e.g. 6b013694fdb307c544a0410c"
+                      className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none font-mono"
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-3 my-2 text-xs text-gray-400 uppercase tracking-widest font-bold">
+                    <span className="flex-1 h-px bg-gray-200"></span>
+                    <span>OR</span>
+                    <span className="flex-1 h-px bg-gray-200"></span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-1">
+                        Registered Email
+                      </label>
+                      <input
+                        type="email"
+                        value={trackQuery.email}
+                        onChange={(e) => setTrackQuery({ ...trackQuery, email: e.target.value })}
+                        placeholder="parent@example.com"
+                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700 font-bold text-xs uppercase tracking-wider mb-1">
+                        Registered Contact Phone
+                      </label>
+                      <input
+                        type="tel"
+                        value={trackQuery.phone}
+                        onChange={(e) => setTrackQuery({ ...trackQuery, phone: e.target.value })}
+                        placeholder="+91 98765 43210"
+                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={trackingLoading}
+                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-lg flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 shadow-sm text-sm uppercase tracking-wider mt-2"
+                  >
+                    <span>{trackingLoading ? 'Checking Records...' : 'Check Status Live'}</span>
+                  </button>
+                </form>
+
+                {/* Status Result Card */}
+                {trackingResult && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="mt-8 pt-6 border-t border-gray-200"
+                  >
+                    <div className="bg-orange-50/60 rounded-xl p-5 border border-orange-200">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-3 border-b border-orange-200/80 gap-2">
+                        <div>
+                          <span className="text-xs text-orange-800 font-bold uppercase tracking-wider">Candidate</span>
+                          <h3 className="text-lg font-black text-slate-900">{trackingResult.studentName}</h3>
+                          <span className="text-xs text-slate-600">Grade: {trackingResult.grade}</span>
+                        </div>
+                        <div className="sm:text-right">
+                          <span className="text-xs text-slate-500 block">Current Status</span>
+                          <span
+                            className={`inline-block px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider mt-1 ${
+                              trackingResult.status === 'approved'
+                                ? 'bg-green-600 text-white'
+                                : trackingResult.status === 'under_review'
+                                ? 'bg-blue-600 text-white'
+                                : trackingResult.status === 'waitlisted'
+                                ? 'bg-purple-600 text-white'
+                                : trackingResult.status === 'rejected'
+                                ? 'bg-red-600 text-white'
+                                : 'bg-amber-500 text-white'
+                            }`}
+                          >
+                            {trackingResult.status.replace('_', ' ')}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700 mb-4">
+                        <div>
+                          <span className="font-bold text-slate-900 block">Application ID:</span>
+                          <code className="font-mono bg-white px-1.5 py-0.5 rounded border border-orange-200 text-slate-800">
+                            {trackingResult.applicationId}
+                          </code>
+                        </div>
+                        <div>
+                          <span className="font-bold text-slate-900 block">Submitted On:</span>
+                          <span>{new Date(trackingResult.applicationDate).toLocaleDateString()}</span>
+                        </div>
+                      </div>
+
+                      <div className="bg-white p-3 rounded-lg border border-orange-100 text-xs text-slate-600">
+                        <strong className="text-slate-900 block mb-1">Status Guidance:</strong>
+                        {trackingResult.status === 'pending' && (
+                          <p>Your application is received. Our administrative team will review records and contact you for verification.</p>
+                        )}
+                        {trackingResult.status === 'under_review' && (
+                          <p>Academic committee is currently evaluating the student's background and scheduling diagnostic assessments.</p>
+                        )}
+                        {trackingResult.status === 'approved' && (
+                          <p className="text-green-800 font-medium">Congratulations! The application has been accepted. Please report to the administrative desk for enrollment formalities.</p>
+                        )}
+                        {trackingResult.status === 'waitlisted' && (
+                          <p>Application placed on standby. In the event of vacancy in the requested grade, our office will notify you.</p>
+                        )}
+                        {trackingResult.status === 'rejected' && (
+                          <p>We regret that we are unable to offer enrollment for this intake due to capacity constraints.</p>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
               </div>
             </motion.div>
           )}

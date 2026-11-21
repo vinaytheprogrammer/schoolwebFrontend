@@ -18,6 +18,24 @@ const EditEvent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const formatForDateTimeInput = (dateVal) => {
+    if (!dateVal) return '';
+    try {
+      const d = new Date(dateVal);
+      if (isNaN(d.getTime())) return '';
+      // Format as YYYY-MM-DDTHH:mm in local time
+      const pad = (n) => String(n).padStart(2, '0');
+      const year = d.getFullYear();
+      const month = pad(d.getMonth() + 1);
+      const day = pad(d.getDate());
+      const hours = pad(d.getHours());
+      const minutes = pad(d.getMinutes());
+      return `${year}-${month}-${day}T${hours}:${minutes}`;
+    } catch (_) {
+      return '';
+    }
+  };
+
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -25,7 +43,12 @@ const EditEvent = () => {
         const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/events/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setEventData(response.data);
+        const data = response.data;
+        setEventData({
+          ...data,
+          date: formatForDateTimeInput(data.date),
+          endDate: formatForDateTimeInput(data.endDate),
+        });
       } catch (error) {
         console.error('Error fetching event:', error);
         setError('Failed to load event details');
