@@ -48,15 +48,18 @@ const TestimonialSlider = () => {
   };
 
   return (
-    <section className="py-16 bg-gray-100">
-      <div className="container mx-auto px-4">
+    <section className="py-16 bg-amber-50/50 border-t border-amber-200/60">
+      <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary-900 mb-4">
-            What People Say About Us
+          <span className="text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
+            Voices of Our School
+          </span>
+          <h2 className="text-3xl md:text-4xl font-black text-[#052e7e] mt-2 mb-3">
+            What Parents & Alumni Say
           </h2>
-          <div className="w-20 h-1 bg-primary-600 mx-auto mb-6"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Hear from our parents, alumni, and community members about their experiences with our institution.
+          <div className="w-20 h-1 bg-amber-500 mx-auto rounded-full mb-4"></div>
+          <p className="text-slate-600 max-w-xl mx-auto text-sm sm:text-base">
+            Real stories of values, guidance, and academic transformation from the CIAT Convent family.
           </p>
         </div>
         
@@ -78,8 +81,8 @@ const TestimonialSlider = () => {
                       "{testimonial.quote}"
                     </blockquote>
                     <div className="mb-2">
-                      <h4 className="text-lg font-semibold text-secondary-900">{testimonial.name}</h4>
-                      <p className="text-primary-600">{testimonial.role}</p>
+                      <h4 className="text-lg font-bold text-[#052e7e]">{testimonial.name}</h4>
+                      <p className="text-amber-700 font-semibold text-sm">{testimonial.role}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -89,14 +92,14 @@ const TestimonialSlider = () => {
           
           {/* Navigation arrows */}
           <button
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 lg:-translate-x-10 w-10 h-10 rounded-full bg-white shadow-md text-primary-600 flex items-center justify-center hover:bg-primary-50 transition-colors z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 lg:-translate-x-10 w-10 h-10 rounded-full bg-white shadow-md border border-amber-200 text-[#052e7e] flex items-center justify-center hover:bg-amber-50 transition-colors z-10"
             onClick={prevTestimonial}
             aria-label="Previous testimonial"
           >
             <FiChevronLeft size={20} />
           </button>
           <button
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 lg:translate-x-10 w-10 h-10 rounded-full bg-white shadow-md text-primary-600 flex items-center justify-center hover:bg-primary-50 transition-colors z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 lg:translate-x-10 w-10 h-10 rounded-full bg-white shadow-md border border-amber-200 text-[#052e7e] flex items-center justify-center hover:bg-amber-50 transition-colors z-10"
             onClick={nextTestimonial}
             aria-label="Next testimonial"
           >
@@ -109,8 +112,8 @@ const TestimonialSlider = () => {
               <button
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  currentTestimonial === index ? 'bg-primary-600 w-6' : 'bg-gray-300'
+                className={`h-2.5 rounded-full transition-all ${
+                  currentTestimonial === index ? 'bg-amber-500 w-7' : 'bg-slate-300 w-2.5'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />

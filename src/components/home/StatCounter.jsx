@@ -36,21 +36,23 @@ const StatCounter = ({ stats }) => {
   }, [isInView, stats]);
 
   return (
-    <section ref={sectionRef} className="py-16 bg-primary-900 text-white">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <section ref={sectionRef} className="py-14 bg-[#052e7e] text-white border-y-4 border-amber-500">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex flex-col items-center"
+              className="flex flex-col items-center p-3"
             >
-              <div className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-300 mb-2">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-black text-amber-300 mb-1.5 font-mono">
                 {counts[index].toLocaleString()}+
               </div>
-              <div className="text-lg text-gray-300">{stat.label}</div>
+              <div className="text-xs sm:text-sm font-bold text-slate-200 uppercase tracking-wide">
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </div>

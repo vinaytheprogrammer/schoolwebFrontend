@@ -15,6 +15,11 @@ const Login = () => {
     setCredentials((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleQuickFill = (email, password) => {
+    setCredentials({ email, password });
+    setError('');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -39,22 +44,26 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[85vh] bg-gray-100 px-4 py-8">
+    <div className="flex justify-center items-center min-h-[80vh] bg-[#fdfbf7] px-4 py-12">
       <motion.div
-        className="w-full max-w-md bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200"
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+        className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-amber-200"
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="bg-amber-600 py-6 px-4 text-center">
-          <h1 className="text-2xl font-bold text-white">Admin Login</h1>
-          <p className="text-amber-100 text-sm mt-1">Staff and Administrator Access Portal</p>
+        {/* School Navy & Amber Header */}
+        <div className="bg-[#052e7e] py-6 px-4 text-center border-b-4 border-amber-500">
+          <div className="w-14 h-14 mx-auto mb-2 rounded-lg bg-white p-1 shadow-sm flex items-center justify-center">
+            <img src="/logo.png" alt="CIAT Convent Logo" className="w-full h-full object-contain" />
+          </div>
+          <h1 className="text-xl font-black text-white tracking-wide">CIAT CONVENT SCHOOL</h1>
+          <p className="text-amber-300 text-xs font-semibold tracking-wider uppercase mt-0.5">Staff & Administrative Portal</p>
         </div>
 
-        <div className="p-6">
+        <div className="p-6 sm:p-8">
           {error && (
             <motion.div
-              className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded-lg text-sm mb-4"
+              className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded-lg text-xs font-medium mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
@@ -64,8 +73,8 @@ const Login = () => {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-gray-700 font-medium mb-1 text-sm">
-                Email Address
+              <label htmlFor="email" className="block text-slate-700 font-bold mb-1 text-xs uppercase tracking-wider">
+                Official Email Address
               </label>
               <input
                 type="email"
@@ -74,13 +83,13 @@ const Login = () => {
                 value={credentials.email}
                 onChange={handleChange}
                 placeholder="admin@school.com"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white text-sm"
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-gray-700 font-medium mb-1 text-sm">
+              <label htmlFor="password" className="block text-slate-700 font-bold mb-1 text-xs uppercase tracking-wider">
                 Password
               </label>
               <input
@@ -90,7 +99,7 @@ const Login = () => {
                 value={credentials.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-sm"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white text-sm"
                 required
               />
             </div>
@@ -98,29 +107,42 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2.5 px-4 rounded-lg transition duration-200 disabled:opacity-50 text-sm shadow-md"
+              className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 text-xs sm:text-sm uppercase tracking-wider shadow-sm mt-2"
             >
-              {isLoading ? 'Signing In...' : 'Sign In to Dashboard'}
+              {isLoading ? 'Verifying Credentials...' : 'Sign In to Dashboard'}
             </button>
           </form>
 
-          <div className="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200 text-xs text-amber-900">
-            <span className="font-semibold">Demo Credentials:</span>
-            <div className="mt-1">
-              Email: <code className="bg-amber-100 px-1 py-0.5 rounded">admin@school.com</code> (or <code className="bg-amber-100 px-1 py-0.5 rounded">vinay@a.com</code>)
-            </div>
-            <div className="mt-0.5">
-              Password: <code className="bg-amber-100 px-1 py-0.5 rounded">admin123</code>
+          {/* Quick Demo Helper */}
+          <div className="mt-5 p-3.5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-950">
+            <span className="font-bold block mb-1">Demo Access Credentials:</span>
+            <div className="flex flex-col gap-1 text-[11px]">
+              <button
+                type="button"
+                onClick={() => handleQuickFill('admin@school.com', 'admin123')}
+                className="text-left py-0.5 px-1 rounded hover:bg-amber-100 transition flex items-center justify-between"
+              >
+                <span>Email: <code className="font-mono font-bold">admin@school.com</code> (Principal)</span>
+                <span className="text-amber-800 underline font-medium">Use</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => handleQuickFill('vinay@a.com', 'admin123')}
+                className="text-left py-0.5 px-1 rounded hover:bg-amber-100 transition flex items-center justify-between"
+              >
+                <span>Email: <code className="font-mono font-bold">vinay@a.com</code> (Admin)</span>
+                <span className="text-amber-800 underline font-medium">Use</span>
+              </button>
+              <div className="pt-1 border-t border-amber-200 text-slate-600">
+                Password: <code className="font-mono font-bold">admin123</code>
+              </div>
             </div>
           </div>
 
-          <div className="mt-6 text-center text-gray-600 text-xs">
-            <p>For credentials reset or assistance, contact school administration.</p>
-            <p className="mt-2">
-              <Link to="/" className="text-amber-700 font-medium hover:underline">
-                ← Return to Homepage
-              </Link>
-            </p>
+          <div className="mt-6 text-center text-slate-500 text-xs">
+            <Link to="/" className="text-[#052e7e] font-bold hover:underline">
+              ← Return to School Homepage
+            </Link>
           </div>
         </div>
       </motion.div>

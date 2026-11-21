@@ -102,17 +102,21 @@ const HeroSlider = () => {
                       transition={{ duration: 0.8, delay: 0.3 }}
                       className="max-w-3xl text-white"
                     >
-                      <h3 className="text-xl md:text-2xl text-gray-200 font-medium mb-2 text-primary-400">
+                      <h3 className="text-sm md:text-base text-amber-300 font-bold uppercase tracking-wider mb-2">
                         {slide.subtitle}
                       </h3>
-                      <h2 className="text-4xl md:text-5xl text-gray-200 lg:text-6xl font-bold mb-4">{slide.title}</h2>
-                      <p className="text-lg md:text-xl mb-6 text-gray-200">{slide.description}</p>
+                      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-4 leading-tight text-white drop-shadow-md">
+                        {slide.title}
+                      </h2>
+                      <p className="text-base sm:text-lg md:text-xl mb-7 text-slate-100 max-w-2xl leading-relaxed drop-shadow-sm">
+                        {slide.description}
+                      </p>
                       <Link
                         to={slide.cta.link}
-                        className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
+                        className="inline-flex items-center gap-2 px-7 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg shadow-lg hover:shadow-xl transition-all uppercase tracking-wider text-xs sm:text-sm"
                       >
-                        {slide.cta.text}
-                        <FiArrowRight className="ml-2" />
+                        <span>{slide.cta.text}</span>
+                        <FiArrowRight size={16} />
                       </Link>
                     </motion.div>
                   </div>
@@ -142,8 +146,8 @@ const HeroSlider = () => {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              currentSlide === index ? 'bg-primary-500 w-6' : 'bg-white/50'
+            className={`h-2.5 rounded-full transition-all duration-300 ${
+              currentSlide === index ? 'bg-amber-400 w-8' : 'bg-white/60 hover:bg-white w-2.5'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

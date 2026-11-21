@@ -44,12 +44,17 @@ const Contact = () => {
   return (
     <div className="pt-1">
       {/* Hero Section */}
-      <section className="bg-amber-600 text-white py-16 text-center">
-        <h1 className="text-4xl font-bold">Contact Us</h1>
-        <div className="w-20 h-1 bg-white mx-auto mt-4 rounded-full"></div>
-        <p className="text-lg mt-4 max-w-xl mx-auto text-amber-100">
-          We would love to hear from you. Get in touch with our administrative office.
-        </p>
+      <section className="bg-[#052e7e] text-white py-16 text-center border-b-4 border-amber-500">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <span className="text-xs font-bold uppercase tracking-widest text-amber-300 bg-white/10 px-3 py-1 rounded-full mb-3 inline-block">
+            Administrative Reception
+          </span>
+          <h1 className="text-3xl md:text-5xl font-black mb-3 text-white">Contact & Campus Visit</h1>
+          <div className="w-20 h-1 bg-amber-500 mx-auto mb-4 rounded-full"></div>
+          <p className="text-slate-200 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+            We would love to hear from you. Get in touch with our administrative and admissions desk.
+          </p>
+        </div>
       </section>
 
       {/* Contact Form Section */}
