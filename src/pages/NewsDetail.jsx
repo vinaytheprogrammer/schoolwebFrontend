@@ -58,24 +58,26 @@ const NewsDetail = () => {
   return (
     <div className="pt-16">
       {/* Page Header */}
-      <section className="bg-primary-600 py-20 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="inline-block text-primary-100 mb-4">
-            <Link to="/news" className="inline-flex items-center hover:underline">
-              <FiArrowLeft className="mr-2" /> Back to Notice Board
+      <section className="bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700 py-12 md:py-14 text-white text-center border-b-4 border-orange-400">
+        <div className="container mx-auto px-4 text-center max-w-3xl">
+          <div className="inline-block text-orange-200 mb-3">
+            <Link to="/news" className="inline-flex items-center text-xs font-semibold hover:text-white transition">
+              <FiArrowLeft className="mr-1.5" /> Back to Notice Board
             </Link>
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">{news.title}</h1>
-          <div className="flex justify-center items-center text-sm text-primary-100">
-            <FiCalendar className="mr-2" />
-            {new Date(news.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-            <span className="mx-2">•</span>
-            <span>{news.category}</span>
-            <span className="mx-2">•</span>
+          <h1 className="text-2xl sm:text-3xl font-black mb-3 leading-tight">{news.title}</h1>
+          <div className="flex flex-wrap justify-center items-center text-xs font-medium text-orange-100 gap-2">
+            <div className="flex items-center">
+              <FiCalendar className="mr-1" />
+              {new Date(news.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </div>
+            <span>•</span>
+            <span className="bg-white/20 px-2 py-0.5 rounded-full text-white">{news.category}</span>
+            <span>•</span>
             <span>By {news.author}</span>
           </div>
         </div>

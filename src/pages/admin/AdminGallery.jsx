@@ -132,7 +132,7 @@ const AdminGallery = () => {
         <div className="mt-4 md:mt-0">
         <Link 
             to="/admin/gallery/uploadLinks" 
-            className="bg-yellow-700 hover:bg-yellow-500 text-white py-2 px-4 rounded-md mr-2"
+            className="bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded-md mr-2"
           >
             Upload Photos Links
           </Link>

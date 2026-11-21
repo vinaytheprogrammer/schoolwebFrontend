@@ -129,7 +129,7 @@ const UploadPhotosLinks = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search album by title..."
-                className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500"
+                className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500"
               />
             </div>
 
@@ -140,7 +140,7 @@ const UploadPhotosLinks = () => {
                 value={selectedAlbumId}
                 onChange={handleAlbumSelect}
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500"
               >
                 <option value="">-- Choose an Album --</option>
                 {filteredGalleryItems.map((item) => (
@@ -161,7 +161,7 @@ const UploadPhotosLinks = () => {
               <button
                 type="button"
                 onClick={addImageAddress}
-                className="text-xs text-amber-700 font-semibold hover:underline flex items-center gap-1"
+                className="text-xs text-orange-600 font-semibold hover:underline flex items-center gap-1"
               >
                 <FiPlus /> Add Another URL
               </button>
@@ -180,7 +180,7 @@ const UploadPhotosLinks = () => {
                       value={address}
                       onChange={(e) => handleImageAddressChange(e, index)}
                       placeholder="https://images.unsplash.com/photo-..."
-                      className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500"
+                      className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500"
                       required
                     />
                   </div>
@@ -234,7 +234,7 @@ const UploadPhotosLinks = () => {
             <button
               type="submit"
               disabled={isUploading || !selectedAlbumId}
-              className="px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50 shadow-sm"
+              className="px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50 shadow-sm"
             >
               {isUploading ? 'Saving Links...' : 'Save Photos to Album'}
             </button>

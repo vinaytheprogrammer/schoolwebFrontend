@@ -49,11 +49,15 @@ const News = () => {
   return (
     <div className="pt-1">
       {/* Page Header */}
-      <section className="bg-primary-600 py-20 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">School Notice Board</h1>
-          <p className="text-lg text-primary-100 max-w-3xl mx-auto">
-            Stay updated with the latest happenings, achievements, and announcements from our institution.
+      <section className="bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700 py-14 text-white text-center border-b-4 border-orange-400">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <span className="text-xs font-bold uppercase tracking-widest text-orange-200 bg-white/10 px-3 py-1 rounded-full mb-2.5 inline-block">
+            Official Circulars & News
+          </span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black mb-2.5 text-white">School Notice Board</h1>
+          <div className="w-16 h-1 bg-white/80 mx-auto mb-3 rounded-full"></div>
+          <p className="text-sm sm:text-base text-orange-100 max-w-xl mx-auto leading-relaxed">
+            Stay updated with academic circulars, exam schedules, and announcements from our institution.
           </p>
         </div>
       </section>

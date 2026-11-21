@@ -79,7 +79,7 @@ const AdminContactMessages = () => {
           </Link>
           <button
             onClick={fetchMessages}
-            className="px-4 py-2 bg-amber-600 text-white rounded-lg text-sm hover:bg-amber-700"
+            className="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm hover:bg-orange-700"
           >
             Refresh
           </button>
@@ -103,7 +103,7 @@ const AdminContactMessages = () => {
             key={tab}
             onClick={() => setFilter(tab)}
             className={`px-4 py-2 rounded-lg text-sm font-medium capitalize transition-colors ${
-              filter === tab ? 'bg-amber-600 text-white' : 'text-gray-600 hover:bg-gray-100'
+              filter === tab ? 'bg-orange-600 text-white' : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
             {tab} ({tab === 'all' ? messages.length : messages.filter((m) => m.status === tab).length})
@@ -132,8 +132,8 @@ const AdminContactMessages = () => {
                       handleUpdateStatus(msg._id, 'read');
                     }
                   }}
-                  className={`p-4 cursor-pointer transition-colors hover:bg-amber-50/50 ${
-                    selectedMessage?._id === msg._id ? 'bg-amber-50 border-l-4 border-amber-600' : ''
+                  className={`p-4 cursor-pointer transition-colors hover:bg-orange-50/50 ${
+                    selectedMessage?._id === msg._id ? 'bg-orange-50 border-l-4 border-orange-500' : ''
                   }`}
                 >
                   <div className="flex items-start justify-between">
@@ -193,7 +193,7 @@ const AdminContactMessages = () => {
                   </div>
                   <div>
                     <span className="text-gray-500 block text-xs">Email</span>
-                    <a href={`mailto:${selectedMessage.email}`} className="text-amber-600 hover:underline">
+                    <a href={`mailto:${selectedMessage.email}`} className="text-orange-600 hover:underline">
                       {selectedMessage.email}
                     </a>
                   </div>
@@ -215,7 +215,7 @@ const AdminContactMessages = () => {
                   </button>
                   <a
                     href={`mailto:${selectedMessage.email}?subject=Re: ${encodeURIComponent(selectedMessage.subject)}`}
-                    className="flex-1 bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium py-2 px-3 rounded-lg text-center"
+                    className="flex-1 bg-orange-600 hover:bg-orange-700 text-white text-xs font-medium py-2 px-3 rounded-lg text-center"
                   >
                     Reply via Email
                   </a>

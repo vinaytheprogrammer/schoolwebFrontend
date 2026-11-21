@@ -44,14 +44,14 @@ const Contact = () => {
   return (
     <div className="pt-1">
       {/* Hero Section */}
-      <section className="bg-[#052e7e] text-white py-16 text-center border-b-4 border-amber-500">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-amber-300 bg-white/10 px-3 py-1 rounded-full mb-3 inline-block">
+      <section className="bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700 text-white py-14 text-center border-b-4 border-orange-400">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <span className="text-xs font-bold uppercase tracking-widest text-orange-200 bg-white/10 px-3 py-1 rounded-full mb-2.5 inline-block">
             Administrative Reception
           </span>
-          <h1 className="text-3xl md:text-5xl font-black mb-3 text-white">Contact & Campus Visit</h1>
-          <div className="w-20 h-1 bg-amber-500 mx-auto mb-4 rounded-full"></div>
-          <p className="text-slate-200 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black mb-2.5 text-white">Contact & Campus Visit</h1>
+          <div className="w-16 h-1 bg-white/80 mx-auto mb-3 rounded-full"></div>
+          <p className="text-orange-100 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
             We would love to hear from you. Get in touch with our administrative and admissions desk.
           </p>
         </div>
@@ -73,28 +73,28 @@ const Contact = () => {
             </p>
             <div className="space-y-4">
               <div className="flex items-start space-x-3 text-gray-700">
-                <FiMapPin className="text-amber-600 mt-1 flex-shrink-0" size={20} />
+                <FiMapPin className="text-orange-600 mt-1 flex-shrink-0" size={20} />
                 <p>
                   <span className="font-semibold block text-gray-900">Address:</span>
                   CIAT Convent Sr. Sec. School, Kanjhawala, North West Delhi, 110081
                 </p>
               </div>
               <div className="flex items-start space-x-3 text-gray-700">
-                <FiPhone className="text-amber-600 mt-1 flex-shrink-0" size={20} />
+                <FiPhone className="text-orange-600 mt-1 flex-shrink-0" size={20} />
                 <p>
                   <span className="font-semibold block text-gray-900">Phone:</span>
                   +91 85957 92883 / +91 11 2595 1000
                 </p>
               </div>
               <div className="flex items-start space-x-3 text-gray-700">
-                <FiMail className="text-amber-600 mt-1 flex-shrink-0" size={20} />
+                <FiMail className="text-orange-600 mt-1 flex-shrink-0" size={20} />
                 <p>
                   <span className="font-semibold block text-gray-900">Email:</span>
                   Ciatschool1998@gmail.com
                 </p>
               </div>
               <div className="flex items-start space-x-3 text-gray-700">
-                <FiClock className="text-amber-600 mt-1 flex-shrink-0" size={20} />
+                <FiClock className="text-orange-600 mt-1 flex-shrink-0" size={20} />
                 <p>
                   <span className="font-semibold block text-gray-900">Visiting Hours:</span>
                   Mon - Fri: 8:00 AM - 4:00 PM | Sat: 8:00 AM - 1:00 PM
@@ -130,7 +130,7 @@ const Contact = () => {
                   placeholder="Your Full Name *"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
                   required
                 />
               </div>
@@ -141,7 +141,7 @@ const Contact = () => {
                   placeholder="Email Address *"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
                   required
                 />
               </div>
@@ -152,7 +152,7 @@ const Contact = () => {
                   placeholder="Inquiry Subject *"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
                   required
                 />
               </div>
@@ -163,14 +163,14 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows="4"
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
                   required
                 ></textarea>
               </div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 shadow-sm"
+                className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-lg flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 shadow-sm text-sm"
               >
                 <FiSend />
                 <span>{isSubmitting ? 'Sending Message...' : 'Send Message'}</span>

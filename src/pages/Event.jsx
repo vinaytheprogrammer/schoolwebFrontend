@@ -64,14 +64,15 @@ const Events = () => {
   return (
     <div className="pt-20 pb-16">
       {/* Page Header */}
-      <section className="bg-primary-600 py-12 md:py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Events & Activities
-          </h1>
-          <p className="text-primary-100 max-w-3xl mx-auto">
-            Stay updated with all the exciting events and activities happening at our institution
-            throughout the academic year.
+      <section className="bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700 py-14 text-white text-center border-b-4 border-orange-400">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <span className="text-xs font-bold uppercase tracking-widest text-orange-200 bg-white/10 px-3 py-1 rounded-full mb-2.5 inline-block">
+            Campus Calendar
+          </span>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black mb-2.5 text-white">Events & Co-Curriculars</h1>
+          <div className="w-16 h-1 bg-white/80 mx-auto mb-3 rounded-full"></div>
+          <p className="text-sm sm:text-base text-orange-100 max-w-xl mx-auto leading-relaxed">
+            Stay updated with all the athletic meets, cultural programs, and academic competitions throughout the year.
           </p>
         </div>
       </section>

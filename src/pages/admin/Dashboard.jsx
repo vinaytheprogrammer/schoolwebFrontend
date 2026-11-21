@@ -68,7 +68,7 @@ const Dashboard = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
       </div>
     );
   }
@@ -79,13 +79,13 @@ const Dashboard = () => {
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Admin Control Center</h1>
           <p className="text-sm text-gray-600 mt-1">
-            Welcome back, <span className="font-semibold text-amber-700">{user?.name || user?.email || 'Administrator'}</span> ({user?.role || 'admin'})
+            Welcome back, <span className="font-semibold text-orange-700">{user?.name || user?.email || 'Administrator'}</span> ({user?.role || 'admin'})
           </p>
         </div>
         <div className="mt-4 md:mt-0 flex gap-2">
           <button
             onClick={fetchDashboardData}
-            className="flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white text-sm py-2 px-4 rounded-lg font-medium shadow-sm transition"
+            className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white text-sm py-2 px-4 rounded-lg font-medium shadow-sm transition"
           >
             <FiRefreshCw size={16} />
             <span>Refresh Metrics</span>
@@ -114,7 +114,7 @@ const Dashboard = () => {
           count={stats.admissionsCount}
           icon="📝"
           linkTo="/admin/admissions"
-          color="bg-amber-600"
+          color="bg-orange-600"
         />
         <StatsCard
           title="Gallery Albums"
@@ -136,14 +136,14 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 col-span-1 lg:col-span-2">
           <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <FiCheckSquare className="text-amber-600" />
+            <FiCheckSquare className="text-orange-600" />
             <span>Administrator Quick Reference</span>
           </h2>
 
           <div className="space-y-4 text-sm text-gray-700">
-            <div className="p-4 bg-amber-50 rounded-lg border border-amber-200">
-              <h3 className="font-semibold text-amber-900 mb-1">1. School Notice & Announcements</h3>
-              <p className="text-amber-800">
+            <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
+              <h3 className="font-semibold text-orange-900 mb-1">1. School Notice & Announcements</h3>
+              <p className="text-orange-800">
                 Publish school circulars, academic notices, and exam results to the public Notice Board. Draft notices remain visible only to admins until published.
               </p>
             </div>
@@ -173,7 +173,7 @@ const Dashboard = () => {
 
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
           <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <FiPlusCircle className="text-amber-600" />
+            <FiPlusCircle className="text-orange-600" />
             <span>Quick Actions</span>
           </h2>
           <div className="space-y-2.5">
@@ -200,7 +200,7 @@ const Dashboard = () => {
             </Link>
             <Link
               to="/admin/admissions"
-              className="flex items-center gap-3 px-4 py-3 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 text-sm font-medium transition"
+              className="flex items-center gap-3 px-4 py-3 rounded-lg bg-orange-50 hover:bg-orange-100 text-orange-800 text-sm font-medium transition"
             >
               <FiCheckSquare />
               <span>Review Admissions</span>

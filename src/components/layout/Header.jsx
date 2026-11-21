@@ -18,7 +18,7 @@ const Header = () => {
   // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 15);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -39,30 +39,30 @@ const Header = () => {
   return (
     <>
       <header className="w-full fixed top-0 z-[1000] transition-all duration-200">
-        {/* Top Info Ribbon (School Affiliation & Contact) */}
-        <div className="bg-[#052e7e] text-white text-xs py-2 px-4 border-b border-amber-400/40 hidden md:block">
+        {/* Top Info Ribbon */}
+        <div className="bg-orange-800 text-orange-100 text-xs py-1.5 px-4 border-b border-orange-700/60 hidden md:block">
           <div className="container mx-auto max-w-7xl flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              <span className="flex items-center gap-1.5 text-amber-300 font-semibold tracking-wide">
-                <FiAward size={13} className="text-amber-300" />
+            <div className="flex items-center space-x-3">
+              <span className="flex items-center gap-1.5 text-white font-semibold tracking-wide">
+                <FiAward size={13} className="text-orange-300" />
                 <span>CBSE Affiliated Sr. Sec. School (Est. 1998)</span>
               </span>
-              <span className="text-white/40">•</span>
-              <span className="text-slate-200">Affiliation No. 2730488</span>
+              <span className="text-orange-400/60">•</span>
+              <span className="text-orange-200">Affiliation No. 2730488</span>
             </div>
 
-            <div className="flex items-center space-x-5 text-slate-200">
-              <a href="tel:+918595792883" className="flex items-center gap-1 hover:text-amber-300 transition">
-                <FiPhone size={12} className="text-amber-300" />
+            <div className="flex items-center space-x-4 text-orange-100">
+              <a href="tel:+918595792883" className="flex items-center gap-1 hover:text-white transition">
+                <FiPhone size={12} className="text-orange-300" />
                 <span>+91 85957 92883</span>
               </a>
-              <span className="text-white/40">•</span>
-              <a href="mailto:Ciatschool1998@gmail.com" className="flex items-center gap-1 hover:text-amber-300 transition">
-                <FiMail size={12} className="text-amber-300" />
+              <span className="text-orange-400/60">•</span>
+              <a href="mailto:Ciatschool1998@gmail.com" className="flex items-center gap-1 hover:text-white transition">
+                <FiMail size={12} className="text-orange-300" />
                 <span>Ciatschool1998@gmail.com</span>
               </a>
-              <span className="text-white/40">•</span>
-              <Link to="/admissions" className="text-amber-300 font-bold hover:underline">
+              <span className="text-orange-400/60">•</span>
+              <Link to="/admissions" className="text-white font-bold hover:underline">
                 Admissions 2026-27 Open
               </Link>
             </div>
@@ -71,8 +71,8 @@ const Header = () => {
 
         {/* Main Navigation Bar */}
         <div
-          className={`bg-white transition-all duration-300 border-b-2 border-amber-500 ${
-            isScrolled ? 'shadow-md py-2.5' : 'shadow-xs py-3.5'
+          className={`bg-white transition-all duration-200 border-b-2 border-orange-500 ${
+            isScrolled ? 'shadow-md py-2' : 'shadow-xs py-3'
           }`}
         >
           <div className="container mx-auto px-4 max-w-7xl flex justify-between items-center">
@@ -81,36 +81,36 @@ const Header = () => {
               <img
                 src="/logo.png"
                 alt="CIAT Convent Logo"
-                className="w-12 h-12 md:w-14 md:h-14 rounded-lg shadow-xs group-hover:scale-105 transition-transform duration-200 object-contain p-0.5 bg-white border border-amber-200"
+                className="w-11 h-11 md:w-12 md:h-12 rounded-lg shadow-xs group-hover:scale-105 transition-transform duration-200 object-contain p-0.5 bg-white border border-orange-200"
               />
 
               <div className="flex flex-col">
                 <div className="flex items-center gap-2">
-                  <h1 className="text-lg md:text-xl font-black text-[#052e7e] tracking-tight">
+                  <h1 className="text-base md:text-lg font-black text-orange-950 tracking-tight">
                     CIAT CONVENT
                   </h1>
-                  <span className="text-[10px] font-bold uppercase bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded border border-amber-300 hidden sm:inline-block">
-                    Sr. Sec. School
+                  <span className="text-[10px] font-bold uppercase bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded border border-orange-200 hidden sm:inline-block">
+                    Sr. Sec.
                   </span>
                 </div>
-                <p className="text-xs text-amber-700 font-semibold tracking-wide">
+                <p className="text-xs text-orange-600 font-semibold tracking-wide">
                   Excellence in Education • Delhi
                 </p>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden xl:flex items-center space-x-1">
+            <nav className="hidden lg:flex items-center space-x-1">
               {navigationItems.map((item) => {
                 const isActive = location.pathname === item.path;
                 return (
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all duration-150 relative ${
+                    className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors duration-150 relative ${
                       isActive
-                        ? 'text-[#052e7e] bg-amber-50 font-bold border-b-2 border-amber-500'
-                        : 'text-slate-700 hover:text-[#052e7e] hover:bg-amber-50/60'
+                        ? 'text-orange-600 bg-orange-50/80 font-bold border-b-2 border-orange-500'
+                        : 'text-slate-700 hover:text-orange-600 hover:bg-orange-50/50'
                     }`}
                   >
                     {item.name}
@@ -120,10 +120,10 @@ const Header = () => {
             </nav>
 
             {/* Action Buttons */}
-            <div className="hidden md:flex items-center space-x-3">
+            <div className="hidden sm:flex items-center space-x-2.5">
               <Link
                 to="/admissions"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-sm transition-all hover:shadow"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider shadow-sm transition-all hover:shadow"
               >
                 <span>Apply Online</span>
                 <FiArrowRight size={13} />
@@ -131,18 +131,18 @@ const Header = () => {
 
               {user ? (
                 <div className="relative group">
-                  <button className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-[#052e7e] transition font-semibold text-xs">
-                    <FiUser size={15} />
+                  <button className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-orange-50 hover:bg-orange-100 text-orange-800 transition font-semibold text-xs border border-orange-200">
+                    <FiUser size={14} />
                     <span className="max-w-[100px] truncate">{user.name}</span>
                   </button>
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
                     <div className="px-4 py-1.5 border-b border-slate-100 text-xs text-slate-500">
                       Signed in as <span className="font-bold text-slate-800 block truncate">{user.email}</span>
                     </div>
                     {isAdmin() && (
                       <Link
                         to="/admin/dashboard"
-                        className="block px-4 py-2 text-sm text-[#052e7e] font-semibold hover:bg-amber-50 transition"
+                        className="block px-4 py-2 text-sm text-orange-700 font-semibold hover:bg-orange-50 transition"
                       >
                         Admin Dashboard
                       </Link>
@@ -161,7 +161,7 @@ const Header = () => {
               ) : (
                 <Link
                   to="/login"
-                  className="px-3 py-1.5 rounded-lg text-xs font-semibold text-[#052e7e] bg-slate-100 hover:bg-slate-200 border border-slate-300 transition"
+                  className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-orange-50 hover:text-orange-700 border border-slate-200 transition"
                 >
                   Admin Portal
                 </Link>
@@ -170,11 +170,11 @@ const Header = () => {
 
             {/* Mobile menu toggle */}
             <button
-              className="xl:hidden p-2 rounded-lg text-[#052e7e] hover:bg-amber-50 transition"
+              className="lg:hidden p-2 rounded-lg text-orange-800 hover:bg-orange-50 transition"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
+              aria-label="Toggle navigation"
             >
-              {isMenuOpen ? <FiX size={26} /> : <FiMenu size={26} />}
+              {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
           </div>
         </div>
@@ -186,17 +186,17 @@ const Header = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="xl:hidden bg-white border-b-2 border-amber-500 shadow-xl overflow-hidden"
+              className="lg:hidden bg-white border-b-2 border-orange-500 shadow-xl overflow-hidden"
             >
-              <div className="container mx-auto px-4 py-4 space-y-2">
+              <div className="container mx-auto px-4 py-3 space-y-1">
                 {navigationItems.map((item) => (
                   <Link
                     key={item.name}
                     to={item.path}
                     className={`block px-3 py-2 rounded-lg text-sm font-semibold transition ${
                       location.pathname === item.path
-                        ? 'bg-amber-50 text-[#052e7e] border-l-4 border-amber-500'
-                        : 'text-slate-700 hover:bg-amber-50/60'
+                        ? 'bg-orange-50 text-orange-700 border-l-4 border-orange-500'
+                        : 'text-slate-700 hover:bg-orange-50/60'
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -204,10 +204,10 @@ const Header = () => {
                   </Link>
                 ))}
 
-                <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
                   <Link
                     to="/admissions"
-                    className="w-full py-2.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-center text-xs uppercase tracking-wider"
+                    className="w-full py-2.5 rounded-lg bg-orange-600 text-white font-bold text-center text-xs uppercase tracking-wider shadow-sm"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Apply for Admission 2026-27
@@ -217,7 +217,7 @@ const Header = () => {
                       {isAdmin() && (
                         <Link
                           to="/admin/dashboard"
-                          className="w-full py-2 rounded-lg bg-slate-100 text-[#052e7e] font-bold text-center text-xs"
+                          className="w-full py-2 rounded-lg bg-orange-50 text-orange-800 font-bold text-center text-xs border border-orange-200"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           Admin Dashboard
@@ -236,7 +236,7 @@ const Header = () => {
                   ) : (
                     <Link
                       to="/login"
-                      className="w-full py-2 rounded-lg bg-slate-100 text-[#052e7e] font-bold text-center text-xs border border-slate-300"
+                      className="w-full py-2 rounded-lg bg-slate-100 text-slate-700 font-semibold text-center text-xs border border-slate-200"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Admin Staff Portal
@@ -249,8 +249,8 @@ const Header = () => {
         </AnimatePresence>
       </header>
 
-      {/* Spacer so page content does not hide behind fixed header */}
-      <div className="pt-[115px] md:pt-[125px]"></div>
+      {/* Spacer so page content starts cleanly below header */}
+      <div className="pt-[72px] md:pt-[98px]"></div>
     </>
   );
 };

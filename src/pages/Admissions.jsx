@@ -130,29 +130,29 @@ const Admissions = () => {
   return (
     <div className="pt-1">
       {/* Hero Section */}
-      <section className="bg-[#052e7e] text-white py-16 text-center border-b-4 border-amber-500">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-amber-300 bg-white/10 px-3 py-1 rounded-full mb-3 inline-block">
+      <section className="bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700 text-white py-14 text-center border-b-4 border-orange-400">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <span className="text-xs font-bold uppercase tracking-widest text-orange-200 bg-white/10 px-3 py-1 rounded-full mb-2.5 inline-block">
             Academic Session 2026-27
           </span>
           <motion.h1
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-5xl font-black mb-3 text-white"
+            className="text-2xl sm:text-3xl md:text-4xl font-black mb-2.5 text-white"
           >
             Admissions Open
           </motion.h1>
-          <div className="w-20 h-1 bg-amber-500 mx-auto mb-4 rounded-full"></div>
-          <p className="text-slate-200 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <div className="w-16 h-1 bg-white/80 mx-auto mb-3 rounded-full"></div>
+          <p className="text-orange-100 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
             Join our nurturing community of learners and embark on a journey of academic distinction, sports excellence, and character leadership.
           </p>
         </div>
       </section>
 
       {/* Tabs Navigation */}
-      <section className="bg-white border-b-2 border-amber-200 sticky top-[110px] md:top-[120px] z-10 shadow-xs">
-        <div className="container mx-auto px-4 max-w-7xl">
+      <section className="bg-white border-b-2 border-orange-200 sticky top-[72px] md:top-[98px] z-10 shadow-xs">
+        <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex overflow-x-auto py-2.5 gap-2 whitespace-nowrap scrollbar-none">
             {[
               { id: 'process', label: 'Admission Process' },
@@ -167,8 +167,8 @@ const Admissions = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 py-2 font-bold rounded-lg text-xs sm:text-sm transition-all ${
                   activeTab === tab.id
-                    ? 'bg-amber-500 text-slate-950 shadow-sm'
-                    : 'text-slate-700 hover:text-[#052e7e] hover:bg-amber-50'
+                    ? 'bg-orange-600 text-white shadow-xs'
+                    : 'text-slate-700 hover:text-orange-700 hover:bg-orange-50'
                 }`}
               >
                 {tab.label}
@@ -213,7 +213,7 @@ const Admissions = () => {
                         onChange={handleInputChange}
                         placeholder="e.g. Aarav Sharma"
                         required
-                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                       />
                     </div>
                     <div>
@@ -223,7 +223,7 @@ const Admissions = () => {
                         value={formData.grade}
                         onChange={handleInputChange}
                         required
-                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                       >
                         <option value="Pre-School / Nursery">Pre-School / Nursery</option>
                         <option value="Kindergarten">Kindergarten</option>
@@ -254,7 +254,7 @@ const Admissions = () => {
                         onChange={handleInputChange}
                         placeholder="e.g. Rajesh Sharma"
                         required
-                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                       />
                     </div>
                     <div>
@@ -266,7 +266,7 @@ const Admissions = () => {
                         onChange={handleInputChange}
                         placeholder="+91 98765 43210"
                         required
-                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                       />
                     </div>
                   </div>
@@ -281,7 +281,7 @@ const Admissions = () => {
                         onChange={handleInputChange}
                         placeholder="parent@example.com"
                         required
-                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                       />
                     </div>
                     <div>
@@ -292,7 +292,7 @@ const Admissions = () => {
                         value={formData.currentSchool}
                         onChange={handleInputChange}
                         placeholder="e.g. St. Xaviers School"
-                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                        className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                       />
                     </div>
                   </div>
@@ -305,14 +305,14 @@ const Admissions = () => {
                       onChange={handleInputChange}
                       placeholder="Mention any sports accomplishments, special needs, or academic interests..."
                       rows="3"
-                      className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none"
+                      className="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 shadow-sm"
+                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-lg flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 shadow-sm text-sm"
                   >
                     <FiSend />
                     <span>{isSubmitting ? 'Submitting Application...' : 'Submit Admission Application'}</span>
@@ -333,13 +333,13 @@ const Admissions = () => {
                 {admissionSteps.map((step, index) => (
                   <div key={index} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
                     <div>
-                      <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-2xl mb-4">
+                      <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center text-2xl mb-4">
                         {step.icon}
                       </div>
                       <h3 className="text-base font-bold text-gray-900 mb-2">{step.title}</h3>
                       <p className="text-sm text-gray-600 leading-relaxed">{step.description}</p>
                     </div>
-                    <div className="mt-4 pt-4 border-t border-gray-100 text-xs font-semibold text-amber-700">
+                    <div className="mt-4 pt-4 border-t border-gray-100 text-xs font-semibold text-orange-700">
                       {step.timeframe}
                     </div>
                   </div>
@@ -416,7 +416,7 @@ const Admissions = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
                 {importantDates.map((item, index) => (
                   <div key={index} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                    <span className="text-xs font-bold text-amber-600 uppercase tracking-wider">{item.date}</span>
+                    <span className="text-xs font-bold text-orange-600 uppercase tracking-wider">{item.date}</span>
                     <h3 className="text-base font-bold text-gray-900 mt-1">{item.event}</h3>
                     <p className="text-xs text-gray-600 mt-2">{item.description}</p>
                   </div>

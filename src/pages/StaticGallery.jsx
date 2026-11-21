@@ -139,29 +139,27 @@ const StaticGallery = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-primary-600 py-16 md:py-24">
-        <div className="container mx-auto px-4 text-center">
+      <section className="bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700 py-14 text-white text-center border-b-4 border-orange-400">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <span className="text-xs font-bold uppercase tracking-widest text-orange-200 bg-white/10 px-3 py-1 rounded-full mb-2.5 inline-block">
+            Campus Archives
+          </span>
           <motion.h1 
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-4"
+            transition={{ duration: 0.4 }}
+            className="text-2xl sm:text-3xl md:text-4xl font-black mb-2.5 text-white"
           >
             Photo Gallery
           </motion.h1>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-20 h-1 bg-yellow-500 mx-auto mb-6"
-          ></motion.div>
+          <div className="w-16 h-1 bg-white/80 mx-auto mb-3 rounded-full"></div>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-primary-100 text-lg max-w-2xl mx-auto"
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="text-sm sm:text-base text-orange-100 max-w-xl mx-auto leading-relaxed"
           >
-            Explore memorable moments and events captured at our institution
+            Explore memorable moments, cultural performances, and academic celebrations captured across our campus.
           </motion.p>
         </div>
       </section>

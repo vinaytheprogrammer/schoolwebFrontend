@@ -4,29 +4,26 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const TestimonialSlider = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  
+
   // Testimonial data
   const testimonials = [
     {
       id: 1,
-      name: 'Vinay Gupta',
-      role: 'Developer',
-      image: 'https://source.unsplash.com/random/100x100/?woman',
-      quote: `The teachers at Education Institute have had a profound impact on my child's academic performance and personal growth. The school's approach to education is balanced and holistic.`,
+      name: 'Dr. Sunita Sharma',
+      role: 'Parent of Class X Student',
+      quote: `The teachers at CIAT Convent have had a profound impact on my child's academic confidence and holistic development. The blend of CBSE curriculum rigor with ethical values and athletics is exceptional.`,
     },
     {
       id: 2,
       name: 'Rishabh Verma',
-      role: 'Alumni (Batch of 2020)',
-      image: 'https://source.unsplash.com/random/100x100/?man',
-      quote: 'My years at Education Institute prepared me well for university life. The critical thinking skills and discipline I developed have been invaluable in my higher education journey.',
+      role: 'Alumni (Batch of 2021) • Software Engineer',
+      quote: 'My years at CIAT Convent instilled the analytical rigor, leadership discipline, and inquisitive spirit that continue to drive my career today. Grateful for the faculty\'s steadfast mentorship.',
     },
     {
       id: 3,
-      name: 'Dr. Adarsh Kumar Pandey',
-      role: 'Local University Professor',
-      image: 'https://source.unsplash.com/random/100x100/?professor',
-      quote: 'Students from Education Institute consistently demonstrate exceptional academic foundations and a genuine passion for learning. The institution clearly excels in preparing students for future academic challenges.',
+      name: 'Adarsh Kumar Pandey',
+      role: 'Senior Academic Consultant & Educator',
+      quote: 'Students from CIAT Convent consistently demonstrate outstanding foundations, critical curiosity, and compassion. The institution excels in nurturing future-ready global citizens.',
     },
   ];
 
@@ -34,8 +31,8 @@ const TestimonialSlider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-    }, 8000);
-    
+    }, 7000);
+
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
@@ -48,72 +45,71 @@ const TestimonialSlider = () => {
   };
 
   return (
-    <section className="py-16 bg-amber-50/50 border-t border-amber-200/60">
+    <section className="py-16 bg-orange-50/50 border-t border-orange-200/60">
       <div className="container mx-auto px-4 max-w-5xl">
-        <div className="text-center mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-amber-700 bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
-            Voices of Our School
+        <div className="text-center mb-10">
+          <span className="text-xs font-bold uppercase tracking-widest text-orange-700 bg-orange-100 px-3 py-1 rounded-full border border-orange-300">
+            Voices of Our Community
           </span>
-          <h2 className="text-3xl md:text-4xl font-black text-[#052e7e] mt-2 mb-3">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mt-2 mb-2">
             What Parents & Alumni Say
           </h2>
-          <div className="w-20 h-1 bg-amber-500 mx-auto rounded-full mb-4"></div>
-          <p className="text-slate-600 max-w-xl mx-auto text-sm sm:text-base">
+          <div className="w-16 h-1 bg-orange-500 mx-auto rounded-full mb-3"></div>
+          <p className="text-slate-600 max-w-xl mx-auto text-sm leading-relaxed">
             Real stories of values, guidance, and academic transformation from the CIAT Convent family.
           </p>
         </div>
-        
-        <div className="relative max-w-4xl mx-auto">
+
+        <div className="relative max-w-3xl mx-auto">
           <AnimatePresence mode="wait">
             {testimonials.map((testimonial, index) => (
               currentTestimonial === index && (
                 <motion.div
                   key={testimonial.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-white p-8 md:p-10 rounded-lg shadow-soft"
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.4 }}
+                  className="bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-orange-100"
                 >
                   <div className="flex flex-col items-center text-center">
-                    
-                    <blockquote className="text-lg md:text-xl text-gray-700 italic mb-6">
+                    <blockquote className="text-base sm:text-lg text-slate-700 italic mb-5 leading-relaxed">
                       "{testimonial.quote}"
                     </blockquote>
-                    <div className="mb-2">
-                      <h4 className="text-lg font-bold text-[#052e7e]">{testimonial.name}</h4>
-                      <p className="text-amber-700 font-semibold text-sm">{testimonial.role}</p>
+                    <div className="pt-3 border-t border-slate-100 w-full">
+                      <h4 className="text-base font-bold text-slate-900">{testimonial.name}</h4>
+                      <p className="text-xs sm:text-sm text-orange-600 font-semibold mt-0.5">{testimonial.role}</p>
                     </div>
                   </div>
                 </motion.div>
               )
             ))}
           </AnimatePresence>
-          
+
           {/* Navigation arrows */}
           <button
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 lg:-translate-x-10 w-10 h-10 rounded-full bg-white shadow-md border border-amber-200 text-[#052e7e] flex items-center justify-center hover:bg-amber-50 transition-colors z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 sm:-translate-x-5 w-9 h-9 rounded-full bg-white shadow-md border border-orange-200 text-orange-700 flex items-center justify-center hover:bg-orange-50 transition-colors z-10"
             onClick={prevTestimonial}
             aria-label="Previous testimonial"
           >
-            <FiChevronLeft size={20} />
+            <FiChevronLeft size={18} />
           </button>
           <button
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 lg:translate-x-10 w-10 h-10 rounded-full bg-white shadow-md border border-amber-200 text-[#052e7e] flex items-center justify-center hover:bg-amber-50 transition-colors z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 sm:translate-x-5 w-9 h-9 rounded-full bg-white shadow-md border border-orange-200 text-orange-700 flex items-center justify-center hover:bg-orange-50 transition-colors z-10"
             onClick={nextTestimonial}
             aria-label="Next testimonial"
           >
-            <FiChevronRight size={20} />
+            <FiChevronRight size={18} />
           </button>
-          
+
           {/* Dot indicators */}
           <div className="flex justify-center space-x-2 mt-6">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
-                className={`h-2.5 rounded-full transition-all ${
-                  currentTestimonial === index ? 'bg-amber-500 w-7' : 'bg-slate-300 w-2.5'
+                className={`h-2 rounded-full transition-all duration-200 ${
+                  currentTestimonial === index ? 'bg-orange-600 w-6' : 'bg-slate-300 w-2'
                 }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />

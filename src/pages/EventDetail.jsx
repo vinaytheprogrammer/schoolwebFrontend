@@ -328,17 +328,16 @@ const EventDetail = () => {
                 <div>
                   <h4 className="text-lg font-semibold text-secondary-900 mb-2">Share This Event</h4>
                   <div className="flex space-x-2">
-                    <button className="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
-                      {/* Replace with actual social media icons */}
+                    <button className="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors" title="Share on Facebook">
                       F
                     </button>
-                    <button className="p-2 bg-sky-500 text-white rounded-full hover:bg-sky-600 transition-colors">
+                    <button className="p-2 bg-sky-500 text-white rounded-full hover:bg-sky-600 transition-colors" title="Share on Twitter">
                       T
                     </button>
-                    <button className="p-2 bg-amber-200 text-amber-800 rounded-full hover:bg-amber-300 transition-colors">
-                        I
+                    <button className="p-2 bg-orange-100 text-orange-800 rounded-full hover:bg-orange-200 transition-colors font-semibold" title="Share via Email">
+                      E
                     </button>
-                   </div>
+                  </div>
                 </div>
 
               </div>

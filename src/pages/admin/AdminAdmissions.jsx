@@ -134,7 +134,7 @@ const AdminAdmissions = () => {
         <div className="mt-4 md:mt-0 flex gap-2">
           <button
             onClick={fetchApplications}
-            className="bg-amber-600 hover:bg-amber-700 text-white text-sm py-2 px-4 rounded-lg font-medium shadow-sm"
+            className="bg-orange-600 hover:bg-orange-700 text-white text-sm py-2 px-4 rounded-lg font-medium shadow-sm"
           >
             Refresh Applications
           </button>
@@ -190,7 +190,7 @@ const AdminAdmissions = () => {
                 key={filter}
                 onClick={() => setCurrentFilter(filter)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-colors ${
-                  currentFilter === filter ? 'bg-amber-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  currentFilter === filter ? 'bg-orange-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
                 {filter.replace('_', ' ')}
@@ -204,7 +204,7 @@ const AdminAdmissions = () => {
               placeholder="Search by student, grade, parent..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-amber-500 focus:outline-none"
+              className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-orange-500 focus:outline-none"
             />
           </div>
         </div>

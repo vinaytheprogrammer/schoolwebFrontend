@@ -44,20 +44,20 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[80vh] bg-[#fdfbf7] px-4 py-12">
+    <div className="flex justify-center items-center min-h-[80vh] bg-orange-50/30 px-4 py-12">
       <motion.div
-        className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-amber-200"
+        className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-orange-200"
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3 }}
       >
-        {/* School Navy & Amber Header */}
-        <div className="bg-[#052e7e] py-6 px-4 text-center border-b-4 border-amber-500">
+        {/* School Warm Orange Header */}
+        <div className="bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700 py-6 px-4 text-center border-b-4 border-orange-400">
           <div className="w-14 h-14 mx-auto mb-2 rounded-lg bg-white p-1 shadow-sm flex items-center justify-center">
             <img src="/logo.png" alt="CIAT Convent Logo" className="w-full h-full object-contain" />
           </div>
           <h1 className="text-xl font-black text-white tracking-wide">CIAT CONVENT SCHOOL</h1>
-          <p className="text-amber-300 text-xs font-semibold tracking-wider uppercase mt-0.5">Staff & Administrative Portal</p>
+          <p className="text-orange-200 text-xs font-semibold tracking-wider uppercase mt-0.5">Staff & Administrative Portal</p>
         </div>
 
         <div className="p-6 sm:p-8">
@@ -83,7 +83,7 @@ const Login = () => {
                 value={credentials.email}
                 onChange={handleChange}
                 placeholder="admin@school.com"
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white text-sm"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white text-sm"
                 required
               />
             </div>
@@ -99,7 +99,7 @@ const Login = () => {
                 value={credentials.password}
                 onChange={handleChange}
                 placeholder="••••••••"
-                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white text-sm"
+                className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white text-sm"
                 required
               />
             </div>
@@ -107,40 +107,40 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 text-xs sm:text-sm uppercase tracking-wider shadow-sm mt-2"
+              className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-4 rounded-lg transition duration-200 disabled:opacity-50 text-xs sm:text-sm uppercase tracking-wider shadow-sm mt-2"
             >
               {isLoading ? 'Verifying Credentials...' : 'Sign In to Dashboard'}
             </button>
           </form>
 
           {/* Quick Demo Helper */}
-          <div className="mt-5 p-3.5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-950">
+          <div className="mt-5 p-3.5 bg-orange-50 rounded-xl border border-orange-200 text-xs text-orange-950">
             <span className="font-bold block mb-1">Demo Access Credentials:</span>
             <div className="flex flex-col gap-1 text-[11px]">
               <button
                 type="button"
                 onClick={() => handleQuickFill('admin@school.com', 'admin123')}
-                className="text-left py-0.5 px-1 rounded hover:bg-amber-100 transition flex items-center justify-between"
+                className="text-left py-0.5 px-1 rounded hover:bg-orange-100 transition flex items-center justify-between"
               >
                 <span>Email: <code className="font-mono font-bold">admin@school.com</code> (Principal)</span>
-                <span className="text-amber-800 underline font-medium">Use</span>
+                <span className="text-orange-700 underline font-medium">Use</span>
               </button>
               <button
                 type="button"
                 onClick={() => handleQuickFill('vinay@a.com', 'admin123')}
-                className="text-left py-0.5 px-1 rounded hover:bg-amber-100 transition flex items-center justify-between"
+                className="text-left py-0.5 px-1 rounded hover:bg-orange-100 transition flex items-center justify-between"
               >
                 <span>Email: <code className="font-mono font-bold">vinay@a.com</code> (Admin)</span>
-                <span className="text-amber-800 underline font-medium">Use</span>
+                <span className="text-orange-700 underline font-medium">Use</span>
               </button>
-              <div className="pt-1 border-t border-amber-200 text-slate-600">
+              <div className="pt-1 border-t border-orange-200 text-slate-600">
                 Password: <code className="font-mono font-bold">admin123</code>
               </div>
             </div>
           </div>
 
           <div className="mt-6 text-center text-slate-500 text-xs">
-            <Link to="/" className="text-[#052e7e] font-bold hover:underline">
+            <Link to="/" className="text-orange-700 font-bold hover:underline">
               ← Return to School Homepage
             </Link>
           </div>
