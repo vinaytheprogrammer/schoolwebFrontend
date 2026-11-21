@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiArrowRight, FiChevronLeft, FiChevronRight, FiAward } from 'react-icons/fi';
+import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -10,50 +10,38 @@ const HeroSlider = () => {
   const slides = [
     {
       id: 1,
-      badge: 'Excellence in Education',
-      title: 'Shaping Inquiring Minds, Building Noble Futures',
+      title: 'Excellence in Education',
+      subtitle: 'Shaping Minds, Building Futures',
       description:
-        'Join CIAT Convent Sr. Sec. School for an enriching educational journey rooted in values, academic rigor, and holistic leadership.',
+        'Join our institution for a transformative educational experience that prepares students for success in a global world.',
       image: 'https://res.cloudinary.com/dbh02ryca/image/upload/v1741523149/prayer1_o7ncps.jpg',
-      primaryCta: {
-        text: 'Admissions 2026-27',
+      cta: {
+        text: 'Apply Now',
         link: '/admissions'
-      },
-      secondaryCta: {
-        text: 'Explore Campus',
-        link: '/about'
       }
     },
     {
       id: 2,
-      badge: 'Innovative Pedagogy',
-      title: 'Beyond Textbooks into Experiential Discovery',
+      title: 'Innovative Learning',
+      subtitle: 'Beyond Textbooks',
       description:
-        'Modern smart classrooms, robotics innovation labs, and personalized mentorship designed to bring out the unique genius in every child.',
+        'Our innovative teaching methods and modern facilities create an engaging learning environment for all students.',
       image: 'https://res.cloudinary.com/dbh02ryca/image/upload/v1741523150/view_g5yk4q.jpg',
-      primaryCta: {
-        text: 'Our Vision & Mission',
-        link: '/vision-mission'
-      },
-      secondaryCta: {
-        text: 'Principal\'s Address',
-        link: '/principal-message'
+      cta: {
+        text: 'Explore Programs',
+        link: '/about'
       }
     },
     {
       id: 3,
-      badge: 'Holistic Campus Life',
-      title: 'Athletics, Creative Arts & Character Formation',
+      title: 'Vibrant Campus Life',
+      subtitle: 'Growing Together',
       description:
-        'A vibrant, inclusive community with Olympic-standard sports, cultural clubs, and community engagement for complete personal development.',
+        'Experience a diverse and inclusive community with countless opportunities for personal and academic growth.',
       image: 'https://res.cloudinary.com/dbh02ryca/image/upload/v1741523150/lab2_papwdu.jpg',
-      primaryCta: {
-        text: 'View Photo Gallery',
+      cta: {
+        text: 'View Gallery',
         link: '/gallery'
-      },
-      secondaryCta: {
-        text: 'Contact Admissions',
-        link: '/contact'
       }
     }
   ];
@@ -80,7 +68,8 @@ const HeroSlider = () => {
   };
 
   return (
-    <section className="relative h-[85vh] md:h-[90vh] overflow-hidden z-0">
+    <section className="relative h-screen overflow-hidden z-[0]">
+
       <AnimatePresence mode="wait">
         {slides.map(
           (slide, index) =>
@@ -90,61 +79,41 @@ const HeroSlider = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 1 }}
                 className="absolute inset-0"
               >
-                {/* Background image with cinematic gradient overlay */}
+                {/* Background image with overlay */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-1000"
+                  className="absolute inset-0 bg-cover bg-center"
                   style={{
                     backgroundImage: `url(${slide.image})`
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/75 to-slate-950/60"></div>
+                <div className="absolute inset-0 bg-black opacity-40 pointer-events-auto"></div>
+
                 </div>
 
                 {/* Content */}
                 <div className="relative h-full flex items-center">
-                  <div className="container mx-auto px-4 max-w-7xl">
+                  <div className="container mx-auto px-4 text-center md:text-left">
                     <motion.div
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.7, delay: 0.2 }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
                       className="max-w-3xl text-white"
                     >
-                      {/* Pill Badge */}
-                      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold tracking-wider uppercase mb-5 backdrop-blur-md shadow-xs">
-                        <FiAward className="text-amber-400" />
-                        <span>{slide.badge}</span>
-                      </div>
-
-                      {/* Main Title */}
-                      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-5 leading-tight drop-shadow-md">
-                        {slide.title}
-                      </h1>
-
-                      {/* Description */}
-                      <p className="text-base sm:text-lg md:text-xl text-slate-200 mb-8 max-w-2xl leading-relaxed drop-shadow-xs font-normal">
-                        {slide.description}
-                      </p>
-
-                      {/* Action Buttons */}
-                      <div className="flex flex-wrap items-center gap-3.5">
-                        <Link
-                          to={slide.primaryCta.link}
-                          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-sm tracking-wide shadow-lg shadow-amber-500/20 hover:shadow-amber-500/30 transition-all duration-200 hover:-translate-y-0.5"
-                        >
-                          <span>{slide.primaryCta.text}</span>
-                          <FiArrowRight size={16} />
-                        </Link>
-
-                        <Link
-                          to={slide.secondaryCta.link}
-                          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900/70 hover:bg-slate-900/90 text-white font-semibold text-sm border border-slate-700 backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5"
-                        >
-                          <span>{slide.secondaryCta.text}</span>
-                        </Link>
-                      </div>
+                      <h3 className="text-xl md:text-2xl text-gray-200 font-medium mb-2 text-primary-400">
+                        {slide.subtitle}
+                      </h3>
+                      <h2 className="text-4xl md:text-5xl text-gray-200 lg:text-6xl font-bold mb-4">{slide.title}</h2>
+                      <p className="text-lg md:text-xl mb-6 text-gray-200">{slide.description}</p>
+                      <Link
+                        to={slide.cta.link}
+                        className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
+                      >
+                        {slide.cta.text}
+                        <FiArrowRight className="ml-2" />
+                      </Link>
                     </motion.div>
                   </div>
                 </div>
@@ -153,30 +122,28 @@ const HeroSlider = () => {
         )}
       </AnimatePresence>
 
-      {/* Navigation Arrows */}
       <button
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-slate-900/60 hover:bg-slate-900/90 text-white border border-slate-700/60 flex items-center justify-center backdrop-blur-md transition-all z-10 hover:scale-105"
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors z-10"
         onClick={prevSlide}
         aria-label="Previous slide"
       >
-        <FiChevronLeft size={22} />
+        <FiChevronLeft size={24} />
       </button>
       <button
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-slate-900/60 hover:bg-slate-900/90 text-white border border-slate-700/60 flex items-center justify-center backdrop-blur-md transition-all z-10 hover:scale-105"
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors z-10"
         onClick={nextSlide}
         aria-label="Next slide"
       >
-        <FiChevronRight size={22} />
+        <FiChevronRight size={24} />
       </button>
-
-      {/* Dot Indicators */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-center items-center space-x-2 z-10">
+      {/* Dot indicators */}
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center space-x-3 z-10">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              currentSlide === index ? 'bg-amber-400 w-8 shadow-sm shadow-amber-400/50' : 'bg-white/40 hover:bg-white/70 w-2'
+            className={`w-3 h-3 rounded-full transition-all ${
+              currentSlide === index ? 'bg-primary-500 w-6' : 'bg-white/50'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

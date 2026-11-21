@@ -130,31 +130,27 @@ const Admissions = () => {
   return (
     <div className="pt-1">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-slate-950 via-slate-900 to-blue-950 text-white py-16 text-center border-b border-slate-800 relative overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="container mx-auto px-4 max-w-4xl relative z-10">
-          <span className="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-widest border border-amber-400/30 mb-3">
-            Academic Year 2026-27
-          </span>
+      <section className="bg-amber-600 text-white py-16 text-center">
+        <div className="container mx-auto px-4">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-5xl font-black mb-3 tracking-tight text-white"
+            className="text-3xl md:text-5xl font-bold mb-3"
           >
-            Admissions Open
+            Admissions 2026-27
           </motion.h1>
-          <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-blue-600 mx-auto mb-4 rounded-full"></div>
-          <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Join our nurturing community of learners and embark on a transformative journey of academic distinction and character leadership.
+          <div className="w-20 h-1 bg-white mx-auto mb-4 rounded-full"></div>
+          <p className="text-amber-100 text-base md:text-lg max-w-2xl mx-auto">
+            Join our nurturing community of learners and embark on a journey of academic excellence and character building.
           </p>
         </div>
       </section>
 
       {/* Tabs Navigation */}
-      <section className="bg-white border-b border-slate-200 sticky top-[68px] z-10 shadow-xs backdrop-blur-md">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex overflow-x-auto py-2.5 gap-2 whitespace-nowrap scrollbar-none">
+      <section className="bg-white border-b sticky top-20 z-10 shadow-xs">
+        <div className="container mx-auto px-4">
+          <div className="flex overflow-x-auto py-2 gap-2 whitespace-nowrap">
             {[
               { id: 'process', label: 'Admission Process' },
               { id: 'apply', label: 'Apply Online' },
@@ -166,10 +162,10 @@ const Admissions = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 font-semibold rounded-xl text-xs sm:text-sm transition-all duration-200 ${
+                className={`px-5 py-2.5 font-medium rounded-lg text-sm transition-colors ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold shadow-md shadow-amber-500/20'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    ? 'bg-amber-600 text-white shadow-sm'
+                    : 'text-gray-600 hover:text-amber-700 hover:bg-gray-100'
                 }`}
               >
                 {tab.label}
@@ -313,7 +309,7 @@ const Admissions = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold py-3.5 rounded-xl flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 shadow-md shadow-amber-500/20"
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 shadow-sm"
                   >
                     <FiSend />
                     <span>{isSubmitting ? 'Submitting Application...' : 'Submit Admission Application'}</span>
