@@ -11,19 +11,19 @@ const TestimonialSlider = () => {
       id: 1,
       name: 'Dr. Sunita Sharma',
       role: 'Parent of Class X Student',
-      quote: `The teachers at CIAT Convent have had a profound impact on my child's academic confidence and holistic development. The blend of CBSE curriculum rigor with ethical values and athletics is exceptional.`,
+      quote: `The teachers at Greenwood Convent have had a profound impact on my child's academic confidence and holistic development. The blend of CBSE curriculum rigor with ethical values and athletics is exceptional.`,
     },
     {
       id: 2,
       name: 'Rishabh Verma',
       role: 'Alumni (Batch of 2021) • Software Engineer',
-      quote: 'My years at CIAT Convent instilled the analytical rigor, leadership discipline, and inquisitive spirit that continue to drive my career today. Grateful for the faculty\'s steadfast mentorship.',
+      quote: 'My years at Greenwood Convent instilled the analytical rigor, leadership discipline, and inquisitive spirit that continue to drive my career today. Grateful for the faculty\'s steadfast mentorship.',
     },
     {
       id: 3,
       name: 'Adarsh Kumar Pandey',
       role: 'Senior Academic Consultant & Educator',
-      quote: 'Students from CIAT Convent consistently demonstrate outstanding foundations, critical curiosity, and compassion. The institution excels in nurturing future-ready global citizens.',
+      quote: 'Students from Greenwood Convent consistently demonstrate outstanding foundations, critical curiosity, and compassion. The institution excels in nurturing future-ready global citizens.',
     },
   ];
 
@@ -56,7 +56,7 @@ const TestimonialSlider = () => {
           </h2>
           <div className="w-16 h-1 bg-orange-500 mx-auto rounded-full mb-3"></div>
           <p className="text-slate-600 max-w-xl mx-auto text-sm leading-relaxed">
-            Real stories of values, guidance, and academic transformation from the CIAT Convent family.
+            Real stories of values, guidance, and academic transformation from the Greenwood Convent family.
           </p>
         </div>
 

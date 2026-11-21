@@ -54,11 +54,11 @@ const Home = () => {
                 Recognized CBSE Institution
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 mb-3 leading-tight">
-                Welcome to <span className="text-orange-600">CIAT CONVENT</span> School
+                Welcome to <span className="text-orange-600">GREENWOOD CONVENT</span> School
               </h2>
               <div className="w-16 h-1 bg-orange-500 mb-5 rounded-full"></div>
               <p className="text-slate-600 text-sm sm:text-base mb-4 leading-relaxed">
-                For over 25 years, CIAT Convent Sr. Sec. School has stood as a beacon of academic distinction, holistic character formation, and innovative education in Delhi.
+                For over 25 years, Greenwood Convent Sr. Sec. School has stood as a beacon of academic distinction, holistic character formation, and innovative education in Delhi.
               </p>
               <p className="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed">
                 We empower students to explore their passions, think critically, and cultivate compassion. Our smart interactive classrooms, robotics labs, athletic grounds, and dedicated faculty guarantee an environment where every child thrives.
@@ -88,7 +88,7 @@ const Home = () => {
             >
               <img
                 src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80"
-                alt="CIAT Convent School Campus Life"
+                alt="Greenwood Convent School Campus Life"
                 className="w-full h-80 object-cover"
               />
             </motion.div>

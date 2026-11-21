@@ -13,7 +13,7 @@ const HeroSlider = () => {
       title: 'Excellence in Education',
       subtitle: 'Shaping Minds, Building Futures',
       description:
-        'Join CIAT Convent Sr. Sec. School for an enriching educational experience rooted in moral values, competitive academics, and holistic leadership.',
+        'Join Greenwood Convent Sr. Sec. School for an enriching educational experience rooted in moral values, competitive academics, and holistic leadership.',
       image: 'https://res.cloudinary.com/dbh02ryca/image/upload/v1741523149/prayer1_o7ncps.jpg',
       cta: {
         text: 'Admissions 2026-27',

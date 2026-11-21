@@ -14,12 +14,12 @@ const Footer = () => {
             <Link to="/" className="flex items-center space-x-3.5 group focus:outline-none">
               <img
                 src="/logo.png"
-                alt="CIAT Convent School Crest"
+                alt="Greenwood Convent School Crest"
                 className="w-13 h-13 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-200"
               />
               <div className="flex flex-col">
                 <span className="text-xl font-black text-white tracking-wide">
-                  CIAT CONVENT
+                  GREENWOOD CONVENT
                 </span>
                 <span className="text-xs text-orange-300 font-bold tracking-wider uppercase">
                   Sr. Sec. School • CBSE
@@ -96,18 +96,18 @@ const Footer = () => {
             <ul className="space-y-3.5 text-sm text-orange-100/90">
               <li className="flex items-start space-x-3">
                 <FiMapPin className="mt-1 text-orange-400 shrink-0" size={17} />
-                <span>Kanjhawala, North West Delhi, 110081</span>
+                <span>Sector 14, Institutional Area, New Delhi - 110001</span>
               </li>
               <li className="flex items-center space-x-3">
                 <FiPhone className="text-orange-400 shrink-0" size={16} />
-                <a href="tel:+918595792883" className="hover:text-white transition">
-                  +91 85957 92883 / +91 11 2595 1000
+                <a href="tel:+919876543210" className="hover:text-white transition">
+                  +91 98765 43210 / +91 11 2345 6789
                 </a>
               </li>
               <li className="flex items-center space-x-3">
                 <FiMail className="text-orange-400 shrink-0" size={16} />
-                <a href="mailto:Ciatschool1998@gmail.com" className="hover:text-white transition truncate">
-                  Ciatschool1998@gmail.com
+                <a href="mailto:contact@greenwoodschool.edu" className="hover:text-white transition truncate">
+                  contact@greenwoodschool.edu
                 </a>
               </li>
               <li className="pt-2 text-xs text-orange-200/80 leading-relaxed border-t border-orange-800/80">
@@ -135,7 +135,7 @@ const Footer = () => {
             <div className="mt-4 p-3 bg-white/10 rounded-lg text-xs text-orange-100 space-y-1">
               <div className="flex items-center gap-1.5 text-orange-300 font-bold">
                 <FiAward />
-                <span>CBSE Affiliation #2730488</span>
+                <span>CBSE Affiliation #2130000</span>
               </div>
               <p className="text-[11px] text-orange-200/80">Recognized by Directorate of Education, GNCT Delhi.</p>
             </div>
@@ -144,7 +144,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="mt-12 pt-6 border-t border-orange-800/80 flex flex-col sm:flex-row justify-between items-center text-xs text-orange-200/80 gap-3">
-          <p>© {currentYear} CIAT Convent Sr. Sec. School. All Rights Reserved.</p>
+          <p>© {currentYear} Greenwood Convent Sr. Sec. School. All Rights Reserved.</p>
           <div className="flex items-center space-x-4">
             <Link to="/about" className="hover:text-white transition">About</Link>
             <span>•</span>

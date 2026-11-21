@@ -16,7 +16,7 @@ const PrincipalMessage = () => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black mb-2.5 text-white">Principal's Desk</h1>
           <div className="w-16 h-1 bg-white/80 mx-auto mb-3 rounded-full"></div>
           <p className="text-sm sm:text-base text-orange-100 max-w-xl mx-auto leading-relaxed">
-            A welcome address from our Principal, Mrs. Anita Kumari, on nurturing responsible, compassionate, and inspired scholars.
+            A welcome address from our Principal, Dr. Sunita Rao, on nurturing responsible, compassionate, and inspired scholars.
           </p>
         </div>
       </section>
@@ -35,10 +35,10 @@ const PrincipalMessage = () => {
             >
               <div className="bg-white rounded-xl overflow-hidden shadow-xs border border-orange-100 p-6">
                 <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-orange-100 border-2 border-orange-300 flex items-center justify-center text-3xl font-black text-orange-700 shadow-inner">
-                  AK
+                  SR
                 </div>
                 <h3 className="text-xl font-black text-slate-900 text-center mb-1">
-                  Mrs. Anita Kumari
+                  Dr. Sunita Rao
                 </h3>
                 <p className="text-orange-600 font-bold text-xs uppercase tracking-wider text-center mb-4">Principal</p>
                 <div className="text-xs text-slate-600 space-y-1.5 border-t border-b border-orange-50 py-3 mb-4 text-center">
@@ -48,14 +48,14 @@ const PrincipalMessage = () => {
                 </div>
                 <div className="flex items-center justify-center text-xs text-slate-600 mb-2">
                   <FiPhone className="mr-2 text-orange-600" />
-                  <a href="tel:+918595792883" className="hover:text-orange-600 font-medium transition-colors">
-                    +91 85957 92883
+                  <a href="tel:+919876543210" className="hover:text-orange-600 font-medium transition-colors">
+                    +91 98765 43210
                   </a>
                 </div>
                 <div className="flex items-center justify-center text-xs text-slate-600 mb-4">
                   <FiMail className="mr-2 text-orange-600" />
-                  <a href="mailto:Ciatschool1998@gmail.com" className="hover:text-orange-600 font-medium transition-colors">
-                    Ciatschool1998@gmail.com
+                  <a href="mailto:principal@greenwoodschool.edu" className="hover:text-orange-600 font-medium transition-colors">
+                    principal@greenwoodschool.edu
                   </a>
                 </div>
                 <div className="pt-3 border-t border-orange-100 text-center">
@@ -84,21 +84,21 @@ const PrincipalMessage = () => {
                   Dear Parents, Students, and Esteemed Visitors,
                 </p>
                 <p>
-                  It is an honor to welcome you to the CIAT Convent Sr. Sec. School portal. For more than 25 years, our institution has stood at the intersection of rigorous academic learning, ethical character development, and future-ready innovation in Delhi.
+                  It is an honor to welcome you to the Greenwood Convent Sr. Sec. School portal. For more than 25 years, our institution has stood at the intersection of rigorous academic learning, ethical character development, and future-ready innovation in Delhi.
                 </p>
                 <p>
-                  At CIAT Convent, we believe education is a lifelong catalyst for personal transformation. Beyond scoring high marks in CBSE examinations, our duty is to nurture confident, kind, and capable young people who will make meaningful contributions to our nation and the world.
+                  At Greenwood Convent, we believe education is a lifelong catalyst for personal transformation. Beyond scoring high marks in CBSE examinations, our duty is to nurture confident, kind, and capable young people who will make meaningful contributions to our nation and the world.
                 </p>
                 <p>
                   Our smart interactive classrooms, upgraded robotics and science laboratories, sports fields, and dedicated faculty ensure that learning is experiential rather than rote. We teach our students to question fearlessly, think analytically, and embrace collaborative problem solving.
                 </p>
                 <p>
-                  Whether you are a prospective parent seeking admission for session 2026-27 or an alumnus staying connected, I invite you to visit our campus and experience the warmth and passion that defines CIAT Convent.
+                  Whether you are a prospective parent seeking admission for session 2026-27 or an alumnus staying connected, I invite you to visit our campus and experience the warmth and passion that defines Greenwood Convent.
                 </p>
                 <div className="pt-4 border-t border-orange-100">
                   <p className="font-bold text-slate-900">Warm regards,</p>
-                  <p className="text-orange-700 font-bold">Mrs. Anita Kumari</p>
-                  <p className="text-xs text-slate-500">Principal, CIAT CONVENT SR. SEC. SCHOOL</p>
+                  <p className="text-orange-700 font-bold">Dr. Sunita Rao</p>
+                  <p className="text-xs text-slate-500">Principal, GREENWOOD CONVENT SR. SEC. SCHOOL</p>
                 </div>
               </div>
 
@@ -129,7 +129,7 @@ const PrincipalMessage = () => {
             Admissions Open 2026-27
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3">
-            Experience CIAT Convent School
+            Experience Greenwood Convent School
           </h2>
           <p className="text-sm sm:text-base text-orange-100 max-w-xl mx-auto mb-6 leading-relaxed">
             We invite you to visit our campus, observe our interactive classes, and discover the caring environment we provide for your child.

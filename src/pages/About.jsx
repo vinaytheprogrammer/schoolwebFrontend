@@ -14,7 +14,7 @@ const About = () => {
           <span className="text-xs font-bold uppercase tracking-widest text-orange-200 bg-white/10 px-3 py-1 rounded-full mb-2.5 inline-block">
             Since 1998
           </span>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black mb-2.5 text-white">About CIAT Convent</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black mb-2.5 text-white">About Our Institution</h1>
           <div className="w-16 h-1 bg-white/80 mx-auto mb-3 rounded-full"></div>
           <p className="text-sm sm:text-base text-orange-100 max-w-xl mx-auto leading-relaxed">
             Discover our journey, foundational values, and commitment to educational excellence.
@@ -50,7 +50,7 @@ const About = () => {
               </h2>
               <div className="w-16 h-1 bg-orange-500 mb-5 rounded-full"></div>
               <p className="text-slate-600 text-sm sm:text-base mb-4 leading-relaxed">
-                Founded in 1998, CIAT Convent Sr. Sec. School began with a steadfast vision to elevate school education and create a nurturing environment where students could excel academically, ethically, and personally. What started as an earnest initiative has grown into a renowned CBSE institution with over 1,200 scholars and 45+ distinguished educators.
+                Founded in 1998, Greenwood Convent Sr. Sec. School began with a steadfast vision to elevate school education and create a nurturing environment where students could excel academically, ethically, and personally. What started as an earnest initiative has grown into a renowned CBSE institution with over 1,200 scholars and 45+ distinguished educators.
               </p>
               <p className="text-slate-600 text-sm sm:text-base mb-6 leading-relaxed">
                 Throughout our journey of 25+ years, we have continuously modernized our pedagogical methodologies, smart labs, and athletic facilities. Our commitment to excellence has helped us cultivate successful alumni who are making significant contributions in medicine, engineering, civil services, and arts across the globe.
@@ -79,7 +79,7 @@ const About = () => {
             </h2>
             <div className="w-16 h-1 bg-orange-500 mx-auto mb-3 rounded-full"></div>
             <p className="text-slate-600 text-sm max-w-xl mx-auto leading-relaxed">
-              These enduring principles guide every curriculum decision and student initiative at CIAT Convent.
+              These enduring principles guide every curriculum decision and student initiative at Greenwood Convent.
             </p>
           </div>
 
@@ -130,7 +130,7 @@ const About = () => {
             Admissions Open 2026-27
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3">
-            Join the CIAT Convent Community
+            Join the Greenwood School Community
           </h2>
           <p className="text-sm sm:text-base text-orange-100 max-w-xl mx-auto mb-6 leading-relaxed">
             Begin an inspiring educational journey. Schedule a campus visit or apply online today.

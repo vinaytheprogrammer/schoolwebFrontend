@@ -54,9 +54,9 @@ const Login = () => {
         {/* School Warm Orange Header */}
         <div className="bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700 py-6 px-4 text-center border-b-4 border-orange-400">
           <div className="w-16 h-16 mx-auto mb-2 flex items-center justify-center">
-            <img src="/logo.png" alt="CIAT Convent Logo" className="w-full h-full object-contain drop-shadow-md" />
+            <img src="/logo.png" alt="Greenwood Convent Logo" className="w-full h-full object-contain drop-shadow-md" />
           </div>
-          <h1 className="text-xl font-black text-white tracking-wide">CIAT CONVENT SCHOOL</h1>
+          <h1 className="text-xl font-black text-white tracking-wide">GREENWOOD CONVENT SCHOOL</h1>
           <p className="text-orange-200 text-xs font-semibold tracking-wider uppercase mt-0.5">Staff & Administrative Portal</p>
         </div>
 
@@ -127,10 +127,10 @@ const Login = () => {
               </button>
               <button
                 type="button"
-                onClick={() => handleQuickFill('vinay@a.com', 'admin123')}
+                onClick={() => handleQuickFill('staff@school.com', 'admin123')}
                 className="text-left py-0.5 px-1 rounded hover:bg-orange-100 transition flex items-center justify-between"
               >
-                <span>Email: <code className="font-mono font-bold">vinay@a.com</code> (Admin)</span>
+                <span>Email: <code className="font-mono font-bold">staff@school.com</code> (Staff)</span>
                 <span className="text-orange-700 underline font-medium">Use</span>
               </button>
               <div className="pt-1 border-t border-orange-200 text-slate-600">

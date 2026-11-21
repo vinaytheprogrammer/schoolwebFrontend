@@ -76,21 +76,21 @@ const Contact = () => {
                 <FiMapPin className="text-orange-600 mt-1 flex-shrink-0" size={20} />
                 <p>
                   <span className="font-semibold block text-gray-900">Address:</span>
-                  CIAT Convent Sr. Sec. School, Kanjhawala, North West Delhi, 110081
+                  Greenwood Convent Sr. Sec. School, Sector 14, Institutional Area, New Delhi - 110001
                 </p>
               </div>
               <div className="flex items-start space-x-3 text-gray-700">
                 <FiPhone className="text-orange-600 mt-1 flex-shrink-0" size={20} />
                 <p>
                   <span className="font-semibold block text-gray-900">Phone:</span>
-                  +91 85957 92883 / +91 11 2595 1000
+                  +91 98765 43210 / +91 11 2345 6789
                 </p>
               </div>
               <div className="flex items-start space-x-3 text-gray-700">
                 <FiMail className="text-orange-600 mt-1 flex-shrink-0" size={20} />
                 <p>
                   <span className="font-semibold block text-gray-900">Email:</span>
-                  Ciatschool1998@gmail.com
+                  contact@greenwoodschool.edu
                 </p>
               </div>
               <div className="flex items-start space-x-3 text-gray-700">

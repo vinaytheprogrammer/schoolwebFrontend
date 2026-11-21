@@ -28,9 +28,9 @@ const Header = () => {
   }, []);
 
   const aboutDropdownItems = [
-    { name: 'About CIAT Convent', path: '/about', desc: 'Our 25-year history, legacy & campus' },
+    { name: 'About Our School', path: '/about', desc: 'Our 25-year history, legacy & campus' },
     { name: 'Vision & Mission', path: '/vision-mission', desc: 'Core philosophy & institutional values' },
-    { name: "Principal's Desk", path: '/principal-message', desc: 'Welcome address by Mrs. Anita Kumari' },
+    { name: "Principal's Desk", path: '/principal-message', desc: 'Welcome address by the Principal' },
   ];
 
   const mainNavItems = [
@@ -56,18 +56,18 @@ const Header = () => {
                 <span>CBSE Affiliated Senior Secondary School (Est. 1998)</span>
               </span>
               <span className="text-slate-600">•</span>
-              <span className="text-slate-400">Affiliation No. 2730488</span>
+              <span className="text-slate-400">Affiliation No. 2130000</span>
             </div>
 
             <div className="flex items-center space-x-5 text-slate-300">
-              <a href="tel:+918595792883" className="flex items-center gap-1.5 hover:text-white transition">
+              <a href="tel:+919876543210" className="flex items-center gap-1.5 hover:text-white transition">
                 <FiPhone size={13} className="text-orange-400" />
-                <span>+91 85957 92883</span>
+                <span>+91 98765 43210</span>
               </a>
               <span className="text-slate-600">•</span>
-              <a href="mailto:Ciatschool1998@gmail.com" className="flex items-center gap-1.5 hover:text-white transition">
+              <a href="mailto:info@greenwoodschool.edu" className="flex items-center gap-1.5 hover:text-white transition">
                 <FiMail size={13} className="text-orange-400" />
-                <span>Ciatschool1998@gmail.com</span>
+                <span>info@greenwoodschool.edu</span>
               </a>
               <span className="text-slate-600">•</span>
               <Link
@@ -91,13 +91,13 @@ const Header = () => {
             <Link to="/" className="flex items-center space-x-3.5 shrink-0 group focus:outline-none">
               <img
                 src="/logo.png"
-                alt="CIAT Convent School Crest"
+                alt="Greenwood Convent School Crest"
                 className="w-12 h-12 md:w-13 md:h-13 object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-200"
               />
 
               <div className="flex flex-col">
                 <span className="text-base sm:text-lg md:text-xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                  CIAT CONVENT SCHOOL
+                  GREENWOOD CONVENT SCHOOL
                 </span>
                 <span className="text-xs text-orange-600 font-semibold tracking-wide">
                   Sr. Sec. • CBSE Affiliated • Delhi
@@ -271,7 +271,7 @@ const Header = () => {
 
                 <div className="pt-2 pb-1 border-t border-slate-100">
                   <span className="block px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                    About CIAT Convent
+                    About Our School
                   </span>
                   {aboutDropdownItems.map((item) => (
                     <Link
