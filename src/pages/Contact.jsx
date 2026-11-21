@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FiSend } from 'react-icons/fi';
+import { FiSend, FiMapPin, FiPhone, FiMail, FiClock } from 'react-icons/fi';
+import api from '../services/api';
 
 const Contact = () => {
-
-  window.scrollTo(0, 0);
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,7 +16,7 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({ ...prevState, [name]: value }));
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -27,16 +25,16 @@ const Contact = () => {
     setSubmitMessage({ type: '', text: '' });
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await api.post('/api/contact', formData);
       setSubmitMessage({
         type: 'success',
-        text: 'Your message has been sent successfully. We will contact you shortly.'
+        text: response.data.message || 'Your message has been sent successfully. We will contact you shortly.',
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       setSubmitMessage({
         type: 'error',
-        text: 'There was a problem sending your message. Please try again later.'
+        text: error.response?.data?.message || 'There was a problem sending your message. Please try again later.',
       });
     } finally {
       setIsSubmitting(false);
@@ -46,43 +44,131 @@ const Contact = () => {
   return (
     <div className="pt-1">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-#FFAB00 py-20 text-center">
+      <section className="bg-amber-600 text-white py-16 text-center">
         <h1 className="text-4xl font-bold">Contact Us</h1>
-        <div className="w-20 h-1 bg-#FFAB00 mx-auto mt-4"></div>
-        <p className="text-lg mt-4">We'd love to hear from you. Get in touch with us!</p>
+        <div className="w-20 h-1 bg-white mx-auto mt-4 rounded-full"></div>
+        <p className="text-lg mt-4 max-w-xl mx-auto text-amber-100">
+          We would love to hear from you. Get in touch with our administrative office.
+        </p>
       </section>
-      
+
       {/* Contact Form Section */}
       <section className="py-16 container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
-          <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="bg-#FFAB00 p-8 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-semibold text-primary-700 mb-6">Get in Touch</h2>
-            <p className="text-gray-600">Feel free to reach out via email or phone, or visit our office during working hours.</p>
-            <div className="mt-6 space-y-4">
-              <p><span className="font-semibold">Address:</span> Kanjhwala, North West Delhi, 110081</p>
-              <p><span className="font-semibold">Phone:</span> +91 85957 92883</p>
-              <p><span className="font-semibold">Email:</span> Ciatschool1998@gmail.com</p>
-              <p><span className="font-semibold">Office Hours:</span> Mon - Fri, 8:00 AM - 4:30 PM</p>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white p-8 rounded-xl shadow-md border border-gray-100"
+          >
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">School Information</h2>
+            <p className="text-gray-600 mb-6">
+              Feel free to reach out via email, phone, or visit our administrative reception during working hours.
+            </p>
+            <div className="space-y-4">
+              <div className="flex items-start space-x-3 text-gray-700">
+                <FiMapPin className="text-amber-600 mt-1 flex-shrink-0" size={20} />
+                <p>
+                  <span className="font-semibold block text-gray-900">Address:</span>
+                  CIAT Convent Sr. Sec. School, Kanjhawala, North West Delhi, 110081
+                </p>
+              </div>
+              <div className="flex items-start space-x-3 text-gray-700">
+                <FiPhone className="text-amber-600 mt-1 flex-shrink-0" size={20} />
+                <p>
+                  <span className="font-semibold block text-gray-900">Phone:</span>
+                  +91 85957 92883 / +91 11 2595 1000
+                </p>
+              </div>
+              <div className="flex items-start space-x-3 text-gray-700">
+                <FiMail className="text-amber-600 mt-1 flex-shrink-0" size={20} />
+                <p>
+                  <span className="font-semibold block text-gray-900">Email:</span>
+                  Ciatschool1998@gmail.com
+                </p>
+              </div>
+              <div className="flex items-start space-x-3 text-gray-700">
+                <FiClock className="text-amber-600 mt-1 flex-shrink-0" size={20} />
+                <p>
+                  <span className="font-semibold block text-gray-900">Visiting Hours:</span>
+                  Mon - Fri: 8:00 AM - 4:00 PM | Sat: 8:00 AM - 1:00 PM
+                </p>
+              </div>
             </div>
           </motion.div>
-          
+
           {/* Contact Form */}
-          <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }} className="bg-#FFAB00 p-8 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-semibold text-primary-700 mb-6">Send Us a Message</h2>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white p-8 rounded-xl shadow-md border border-gray-100"
+          >
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">Send Us a Message</h2>
             {submitMessage.text && (
-              <div className={`p-3 rounded mb-4 ${submitMessage.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+              <div
+                className={`p-4 rounded-lg mb-6 text-sm ${
+                  submitMessage.type === 'success'
+                    ? 'bg-green-50 text-green-800 border border-green-200'
+                    : 'bg-red-50 text-red-800 border border-red-200'
+                }`}
+              >
                 {submitMessage.text}
               </div>
             )}
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input type="text" name="name" placeholder="Your Name *" value={formData.name} onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500" required />
-              <input type="email" name="email" placeholder="Email Address *" value={formData.email} onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500" required />
-              <input type="text" name="subject" placeholder="Subject *" value={formData.subject} onChange={handleChange} className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500" required />
-              <textarea name="message" placeholder="Your Message *" value={formData.message} onChange={handleChange} rows="5" className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500" required></textarea>
-              <button type="submit" disabled={isSubmitting} className="w-full bg-primary-600 bg-yellow-700 text-#FFAB00 py-3 rounded-md flex items-center justify-center space-x-2 hover:bg-primary-700 transition disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Full Name *"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address *"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Inquiry Subject *"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm"
+                  required
+                />
+              </div>
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="Your Message / Query *"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows="4"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none text-sm"
+                  required
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg flex items-center justify-center space-x-2 transition duration-200 disabled:opacity-50 shadow-sm"
+              >
                 <FiSend />
-                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                <span>{isSubmitting ? 'Sending Message...' : 'Send Message'}</span>
               </button>
             </form>
           </motion.div>

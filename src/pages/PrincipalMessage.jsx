@@ -8,11 +8,11 @@ const PrincipalMessage = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-#FFAB00 py-20">
+      <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Principal's Message</h1>
-            <div className="w-20 h-1 bg-#FFAB00 mx-auto mb-6"></div>
+            <div className="w-20 h-1 bg-white mx-auto mb-6"></div>
             <p className="text-xl max-w-3xl mx-auto">
               A welcome note from our principal, Anita kumari
             </p>
@@ -32,7 +32,7 @@ const PrincipalMessage = () => {
               viewport={{ once: true }}
               className="lg:col-span-1"
             >
-              <div className="bg-#FFAB00 rounded-lg overflow-hidden shadow-soft">
+              <div className="bg-white rounded-lg overflow-hidden shadow-soft">
                 <div className="p-6">
                   
                   <h3 className="text-2xl font-semibold text-secondary-900 mb-2">
@@ -109,7 +109,7 @@ const PrincipalMessage = () => {
               <div className="mt-8">
                 <Link
                   to="/about"
-                  className="inline-flex items-center px-6 py-3 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors mr-4"
+                  className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors mr-4"
                 >
                   About Our School
                   <FiArrowRight className="ml-2" />
@@ -166,7 +166,7 @@ const PrincipalMessage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-#FFAB00 rounded-lg overflow-hidden shadow-soft"
+                className="bg-white rounded-lg overflow-hidden shadow-soft"
               >
                 <div className="h-64 overflow-hidden">
                   <img
@@ -198,7 +198,7 @@ const PrincipalMessage = () => {
       */}
       
       {/* Call to Action */}
-      <section className="py-16 bg-primary-600 text-#FFAB00">
+      <section className="py-16 bg-primary-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Experience Education Institute
@@ -209,13 +209,13 @@ const PrincipalMessage = () => {
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
             <Link
               to="/admissions"
-              className="px-8 py-3 bg-#FFAB00 text-primary-600 font-medium rounded-md hover:bg-gray-100 transition-colors"
+              className="px-8 py-3 bg-white text-primary-600 font-medium rounded-md hover:bg-gray-100 transition-colors"
             >
                 Apply Now
             </Link>
             <Link
               to="/contact"
-              className="px-8 py-3 border border-#FFAB00 text-#FFAB00 font-medium rounded-md hover:bg-primary-700 transition-colors"
+              className="px-8 py-3 border border-white text-white font-medium rounded-md hover:bg-primary-700 transition-colors"
             >
               Contact Us        
             </Link>

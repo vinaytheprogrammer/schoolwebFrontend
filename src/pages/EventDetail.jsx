@@ -170,7 +170,7 @@ const EventDetail = () => {
           <p className="text-gray-600 mb-8">The event you're looking for doesn't exist or has been removed.</p>
           <Link
             to="/events"
-            className="inline-flex items-center px-6 py-3 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors"
+            className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
           >
             <FiArrowLeft className="mr-2" /> Back to Events
           </Link>
@@ -192,8 +192,8 @@ const EventDetail = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
         </div>
         <div className="container mx-auto px-4">
-          <div className="relative -mt-20 md:-mt-32 mb-8 bg-#FFAB00 rounded-lg shadow-lg p-6 md:p-8 max-w-4xl mx-auto">
-            <span className="inline-block px-4 py-1 bg-primary-600 text-#FFAB00 text-sm font-medium rounded-full mb-4">
+          <div className="relative -mt-20 md:-mt-32 mb-8 bg-white rounded-lg shadow-lg p-6 md:p-8 max-w-4xl mx-auto">
+            <span className="inline-block px-4 py-1 bg-primary-600 text-white text-sm font-medium rounded-full mb-4">
               {event.category.charAt(0).toUpperCase() + event.category.slice(1)}
             </span>
             <h1 className="text-3xl md:text-4xl font-bold text-secondary-900 mb-4">
@@ -238,7 +238,7 @@ const EventDetail = () => {
               {event.registrationRequired && (
                 <a
                   href={event.registrationLink}
-                  className="flex items-center px-4 py-2 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors"
+                  className="flex items-center px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
                 >
                   Register Now
                 </a>
@@ -253,7 +253,7 @@ const EventDetail = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-8">
             <div className="lg:w-2/3">
-              <div className="bg-#FFAB00 rounded-lg shadow-soft p-6 mb-8">
+              <div className="bg-white rounded-lg shadow-soft p-6 mb-8">
                 <h2 className="text-2xl font-bold text-secondary-900 mb-4">About This Event</h2>
                 <div 
                   className="prose max-w-none text-gray-700"
@@ -262,7 +262,7 @@ const EventDetail = () => {
               </div>
 
               {event.gallery && event.gallery.length > 0 && (
-                <div className="bg-#FFAB00 rounded-lg shadow-soft p-6 mb-8">
+                <div className="bg-white rounded-lg shadow-soft p-6 mb-8">
                   <h2 className="text-2xl font-bold text-secondary-900 mb-4">Event Gallery</h2>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {event.gallery.map((image, index) => (
@@ -278,7 +278,7 @@ const EventDetail = () => {
                 </div>
               )}
 
-              <div className="bg-#FFAB00 rounded-lg shadow-soft p-6">
+              <div className="bg-white rounded-lg shadow-soft p-6">
                 <h2 className="text-2xl font-bold text-secondary-900 mb-4">Location</h2>
                 <div className="bg-gray-200 rounded-lg h-64 mb-4">
                   {/* In production, replace with actual Google Maps or other map component */}
@@ -295,7 +295,7 @@ const EventDetail = () => {
                     href={`https://maps.google.com/?q=${encodeURIComponent(event.address)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors"
+                    className="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
                   >
                     Get Directions
                   </a>
@@ -304,7 +304,7 @@ const EventDetail = () => {
             </div>
 
             <div className="lg:w-1/3">
-              <div className="bg-#FFAB00 rounded-lg shadow-soft p-6 mb-8 sticky top-24">
+              <div className="bg-white rounded-lg shadow-soft p-6 mb-8 sticky top-24">
                 <h3 className="text-xl font-bold text-secondary-900 mb-4">Contact Information</h3>
                 <div className="mb-4 pb-4 border-b border-gray-100">
                   <p className="text-gray-700 mb-1"><span className="font-medium">Contact Person:</span> {event.contactPerson}</p>
@@ -318,7 +318,7 @@ const EventDetail = () => {
                     <p className="text-gray-600 mb-4">Please register in advance to secure your spot for this event.</p>
                     <a
                       href={event.registrationLink}
-                      className="block w-full text-center px-4 py-2 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors"
+                      className="block w-full text-center px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
                     >
                       Register Now
                     </a>
@@ -328,11 +328,11 @@ const EventDetail = () => {
                 <div>
                   <h4 className="text-lg font-semibold text-secondary-900 mb-2">Share This Event</h4>
                   <div className="flex space-x-2">
-                    <button className="p-2 bg-blue-600 text-#FFAB00 rounded-full hover:bg-blue-700 transition-colors">
+                    <button className="p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
                       {/* Replace with actual social media icons */}
                       F
                     </button>
-                    <button className="p-2 bg-sky-500 text-#FFAB00 rounded-full hover:bg-sky-600 transition-colors">
+                    <button className="p-2 bg-sky-500 text-white rounded-full hover:bg-sky-600 transition-colors">
                       T
                     </button>
                     <button className="p-2 bg-amber-200 text-amber-800 rounded-full hover:bg-amber-300 transition-colors">
@@ -357,7 +357,7 @@ const EventDetail = () => {
                   key={related._id}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-#FFAB00 rounded-lg shadow-lg overflow-hidden"
+                  className="bg-white rounded-lg shadow-lg overflow-hidden"
                 >
                   <Link to={`/events/${related._id}`}>
                     <img

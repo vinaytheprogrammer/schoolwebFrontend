@@ -2,34 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCalendar, FiArrowRight, FiSearch } from 'react-icons/fi';
-import axios from 'axios';
+import api from '../services/api';
 
 const News = () => {
-
   window.scrollTo(0, 0);
 
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        setLoading(true);         
-          const token = localStorage.getItem('token');
-          const response = await axios.get(  `${import.meta.env.VITE_API_BASE_URL}/api/news`, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-         
-
-          setNews(response.data);
-          setTotalPages(Math.ceil(response.data.length / 6));
-          setLoading(false);
-        
+        setLoading(true);
+        const response = await api.get('/api/news');
+        setNews(response.data);
       } catch (error) {
         console.error('Error fetching news:', error);
+      } finally {
         setLoading(false);
       }
     };
@@ -58,7 +49,7 @@ const News = () => {
   return (
     <div className="pt-1">
       {/* Page Header */}
-      <section className="bg-primary-600 py-20 text-#FFAB00">
+      <section className="bg-primary-600 py-20 text-white">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">School Notice Board</h1>
           <p className="text-lg text-primary-100 max-w-3xl mx-auto">
@@ -82,7 +73,7 @@ const News = () => {
               />
               <button
                 type="submit"
-                className="bg-primary-600 text-#FFAB00 px-4 py-3 rounded-r-md hover:bg-primary-700 transition-colors"
+                className="bg-primary-600 text-white px-4 py-3 rounded-r-md hover:bg-primary-700 transition-colors"
               >
                 <FiSearch className="text-xl" />
               </button>
@@ -102,7 +93,7 @@ const News = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                   viewport={{ once: true }}
-                  className="bg-#FFAB00 rounded-lg overflow-hidden shadow-soft hover:shadow-md transition-shadow"
+                  className="bg-white rounded-lg overflow-hidden shadow-soft hover:shadow-md transition-shadow"
                 >
                   <Link to={`/news/${item._id}`}>
                     <div className="h-52 overflow-hidden">
@@ -140,7 +131,7 @@ const News = () => {
               <h3 className="text-xl text-gray-600">No items found matching your search.</h3>
               <button 
                 onClick={() => setSearchTerm('')}
-                className="mt-4 px-6 py-2 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors"
+                className="mt-4 px-6 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
               >
                 Clear Search
               </button>
@@ -157,7 +148,7 @@ const News = () => {
                   className={`px-4 py-2 rounded-l-md border border-gray-300 ${
                     currentPage === 1 
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
-                      : 'bg-#FFAB00 text-gray-700 hover:bg-gray-50'
+                      : 'bg-white text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   Previous
@@ -169,8 +160,8 @@ const News = () => {
                     onClick={() => setCurrentPage(i + 1)}
                     className={`px-4 py-2 border-t border-b border-gray-300 ${
                       currentPage === i + 1
-                        ? 'bg-primary-600 text-#FFAB00'
-                        : 'bg-#FFAB00 text-gray-700 hover:bg-gray-50'
+                        ? 'bg-primary-600 text-white'
+                        : 'bg-white text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     {i + 1}
@@ -183,7 +174,7 @@ const News = () => {
                   className={`px-4 py-2 rounded-r-md border border-gray-300 ${
                     currentPage === actualTotalPages
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-#FFAB00 text-gray-700 hover:bg-gray-50'
+                      : 'bg-white text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   Next

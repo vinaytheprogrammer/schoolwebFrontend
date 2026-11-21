@@ -1,20 +1,33 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios';
+import api from '../../services/api';
+import { FiPlus, FiTrash2, FiSearch, FiImage } from 'react-icons/fi';
 
 const UploadPhotosLinks = () => {
   const { isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
   const [galleryItems, setGalleryItems] = useState([]);
   const [selectedAlbumId, setSelectedAlbumId] = useState('');
-  const [previews, setPreviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [imageAddresses, setImageAddresses] = useState([]);
+  const [imageAddresses, setImageAddresses] = useState(['']);
+
+  const fetchGalleryItems = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await api.get('/api/gallery');
+      setGalleryItems(response.data);
+    } catch (err) {
+      console.error('Error fetching gallery items:', err);
+      setError('Failed to load albums. Please try again later.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -22,56 +35,9 @@ const UploadPhotosLinks = () => {
     }
   }, [isAuthenticated]);
 
- 
-  const fetchGalleryItems = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/api/gallery`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setGalleryItems(response.data);
-    } catch (error) {
-      console.error('Error fetching gallery items:', error);
-      setError('Failed to load albums. Please try again later.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-
-
   const handleAlbumSelect = (e) => {
     setSelectedAlbumId(e.target.value);
   };
-
-  
-
-const uploadImages = async (galleryItemId, token) => {
-   
-     const payload = {
-        galleryItemId: galleryItemId,
-        imageAddresses: imageAddresses,
-        uploadedBy: "admin", // Replace with actual user info
-        isPublic: true, // Set according to your requirements
-        featured: false, // Set according to your requirements
-    };
-
-    const res = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/uploadImageLinks`,
-        payload,
-        {
-            headers: {
-                "Content-Type": "application/json", // Change from multipart/form-data to application/json
-                Authorization: `Bearer ${token}`,
-            }
-        }
-    );
-    return res.data;
-};
-
 
   const handleImageAddressChange = (e, index) => {
     const newAddresses = [...imageAddresses];
@@ -81,7 +47,7 @@ const uploadImages = async (galleryItemId, token) => {
 
   const removeImageAddress = (index) => {
     const newAddresses = imageAddresses.filter((_, i) => i !== index);
-    setImageAddresses(newAddresses);
+    setImageAddresses(newAddresses.length > 0 ? newAddresses : ['']);
   };
 
   const addImageAddress = () => {
@@ -90,237 +56,193 @@ const uploadImages = async (galleryItemId, token) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!selectedAlbumId) {
       setError('Please select an album');
       return;
     }
-    
-    if (imageAddresses.length === 0) {
-      setError('Please add at least one url to upload');
+
+    const validAddresses = imageAddresses.map((a) => a.trim()).filter((a) => a.length > 0);
+
+    if (validAddresses.length === 0) {
+      setError('Please add at least one valid image URL to upload');
       return;
     }
-    
+
     setIsUploading(true);
     setError(null);
-    
+
     try {
-      const token = localStorage.getItem('token');
-      await uploadImages(selectedAlbumId, token);
+      const payload = {
+        galleryItemId: selectedAlbumId,
+        imageAddresses: validAddresses,
+        uploadedBy: 'admin',
+        isPublic: true,
+        featured: false,
+      };
+
+      await api.post('/api/uploadImageLinks', payload);
       navigate(`/admin/gallery/view/${selectedAlbumId}`);
-    } catch (error) {
-      console.error('Error uploading photos:', error);
-      setError('Failed to upload photos links. Please try again later.');
+    } catch (err) {
+      console.error('Error uploading photos:', err);
+      setError(err.response?.data?.message || 'Failed to upload photo links. Please try again later.');
       setIsUploading(false);
     }
   };
 
-  const filteredGalleryItems = galleryItems.filter(item =>
+  const filteredGalleryItems = galleryItems.filter((item) =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-600"></div>
+  return (
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Add Image Links to Album</h1>
+          <p className="text-sm text-gray-600 mt-1">Add web-hosted photo URLs directly to your gallery albums</p>
+        </div>
+        <Link
+          to="/admin/gallery"
+          className="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50"
+        >
+          Cancel
+        </Link>
       </div>
-    );
-  }
 
-return (
-    <div className="container mx-auto px-4 py-8 pt-30">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
-            <div>
-                <h1 className="text-3xl font-bold text-gray-800">Upload Photos Links</h1>
-                <p className="text-gray-600 mt-1">Add new photos to an existing album</p>
-            </div>
-            <div className="mt-4 md:mt-0">
-                <Link 
-                    to="/admin/gallery" 
-                    className="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-md"
-                >
-                    Back to Gallery
-                </Link>
-            </div>
+      {error && (
+        <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg mb-6 text-sm">
+          {error}
         </div>
+      )}
 
-        {error && (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6" role="alert">
-                <span className="block sm:inline">{error}</span>
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <form onSubmit={handleSubmit}>
+          {/* Album Selection */}
+          <div className="mb-6">
+            <label className="block text-gray-700 font-semibold mb-2 text-sm">
+              Select Destination Album *
+            </label>
+            <div className="relative mb-3">
+              <FiSearch className="absolute left-3 top-3 text-gray-400" />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search album by title..."
+                className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500"
+              />
             </div>
-        )}
 
-        <div className="bg-white rounded-lg shadow-md p-6">
-            <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                    <label className="block text-gray-700 font-medium mb-2">
-                        Select Album
-                    </label>
-                    {galleryItems.length === 0 ? (
-                        <div className="text-red-500 mb-4">
-                            No albums found. Please create an album first.
-                            <Link to="/admin/gallery/create-album" className="ml-2 text-purple-600 hover:text-purple-800 underline">
-                                Create Album
-                            </Link>
-                        </div>
-                    ) : (
-                        <div className="space-y-4">
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    placeholder="Search albums..."
-                                    className="w-full px-4 py-2 border rounded-md mb-4"
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                />
-                            </div>
-                            
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-h-60 overflow-y-auto p-2">
-                                {filteredGalleryItems.length > 0 ? (
-                                    filteredGalleryItems.map(item => (
-                                        <div 
-                                            key={item._id} 
-                                            className={`border rounded-lg overflow-hidden cursor-pointer transition-all duration-200 ${
-                                                selectedAlbumId === item._id ? 'ring-2 ring-purple-500' : 'hover:shadow-md'
-                                            }`}
-                                            onClick={() => setSelectedAlbumId(item._id)}
-                                        >
-                                            <img 
-                                                src={item.thumbnailUrl} 
-                                                alt={item.title} 
-                                                className="w-full h-32 object-cover" 
-                                            />
-                                            <div className="p-3">
-                                                <h3 className="font-medium text-gray-800">{item.title}</h3>
-                                                <p className="text-sm text-gray-500 truncate">{item.description}</p>
-                                                <div className="flex mt-2">
-                                                    <input
-                                                        type="radio"
-                                                        id={`album-${item._id}`}
-                                                        name="albumSelection"
-                                                        value={item._id}
-                                                        checked={selectedAlbumId === item._id}
-                                                        onChange={handleAlbumSelect}
-                                                        className="mr-2"
-                                                    />
-                                                    <label htmlFor={`album-${item._id}`} className="text-sm text-gray-700">
-                                                        Select this album
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <div className="col-span-3 text-center text-gray-500 py-4">
-                                        No albums found matching your search.
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    )}
-                </div>
+            {isLoading ? (
+              <p className="text-xs text-gray-500">Loading albums...</p>
+            ) : (
+              <select
+                value={selectedAlbumId}
+                onChange={handleAlbumSelect}
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500"
+              >
+                <option value="">-- Choose an Album --</option>
+                {filteredGalleryItems.map((item) => (
+                  <option key={item._id} value={item._id}>
+                    {item.title} ({item.category})
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
 
-                <div className="mb-6">
-                    
+          {/* Image URLs Input */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-gray-700 font-semibold text-sm">
+                Photo Image URLs *
+              </label>
+              <button
+                type="button"
+                onClick={addImageAddress}
+                className="text-xs text-amber-700 font-semibold hover:underline flex items-center gap-1"
+              >
+                <FiPlus /> Add Another URL
+              </button>
+            </div>
+            <p className="text-xs text-gray-500 mb-3">
+              Paste direct image URLs (e.g. from Cloudinary, Unsplash, or CDN).
+            </p>
 
-                    {previews.length > 0 && (
-                        <div className="mt-6">
-                            <h3 className="text-lg font-medium text-gray-800 mb-2">Selected Photos ({previews.length})</h3>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-h-96 overflow-y-auto p-2">
-                                {previews.map((preview, index) => (
-                                    <div key={index} className="relative group">
-                                        <img 
-                                            src={preview} 
-                                            alt={`Preview ${index + 1}`} 
-                                            className="w-full h-24 object-cover rounded-md" 
-                                        />
-                                        <button
-                                            type="button"
-                                            onClick={() => removeFile(index)}
-                                            className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                                            disabled={isUploading}
-                                        >
-                                            ×
-                                        </button>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-
-                <div className="mb-6">
-                    <label className="block text-gray-700 font-medium mb-2">
-                        Add Photo URLs
-                    </label>
-                    <div className="space-y-4">
-                        {imageAddresses.map((address, index) => (
-                            <div key={index} className="flex items-center">
-                                <input
-                                    type="text"
-                                    value={address}
-                                    onChange={(e) => handleImageAddressChange(e, index)}
-                                    className="w-full px-4 py-2 border rounded-md"
-                                    placeholder="Enter image URL"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={() => removeImageAddress(index)}
-                                    className="ml-2 bg-red-500 text-white py-2 px-4 rounded-md"
-                                >
-                                    Remove
-                                </button>
-                            </div>
-                        ))}
-                        <button
-                            type="button"
-                            onClick={addImageAddress}
-                            className={`inline-block py-2 px-4 rounded-md cursor-pointer transition-colors ${
-                                selectedAlbumId ? 'bg-purple-600 hover:bg-purple-700 text-white' : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                            }`} >
-                       
-                            Add Another URL
-                        </button>
-                    </div>
-                </div>
-                </div>
-
-                {isUploading && (
-                    <div className="mb-6">
-                        <h3 className="text-lg font-medium text-gray-800 mb-2">Uploading...</h3>
-                        <div className="w-full bg-gray-200 rounded-full h-2.5">
-                            <div
-                                className="bg-purple-600 h-2.5 rounded-full"
-                                style={{ width: `${uploadProgress}%` }}
-                            ></div>
-                        </div>
-                        <p className="text-sm text-gray-500 mt-2">{uploadProgress}% complete</p>
-                    </div>
-                )}
-
-                <div className="flex justify-end">
-                    <Link
-                        to="/admin/gallery"
-                        className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md mr-2"
-                    >
-                        Cancel
-                    </Link>
+            <div className="space-y-3">
+              {imageAddresses.map((address, index) => (
+                <div key={index} className="flex gap-2 items-center">
+                  <div className="relative flex-grow">
+                    <FiImage className="absolute left-3 top-3 text-gray-400" />
+                    <input
+                      type="url"
+                      value={address}
+                      onChange={(e) => handleImageAddressChange(e, index)}
+                      placeholder="https://images.unsplash.com/photo-..."
+                      className="w-full pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-amber-500"
+                      required
+                    />
+                  </div>
+                  {imageAddresses.length > 1 && (
                     <button
-                        type="submit"
-                        className={`py-2 px-4 rounded-md ${
-                            selectedAlbumId && (imageAddresses.length > 0) 
-                                ? 'bg-purple-600 hover:bg-purple-700 text-white'
-                                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                        }`}
-                        disabled={!selectedAlbumId || (imageAddresses.length === 0)}
+                      type="button"
+                      onClick={() => removeImageAddress(index)}
+                      className="p-2.5 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg"
+                      title="Remove URL"
                     >
-                        {isUploading ? 'Uploading...' : 'Upload Photos Links'}
+                      <FiTrash2 />
                     </button>
+                  )}
                 </div>
-            </form>
-        </div>
+              ))}
+            </div>
+          </div>
+
+          {/* URL Live Previews */}
+          {imageAddresses.some((url) => url.trim().length > 10) && (
+            <div className="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <h4 className="text-xs font-semibold text-gray-700 uppercase tracking-wider mb-3">
+                Live URL Previews
+              </h4>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {imageAddresses
+                  .filter((url) => url.trim().length > 10)
+                  .map((url, i) => (
+                    <div key={i} className="relative aspect-video rounded-lg overflow-hidden bg-gray-200">
+                      <img
+                        src={url}
+                        alt={`Preview ${i + 1}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          e.target.src = 'https://via.placeholder.com/300x200?text=Invalid+Image+URL';
+                        }}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+
+          <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+            <Link
+              to="/admin/gallery"
+              className="px-5 py-2.5 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 font-medium"
+            >
+              Cancel
+            </Link>
+            <button
+              type="submit"
+              disabled={isUploading || !selectedAlbumId}
+              className="px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm font-semibold disabled:opacity-50 shadow-sm"
+            >
+              {isUploading ? 'Saving Links...' : 'Save Photos to Album'}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-);
+  );
 };
 
 export default UploadPhotosLinks;

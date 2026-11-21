@@ -70,7 +70,7 @@ const TestimonialSlider = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.5 }}
-                  className="bg-#FFAB00 p-8 md:p-10 rounded-lg shadow-soft"
+                  className="bg-white p-8 md:p-10 rounded-lg shadow-soft"
                 >
                   <div className="flex flex-col items-center text-center">
                     
@@ -89,14 +89,14 @@ const TestimonialSlider = () => {
           
           {/* Navigation arrows */}
           <button
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 lg:-translate-x-10 w-10 h-10 rounded-full bg-#FFAB00 shadow-md text-primary-600 flex items-center justify-center hover:bg-primary-50 transition-colors z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 lg:-translate-x-10 w-10 h-10 rounded-full bg-white shadow-md text-primary-600 flex items-center justify-center hover:bg-primary-50 transition-colors z-10"
             onClick={prevTestimonial}
             aria-label="Previous testimonial"
           >
             <FiChevronLeft size={20} />
           </button>
           <button
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 lg:translate-x-10 w-10 h-10 rounded-full bg-#FFAB00 shadow-md text-primary-600 flex items-center justify-center hover:bg-primary-50 transition-colors z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 lg:translate-x-10 w-10 h-10 rounded-full bg-white shadow-md text-primary-600 flex items-center justify-center hover:bg-primary-50 transition-colors z-10"
             onClick={nextTestimonial}
             aria-label="Next testimonial"
           >

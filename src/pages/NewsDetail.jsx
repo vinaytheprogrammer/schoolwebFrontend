@@ -1,52 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCalendar, FiArrowLeft, FiShare2, FiChevronRight, FiChevronLeft } from 'react-icons/fi';
-import axios from 'axios';
+import api from '../services/api';
 
 const NewsDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [news, setNews] = useState(null);
   const [relatedNews, setRelatedNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  
   useEffect(() => {
-
-    
     const fetchNewsDetail = async () => {
       try {
-       
-          const token = localStorage.getItem('token');
-          const response = await axios.get(  `${import.meta.env.VITE_API_BASE_URL}/api/news`, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-       
+        const response = await api.get('/api/news');
+        const selectedNews = response.data.find((item) => item._id === id);
+        const related = response.data.filter((item) => item._id !== id).slice(0, 2);
 
-
-          const selectedNews = response.data.find(item => item._id === id);
-      
-          const related = response.data
-            .filter(item => item._id !== id)
-            .slice(0, 2);
-          
-          setNews(selectedNews);
-          setRelatedNews(related);
-          setLoading(false);
-        
-
-        // In production, use the following:
-        /*
-        const response = await axios.get(`/api/news/${id}`);
-        const relatedRes = await axios.get(`/api/news/related/${id}?limit=2`);
-        
-        setNews(response.data);
-        setRelatedNews(relatedRes.data);
-        setLoading(false);
-        */
+        setNews(selectedNews);
+        setRelatedNews(related);
       } catch (error) {
         console.error('Error fetching news detail:', error);
+      } finally {
         setLoading(false);
       }
     };
@@ -72,7 +47,7 @@ const NewsDetail = () => {
         <p className="text-gray-600 mb-8">The news article you're looking for doesn't exist or has been removed.</p>
         <Link
           to="/news"
-          className="inline-flex items-center px-6 py-3 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors"
+          className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
         >
           <FiArrowLeft className="mr-2" /> Back to Notice Board
         </Link>
@@ -83,7 +58,7 @@ const NewsDetail = () => {
   return (
     <div className="pt-16">
       {/* Page Header */}
-      <section className="bg-primary-600 py-20 text-#FFAB00">
+      <section className="bg-primary-600 py-20 text-white">
         <div className="container mx-auto px-4 text-center">
           <div className="inline-block text-primary-100 mb-4">
             <Link to="/news" className="inline-flex items-center hover:underline">
@@ -114,7 +89,7 @@ const NewsDetail = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-#FFAB00 rounded-lg overflow-hidden shadow-md mb-10"
+              className="bg-white rounded-lg overflow-hidden shadow-md mb-10"
             >
               {/* Featured Image */}
               <div className="h-96 overflow-hidden">
@@ -159,7 +134,7 @@ const NewsDetail = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5 }}
                       viewport={{ once: true }}
-                      className="bg-#FFAB00 rounded-lg overflow-hidden shadow-soft hover:shadow-md transition-shadow"
+                      className="bg-white rounded-lg overflow-hidden shadow-soft hover:shadow-md transition-shadow"
                     >
                       <Link to={`/news/${item._id}`}>
                         <div className="h-48 overflow-hidden">

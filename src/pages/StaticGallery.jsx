@@ -4,13 +4,30 @@ import { motion } from 'framer-motion';
 import { FiImage, FiFilter, FiGrid, FiList } from 'react-icons/fi';
 import axios from 'axios';
 
+const staticGalleryData = [
+  {
+    _id: "67c5ee0205e2aae405d5100d",
+    title: "School Sports Meet",
+    description: "Gallery of Annual Sports Day",
+    thumbnailUrl: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80",
+    imageCount: 12,
+    category: "sports",
+    isPublic: true,
+    featured: false,
+    photos: ["67c5f7f25aed625a677b74ec"],
+    uploadDate: "2025-03-03T17:59:30.192Z",
+    createdAt: "2025-03-03T17:59:30.200Z",
+    updatedAt: "2025-03-03T20:27:39.542Z",
+  },
+];
+
 const StaticGallery = () => {
   const [galleries, setGalleries] = useState([]);
   const [filteredGalleries, setFilteredGalleries] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -23,40 +40,6 @@ const StaticGallery = () => {
     { id: 'cultural', name: 'Cultural' },
     { id: 'events', name: 'Events' },
   ];
-
-  // Define your static array
-const staticGalleryData = [
-    {
-        "_id": "67c5ee0205e2aae405d5100d",
-        "title": "raja ji",
-        "description": "this is a gallery of raja ji",
-        "thumbnailUrl": "https://res.cloudinary.com/dbh02ryca/image/upload/v1741027313/gallery/ltcxjfxaz51ohpoa8xda.png",
-        "imageCount": 12,
-        "category": "sports",
-        "isPublic": true,
-        "featured": false,
-        "photos": [
-            "67c5f7f25aed625a677b74ec"
-        ],
-        "uploadDate": "2025-03-03T17:59:30.192Z",
-        "createdAt": "2025-03-03T17:59:30.200Z",
-        "updatedAt": "2025-03-03T20:27:39.542Z",
-        "__v": 1
-    }
- 
-];
-
-const staticGalleryImages = [
-    {
-        "_id": "67c5f7f25aed625a677b74ec",
-        "imageUrl": "https://res.cloudinary.com/dbh02ryca/image/upload/v1741027313/gallery/ltcxjfxaz51ohpoa8xda.png",
-        "gallery": "67c5ee0205e2aae405d5100d",
-        "isPublic": true,
-        "uploadDate": "2025-03-03T20:27:39.540Z",
-        "createdAt": "2025-03-03T20:27:39.541Z",
-        "updatedAt": "2025-03-03T20:27:39.541Z",
-        "__v": 0
-    }];
 
     
   // Fetch all gallery items

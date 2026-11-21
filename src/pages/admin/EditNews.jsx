@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../services/api';
 
 const EditNews = () => {
   const { id } = useParams();
@@ -18,22 +18,20 @@ const EditNews = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchArticle();
-  }, []);
+    const fetchArticle = async () => {
+      try {
+        const response = await api.get(`/api/news/${id}`);
+        setArticle(response.data);
+      } catch (err) {
+        console.error('Error fetching article:', err);
+        setError('Failed to fetch article');
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  const fetchArticle = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/news/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setArticle(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      setError('Failed to fetch article');
-      setIsLoading(false);
-    }
-  };
+    fetchArticle();
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -46,12 +44,10 @@ const EditNews = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
-      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/news/${id}`, article, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await api.put(`/api/news/${id}`, article);
       navigate('/admin/news');
-    } catch (error) {
+    } catch (err) {
+      console.error('Error updating article:', err);
       setError('Failed to update article');
     }
   };

@@ -8,11 +8,11 @@ const VisionMission = () => {
   return (
     <div className="pt-1">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-#FFAB00 py-20">
+      <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Vision & Mission</h1>
-            <div className="w-20 h-1 bg-#FFAB00 mx-auto mb-6"></div>
+            <div className="w-20 h-1 bg-white mx-auto mb-6"></div>
             <p className="text-xl max-w-3xl mx-auto">
               Our guiding principles and aspirations for educational excellence
             </p>
@@ -171,7 +171,7 @@ const VisionMission = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-#FFAB00 p-8 rounded-lg shadow-soft text-center"
+                className="bg-white p-8 rounded-lg shadow-soft text-center"
               >
                 <div className="text-4xl mb-4">{objective.icon}</div>
                 <h3 className="text-xl font-semibold text-secondary-900 mb-3">{objective.title}</h3>
@@ -183,7 +183,7 @@ const VisionMission = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-primary-600 text-#FFAB00">
+      <section className="py-16 bg-primary-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Be Part of Our Journey?
@@ -194,13 +194,13 @@ const VisionMission = () => {
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
             <Link
               to="/admissions"
-              className="px-8 py-3 bg-#FFAB00 text-primary-600 font-medium rounded-md hover:bg-gray-100 transition-colors"
+              className="px-8 py-3 bg-white text-primary-600 font-medium rounded-md hover:bg-gray-100 transition-colors"
             >
               Apply Now
             </Link>
             <Link
               to="/principal-message"
-              className="px-8 py-3 border border-#FFAB00 text-#FFAB00 font-medium rounded-md hover:bg-primary-700 transition-colors"
+              className="px-8 py-3 border border-white text-white font-medium rounded-md hover:bg-primary-700 transition-colors"
             >
               Principal's Message
               <FiArrowRight className="ml-2" />

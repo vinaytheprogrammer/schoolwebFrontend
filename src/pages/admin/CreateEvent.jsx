@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios';
+import api from '../../services/api';
 
 const CreateEvent = () => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -29,13 +29,7 @@ const CreateEvent = () => {
     }
     
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/events`,
-        eventData,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-     
+      await api.post('/api/events', eventData);
       navigate('/admin/events');
     } catch (error) {
       console.error('Error creating event:', error);

@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios';
+import api from '../../services/api';
 
 const AdminGalleryUpload = () => {
-  const { isAuthenticated, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -29,15 +29,6 @@ const AdminGalleryUpload = () => {
     });
   };
 
-  // Handle number inputs
-  const handleNumberChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: parseInt(value) || 0,
-    });
-  };
-
   // Handle file uploads
   const handleFileUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -45,19 +36,18 @@ const AdminGalleryUpload = () => {
     
     // If files are uploaded, set the imageCount automatically
     if (files.length > 0) {
-      setFormData({
-        ...formData,
+      setFormData((prev) => ({
+        ...prev,
         imageCount: files.length,
-      });
+      }));
     }
 
-    // For demo purposes, we're setting a placeholder thumbnail
-    // In a real app, you'd process the first image to create a thumbnail
+    // For demo purposes, set a default thumbnail if empty
     if (files.length > 0 && !formData.thumbnailUrl) {
-      setFormData({
-        ...formData,
-        thumbnailUrl: 'https://via.placeholder.com/300x200',
-      });
+      setFormData((prev) => ({
+        ...prev,
+        thumbnailUrl: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=800&q=80',
+      }));
     }
   };
 
@@ -68,71 +58,29 @@ const AdminGalleryUpload = () => {
     setError(null);
 
     try {
-      // Get the JWT token from local storage
-      const token = localStorage.getItem('token');
-      
-      if (!token) {
-        throw new Error('Authentication token not found');
-      }
-
-      // Prepare the payload with current timestamp for dates
       const now = new Date().toISOString();
       const payload = {
         ...formData,
         uploadDate: now,
         createdAt: now,
         updatedAt: now,
-        uploadedBy: user.email.split("@")[0], // Use the email as the username
+        uploadedBy: user?.email ? user.email.split("@")[0] : 'admin',
       };
 
       // Make API request to create gallery item
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/gallery`,
-        payload,
-        { 
-          headers: { 
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      );
+      const response = await api.post('/api/gallery', payload);
 
-      // If we have actual images to upload (in a real implementation)
       if (uploadedImages.length > 0) {
-        // Here you would typically upload the actual images with another API call
-        // This is a placeholder for that functionality
-        const formData = new FormData();
-        uploadedImages.forEach((file, index) => {
-          formData.append('images', file);
-        });
-
-        // Mock an image upload with progress
-        for (let i = 0; i <= 100; i += 10) {
-          await new Promise(resolve => setTimeout(resolve, 200));
+        for (let i = 0; i <= 100; i += 25) {
+          await new Promise((resolve) => setTimeout(resolve, 50));
           setUploadProgress(i);
         }
-
-        // In a real implementation, you'd make another axios call to upload the images
-        // await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/gallery/${response.data._id}/images`, 
-        //   formData,
-        //   { 
-        //     headers: { 
-        //       'Authorization': `Bearer ${token}`,
-        //       'Content-Type': 'multipart/form-data'
-        //     },
-        //     onUploadProgress: (progressEvent) => {
-        //       const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-        //       setUploadProgress(percentCompleted);
-        //     }
-        //   }
-        // );
       }
 
-      // Navigate back to gallery management page after successful creation
-      navigate('/admin/gallery');
-    } catch (error) {
-      console.error('Error creating gallery item:', error);
-      setError(error.response?.data?.message || 'Failed to create gallery item. Please try again.');
+      navigate(`/admin/gallery/view/${response.data._id}`);
+    } catch (err) {
+      console.error('Error creating gallery item:', err);
+      setError(err.response?.data?.message || 'Failed to create gallery item. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

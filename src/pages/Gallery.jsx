@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiImage, FiFilter, FiGrid, FiList } from 'react-icons/fi';
-import axios from 'axios';
+import api from '../services/api';
 
 const Gallery = () => {
 
@@ -27,23 +27,14 @@ const Gallery = () => {
     { id: 'events', name: 'Events' },
   ];
 
-  // Define your static array
-const staticGalleryData = [
- 
-];
-
   // Fetch all gallery items
   useEffect(() => {
     const fetchGalleryItems = async () => {
       setLoading(true);
       setError(null);
       try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_BASE_URL}/api/gallery`,
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-         // Filter out objects where isPublic is false
+        const response = await api.get('/api/gallery');
+        // Filter out objects where isPublic is false
         const filteredData = response.data.filter(item => item.isPublic !== false);
 
         setGalleries(filteredData);
@@ -75,19 +66,11 @@ const staticGalleryData = [
     }
   
     try {
-      const token = localStorage.getItem('token');
-  
       // Fetch images from `/api/photos/${galleryId}`
-      const response1 = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/api/photos/${galleryId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-  
+      const response1 = await api.get(`/api/photos/${galleryId}`);
+
       // Fetch images from `/api/uploadImageLinks/${galleryId}`
-      const response2 = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/api/uploadImageLinks/${galleryId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response2 = await api.get(`/api/uploadImageLinks/${galleryId}`);
   
       // Extract & format images from second response
       const formattedImages = response2.data.images.map((image) => ({
@@ -295,8 +278,7 @@ const staticGalleryData = [
                         <div 
                           key={index} 
                           className="px-1 w-1/4 cursor-pointer"
-                          onClick={(e) => {
-                           
+                          onClick={() => {
                             openLightbox(gallery, index);
                           }}
                         >

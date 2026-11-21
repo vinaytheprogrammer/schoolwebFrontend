@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import LoadingSpinner from './components/common/LoadingSpinner';
 
 // Layout components
 import Header from './components/layout/Header';
@@ -36,6 +37,7 @@ const EditNews = React.lazy(() => import('./pages/admin/EditNews'));
 const CreateEvent = React.lazy(() => import('./pages/admin/CreateEvent'));
 const EditEvent = React.lazy(() => import('./pages/admin/EditEvent'));
 const UploadPhotosLinks = React.lazy(() => import('./pages/admin/UploadPhotosLinks'));
+const AdminContactMessages = React.lazy(() => import('./pages/admin/AdminContactMessages'));
 
 function App() {
   return (
@@ -44,95 +46,139 @@ function App() {
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow">
-          
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/vision-mission" element={<VisionMission />} />
-              <Route path="/principal-message" element={<PrincipalMessage />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/news/:id" element={<NewsDetail />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/events/:id" element={<EventDetail />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/admissions" element={<Admissions />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/login" element={<Login />} />
-              "
-              
-              <Route path="/admin/dashboard" element={
-                <PrivateRoute adminOnly={true}> 
-                  <Dashboard />
-                </PrivateRoute>
-              } />
-              
-              
-              <Route path="/admin/news" element={
-                <PrivateRoute adminOnly={true}>
-                <AdminNews />
-                </PrivateRoute>
-                } />
-                <Route path="/admin/events" element={
-                  <PrivateRoute adminOnly={true}>
-                  <AdminEvents />
-                  </PrivateRoute>
-                  } />
-               
-              <Route path="/admin/gallery" element={
-                <PrivateRoute adminOnly={true}>
-                  <AdminGallery />
-                </PrivateRoute>
-              } />
-              <Route path="/admin/admissions" element={
-                <PrivateRoute adminOnly={true}>
-                  <AdminAdmissions />
-                </PrivateRoute>
-              } />
-              <Route path="/admin/gallery/create-album" element={
-                <PrivateRoute adminOnly={true}>
-                  <AdminGalleryUpload />
-                </PrivateRoute>
-              } />
-              
-              <Route path="/admin/gallery/view/:id" element={
-                <PrivateRoute adminOnly={true}>
-                  <AdminGalleryView />
-                </PrivateRoute>
-              } />
-              <Route path="/admin/gallery/upload" element={
-                <PrivateRoute adminOnly={true}>
-                  <UploadPhotos />
-                </PrivateRoute>
-              } />
-              <Route path="/admin/news/create" element={
-                <PrivateRoute adminOnly={true}>
-                  <CreateNews />
-                </PrivateRoute>
-              } />
-              <Route path="admin/news/edit/:id" element={
-                <PrivateRoute adminOnly={true}>
-                  <EditNews />
-                </PrivateRoute>
-              } />
-              <Route path="admin/events/create" element={
-                <PrivateRoute adminOnly={true}>
-                  <CreateEvent />
-                </PrivateRoute>
-              } />
-              <Route path="admin/events/edit/:id" element={
-                <PrivateRoute adminOnly={true}>
-                  <EditEvent />
-                </PrivateRoute>
-              } />
-              <Route path="/admin/gallery/uploadLinks" element={
-                <PrivateRoute adminOnly={true}>
-                  <UploadPhotosLinks />
-                </PrivateRoute>
-              } />
+            <Suspense fallback={<LoadingSpinner text="Loading page..." />}>
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/vision-mission" element={<VisionMission />} />
+                <Route path="/principal-message" element={<PrincipalMessage />} />
+                <Route path="/news" element={<News />} />
+                <Route path="/news/:id" element={<NewsDetail />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/events/:id" element={<EventDetail />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/admissions" element={<Admissions />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/login" element={<Login />} />
 
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+                {/* Admin Routes */}
+                <Route
+                  path="/admin/dashboard"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <Dashboard />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/news"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <AdminNews />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/events"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <AdminEvents />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/gallery"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <AdminGallery />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/admissions"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <AdminAdmissions />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/messages"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <AdminContactMessages />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/gallery/create-album"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <AdminGalleryUpload />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/gallery/view/:id"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <AdminGalleryView />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/gallery/upload"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <UploadPhotos />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/news/create"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <CreateNews />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/news/edit/:id"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <EditNews />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/events/create"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <CreateEvent />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/events/edit/:id"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <EditEvent />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/admin/gallery/uploadLinks"
+                  element={
+                    <PrivateRoute adminOnly={true}>
+                      <UploadPhotosLinks />
+                    </PrivateRoute>
+                  }
+                />
+
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
         </div>

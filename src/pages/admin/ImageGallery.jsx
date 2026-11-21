@@ -1,45 +1,38 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect, useCallback } from "react";
+import api from "../../services/api";
 
-const ImageGallery = ({ id, token }) => {
+const ImageGallery = ({ id }) => {
   const [images, setImages] = useState([]);
-
   const [selectedImage, setSelectedImage] = useState(null);
-  const [album, setAlbum] = useState(null);
 
-  useEffect(() => {
-    fetchImageLinks();
-  }, [id]);
-
-  const fetchImageLinks = async () => {
+  const fetchImageLinks = useCallback(async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/api/uploadImageLinks/${id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      let temp = response.data.images.map((image) => ({
+      const response = await api.get(`/api/uploadImageLinks/${id}`);
+      const temp = response.data.images.map((image) => ({
         ...image,
-        imageUrl: image.imageAddress,
+        imageUrl: image.imageUrl || image.imageAddress,
       }));
       setImages(temp);
     } catch (error) {
       console.error("Error fetching image links:", error);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchImageLinks();
+  }, [fetchImageLinks]);
 
   const openImageViewer = (image) => setSelectedImage(image);
   const closeImageViewer = () => setSelectedImage(null);
 
   const handleSetAsThumbnail = async (imageId) => {
     try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/api/photos/${id}`,
-        { thumbnailUrl: images.find((img) => img._id === imageId).imageUrl },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setAlbum(response.data);
+      const targetImage = images.find((img) => img._id === imageId);
+      if (!targetImage) return;
+
+      await api.put(`/api/gallery/${id}`, {
+        thumbnailUrl: targetImage.imageUrl,
+      });
       alert("Thumbnail updated successfully");
     } catch (error) {
       console.error("Error updating thumbnail:", error);
@@ -50,9 +43,7 @@ const ImageGallery = ({ id, token }) => {
   const handleDeleteImage = async (imageId) => {
     if (window.confirm("Are you sure you want to delete this image?")) {
       try {
-        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/uploadImageLinks/${imageId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await api.delete(`/api/uploadImageLinks/${imageId}`);
         setImages(images.filter((image) => image._id !== imageId));
         if (selectedImage && selectedImage._id === imageId) {
           setSelectedImage(null);

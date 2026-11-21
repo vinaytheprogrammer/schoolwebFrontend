@@ -100,7 +100,7 @@ const HeroSlider = () => {
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.3 }}
-                      className="max-w-3xl text-#FFAB00"
+                      className="max-w-3xl text-white"
                     >
                       <h3 className="text-xl md:text-2xl text-gray-200 font-medium mb-2 text-primary-400">
                         {slide.subtitle}
@@ -122,22 +122,20 @@ const HeroSlider = () => {
         )}
       </AnimatePresence>
 
-      {/* 
       <button
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/30 text-#FFAB00 flex items-center justify-center hover:bg-black/50 transition-colors z-10"
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors z-10"
         onClick={prevSlide}
         aria-label="Previous slide"
       >
         <FiChevronLeft size={24} />
       </button>
       <button
-        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/30 text-#FFAB00 flex items-center justify-center hover:bg-black/50 transition-colors z-10"
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors z-10"
         onClick={nextSlide}
         aria-label="Next slide"
       >
         <FiChevronRight size={24} />
       </button>
-      */}
       {/* Dot indicators */}
       <div className="absolute bottom-8 left-0 right-0 flex justify-center space-x-3 z-10">
         {slides.map((_, index) => (
@@ -145,7 +143,7 @@ const HeroSlider = () => {
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 rounded-full transition-all ${
-              currentSlide === index ? 'bg-primary-500 w-6' : 'bg-#FFAB00/50'
+              currentSlide === index ? 'bg-primary-500 w-6' : 'bg-white/50'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

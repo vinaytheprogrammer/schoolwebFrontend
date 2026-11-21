@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
-import axios from 'axios';
+import api from '../../services/api';
 import ImageGallery from './ImageGallery';
 
 const AdminGalleryView = () => {
@@ -15,79 +15,68 @@ const AdminGalleryView = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentView, setCurrentView] = useState('grid');
 
-  const token = localStorage.getItem('token');
-
-  useEffect(() => {
-    if (isAuthenticated && id) {
-      fetchAlbumDetails();
-    }
-  }, [isAuthenticated, id]);
-
-  const fetchImageLink = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/uploadImageLinks/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      
-      let temp = response.data.images;
-      temp.map((image) => {
-        image.imageUrl = image.imageAddress;
-      });
-    
-    } catch (error) {
-      console.error('Error fetching image link:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchImageLink();
-  }, [id]);
-
-  const fetchAlbumDetails = async () => {
+  const fetchAlbumData = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     try {
-      // Fetch album details
-      const albumResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/gallery/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setAlbum(albumResponse.data);
+      const [albumRes, photosRes, linksRes] = await Promise.allSettled([
+        api.get(`/api/gallery/${id}`),
+        api.get(`/api/photos/${id}`),
+        api.get(`/api/uploadImageLinks/${id}`),
+      ]);
 
-      // Fetch images for this album
-      const imagesResponse = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/photos/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-    
-      setImages(imagesResponse.data);
-    } catch (error) {
-      console.error('Error fetching album details:', error);
+      if (albumRes.status === 'fulfilled') {
+        setAlbum(albumRes.value.data);
+      }
+
+      let allImages = [];
+      if (photosRes.status === 'fulfilled' && Array.isArray(photosRes.value.data)) {
+        allImages = [...photosRes.value.data];
+      }
+      if (linksRes.status === 'fulfilled' && linksRes.value.data?.images) {
+        const mappedLinks = linksRes.value.data.images.map((img) => ({
+          ...img,
+          imageUrl: img.imageUrl || img.imageAddress,
+          isLink: true,
+        }));
+        allImages = [...allImages, ...mappedLinks];
+      }
+
+      setImages(allImages);
+    } catch (err) {
+      console.error('Error fetching album details:', err);
       setError('Failed to load album details. Please try again later.');
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [id]);
 
-  const handleDeleteImage = async (imageId) => {
+  useEffect(() => {
+    if (isAuthenticated && id) {
+      fetchAlbumData();
+    }
+  }, [isAuthenticated, id, fetchAlbumData]);
+
+  const handleDeleteImage = async (image) => {
+    const imageId = typeof image === 'string' ? image : image._id;
+    const isLink = typeof image === 'object' && image.isLink;
+
     if (window.confirm('Are you sure you want to delete this image?')) {
       try {
-        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/photos/${imageId}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        // Remove the deleted image from state
-        setImages(images.filter((image) => image._id !== imageId));
+        if (isLink) {
+          await api.delete(`/api/uploadImageLinks/${imageId}`);
+        } else {
+          await api.delete(`/api/photos/${imageId}`);
+        }
+        setImages((prev) => prev.filter((img) => img._id !== imageId));
 
-        // If it was the selected image, clear selection
         if (selectedImage && selectedImage._id === imageId) {
           setSelectedImage(null);
         }
 
-        // Update the album's image count
-        setAlbum({
-          ...album,
-          imageCount: album.imageCount - 1
-        });
-      } catch (error) {
-        console.error('Error deleting image:', error);
+        setAlbum((prev) => (prev ? { ...prev, imageCount: Math.max(0, (prev.imageCount || 1) - 1) } : null));
+      } catch (err) {
+        console.error('Error deleting image:', err);
         alert('Failed to delete image. Please try again.');
       }
     }
@@ -95,15 +84,16 @@ const AdminGalleryView = () => {
 
   const handleSetAsThumbnail = async (imageId) => {
     try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/api/photos/${id}`,
-        { thumbnailUrl: images.find((img) => img._id === imageId).imageUrl },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const targetImage = images.find((img) => img._id === imageId);
+      if (!targetImage) return;
+
+      const response = await api.put(`/api/gallery/${id}`, {
+        thumbnailUrl: targetImage.imageUrl,
+      });
       setAlbum(response.data);
       alert('Thumbnail updated successfully');
-    } catch (error) {
-      console.error('Error updating thumbnail:', error);
+    } catch (err) {
+      console.error('Error updating thumbnail:', err);
       alert('Failed to update thumbnail. Please try again.');
     }
   };
@@ -115,13 +105,10 @@ const AdminGalleryView = () => {
       )
     ) {
       try {
-        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/gallery/${id}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        // Redirect back to gallery list after deletion
+        await api.delete(`/api/gallery/${id}`);
         navigate('/admin/gallery');
-      } catch (error) {
-        console.error('Error deleting album:', error);
+      } catch (err) {
+        console.error('Error deleting album:', err);
         alert('Failed to delete album. Please try again.');
       }
     }
@@ -129,28 +116,24 @@ const AdminGalleryView = () => {
 
   const toggleAlbumVisibility = async () => {
     try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/api/gallery/${id}`,
-        { isPublic: !album.isPublic },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await api.put(`/api/gallery/${id}`, {
+        isPublic: !album.isPublic,
+      });
       setAlbum(response.data);
-    } catch (error) {
-      console.error('Error updating visibility:', error);
+    } catch (err) {
+      console.error('Error updating visibility:', err);
       alert('Failed to update visibility. Please try again.');
     }
   };
 
   const toggleFeatured = async () => {
     try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/api/gallery/${id}`,
-        { featured: !album.featured },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await api.put(`/api/gallery/${id}`, {
+        featured: !album.featured,
+      });
       setAlbum(response.data);
-    } catch (error) {
-      console.error('Error updating featured status:', error);
+    } catch (err) {
+      console.error('Error updating featured status:', err);
       alert('Failed to update featured status. Please try again.');
     }
   };
@@ -296,7 +279,7 @@ const AdminGalleryView = () => {
         </div>
       </div>
 
-      <ImageGallery id={id} token={token} />
+      <ImageGallery id={id} />
 
       <p className="text-2xl font-bold p-4 mt-2">Image Cloudnairy Gallery</p>
       {/* View toggle */}

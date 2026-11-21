@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCalendar, FiClock, FiMapPin, FiArrowRight, FiFilter } from 'react-icons/fi';
-import axios from 'axios';
+import api from '../services/api';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -14,26 +14,24 @@ const Events = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-              
-       
+        const res = await api.get('/api/events');
+        if (Array.isArray(res.data) && res.data.length > 0) {
+          setEvents(res.data);
+        } else {
           setEvents([
             {
-              _id: '1',
-              title: 'Annual Sports Day',
-              description: 'Join us for our annual sports day featuring track and field events, team sports, and more. This event showcases the athletic talents of our students and promotes physical fitness and sportsmanship among all participants.',
-              date: '2023-11-15',
-              time: '9:00 AM - 4:00 PM',
-              location: 'School Sports Complex',
-              category: 'sports',
-              image: 'https://source.unsplash.com/random/800x500/?sports,students'
-            }
+              _id: 'sample-1',
+              title: 'Annual Sports & Athletics Day',
+              description: 'Annual sports day featuring track and field events, relay races, and team sports showcasing student fitness.',
+              date: new Date().toISOString(),
+              location: 'School Sports Ground',
+              organizer: 'Physical Education Dept',
+            },
           ]);
-          setLoading(false);
-       
-
-     
+        }
       } catch (error) {
         console.error('Error fetching events:', error);
+      } finally {
         setLoading(false);
       }
     };
@@ -68,7 +66,7 @@ const Events = () => {
       {/* Page Header */}
       <section className="bg-primary-600 py-12 md:py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-#FFAB00 mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Events & Activities
           </h1>
           <p className="text-primary-100 max-w-3xl mx-auto">
@@ -118,7 +116,7 @@ const Events = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
                   viewport={{ once: true }}
-                  className="bg-#FFAB00 rounded-lg overflow-hidden shadow-soft hover:shadow-md transition-shadow"
+                  className="bg-white rounded-lg overflow-hidden shadow-soft hover:shadow-md transition-shadow"
                 >
                   <Link to={`/events/${event._id}`}>
                     <div className="h-48 overflow-hidden">
@@ -162,7 +160,7 @@ const Events = () => {
               <p className="text-xl text-gray-600">No events found matching your filter.</p>
               <button
                 onClick={() => setFilter('all')}
-                className="mt-4 px-6 py-2 bg-primary-600 text-#FFAB00 rounded-md hover:bg-primary-700 transition-colors"
+                className="mt-4 px-6 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors"
               >
                 View All Events
               </button>
@@ -179,7 +177,7 @@ const Events = () => {
                   className={`px-3 py-1 rounded-l-md border ${
                     currentPage === 1
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                      : 'bg-#FFAB00 text-gray-700 hover:bg-gray-50'
+                      : 'bg-white text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   Previous
@@ -191,8 +189,8 @@ const Events = () => {
                     onClick={() => paginate(index + 1)}
                     className={`px-3 py-1 border-t border-b ${
                       currentPage === index + 1
-                        ? 'bg-primary-600 text-#FFAB00'
-                        : 'bg-#FFAB00 text-gray-700 hover:bg-gray-50'
+                        ? 'bg-primary-600 text-white'
+                        : 'bg-white text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     {index + 1}
@@ -211,7 +209,7 @@ const Events = () => {
                   className={`px-3 py-1 rounded-r-md border ${
                     currentPage === Math.ceil(filteredEvents.length / eventsPerPage)
                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
-                      : 'bg-#FFAB00 text-gray-700 hover:bg-gray-50'
+                      : 'bg-white text-gray-700 hover:bg-gray-50'
                   }`}
                 >
                   Next
@@ -232,7 +230,7 @@ const Events = () => {
             <p className="text-gray-600 mb-6">
               Get all important dates and events for the academic year in one place. Our calendar includes all holidays, examination schedules, and special events.
             </p>
-            <button className="px-8 py-3 bg-primary-600 text-#FFAB00 font-medium rounded-md hover:bg-primary-700 transition-colors">
+            <button className="px-8 py-3 bg-primary-600 text-white font-medium rounded-md hover:bg-primary-700 transition-colors">
               Download Calendar
             </button>
           </div>
@@ -240,7 +238,7 @@ const Events = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-12 bg-primary-600 text-#FFAB00">
+      <section className="py-12 bg-primary-600 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Want to Host an Event with Us?
@@ -250,7 +248,7 @@ const Events = () => {
           </p>
           <Link
             to="/contact"
-            className="px-8 py-3 bg-#FFAB00 text-primary-600 font-medium rounded-md hover:bg-gray-100 transition-colors"
+            className="px-8 py-3 bg-white text-primary-600 font-medium rounded-md hover:bg-gray-100 transition-colors"
           >
             Contact Us
           </Link>

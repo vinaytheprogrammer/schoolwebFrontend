@@ -1,10 +1,9 @@
 @import "tailwindcss";
 
 @layer base {
-    h1 {
-      font-size: var(--text-md);
-    }
-    h2 {
-      font-size: var(--text-base);
-    }
+  body {
+    color: #1f2937;
+    background-color: #f9fafb;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
+}
