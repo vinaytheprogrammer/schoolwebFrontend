@@ -90,15 +90,14 @@ const Header = () => {
 
         {/* Main Navigation Bar */}
         <div
-          className={`bg-white transition-all duration-200 border-b border-slate-200/80 ${
-            isScrolled ? 'shadow-md py-3' : 'shadow-xs py-4'
-          }`}
+          className={`bg-white transition-all duration-200 border-b border-slate-200/80 ${isScrolled ? 'shadow-md py-3' : 'shadow-xs py-4'
+            }`}
         >
           <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12 flex justify-between items-center gap-6">
             {/* School Brand / Crest */}
             <Link to="/" className="flex items-center space-x-3.5 shrink-0 group focus:outline-none">
               <img
-                src="/logo.png"
+                src="/logo.svg"
                 alt="Greenwood Convent School Crest"
                 className="w-12 h-12 md:w-13 md:h-13 object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-200"
               />
@@ -118,11 +117,10 @@ const Header = () => {
               {/* Home Link */}
               <Link
                 to="/"
-                className={`text-sm font-semibold whitespace-nowrap transition-colors relative py-1 ${
-                  location.pathname === '/'
-                    ? 'text-orange-600 font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-orange-500 after:rounded-full'
-                    : 'text-slate-700 hover:text-orange-600'
-                }`}
+                className={`text-sm font-semibold whitespace-nowrap transition-colors relative py-1 ${location.pathname === '/'
+                  ? 'text-orange-600 font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-orange-500 after:rounded-full'
+                  : 'text-slate-700 hover:text-orange-600'
+                  }`}
               >
                 Home
               </Link>
@@ -136,11 +134,10 @@ const Header = () => {
               >
                 <button
                   type="button"
-                  className={`text-sm font-semibold whitespace-nowrap transition-colors inline-flex items-center gap-1.5 py-1 ${
-                    isAboutActive
-                      ? 'text-orange-600 font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-orange-500 after:rounded-full'
-                      : 'text-slate-700 hover:text-orange-600'
-                  }`}
+                  className={`text-sm font-semibold whitespace-nowrap transition-colors inline-flex items-center gap-1.5 py-1 ${isAboutActive
+                    ? 'text-orange-600 font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-orange-500 after:rounded-full'
+                    : 'text-slate-700 hover:text-orange-600'
+                    }`}
                 >
                   <span>About Us</span>
                   <FiChevronDown
@@ -163,11 +160,10 @@ const Header = () => {
                           <Link
                             key={item.name}
                             to={item.path}
-                            className={`block p-3 rounded-lg transition-colors ${
-                              location.pathname === item.path
-                                ? 'bg-orange-50/80 text-orange-700'
-                                : 'hover:bg-slate-50 text-slate-800 hover:text-orange-600'
-                            }`}
+                            className={`block p-3 rounded-lg transition-colors ${location.pathname === item.path
+                              ? 'bg-orange-50/80 text-orange-700'
+                              : 'hover:bg-slate-50 text-slate-800 hover:text-orange-600'
+                              }`}
                           >
                             <span className="block font-bold text-sm">{item.name}</span>
                             <span className="block text-xs text-slate-500 mt-0.5">{item.desc}</span>
@@ -186,11 +182,10 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`text-sm font-semibold whitespace-nowrap transition-colors relative py-1 ${
-                      isActive
-                        ? 'text-orange-600 font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-orange-500 after:rounded-full'
-                        : 'text-slate-700 hover:text-orange-600'
-                    }`}
+                    className={`text-sm font-semibold whitespace-nowrap transition-colors relative py-1 ${isActive
+                      ? 'text-orange-600 font-bold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-orange-500 after:rounded-full'
+                      : 'text-slate-700 hover:text-orange-600'
+                      }`}
                   >
                     {item.name}
                   </Link>
@@ -270,9 +265,8 @@ const Header = () => {
               <div className="px-6 py-4 space-y-2">
                 <Link
                   to="/"
-                  className={`block px-3 py-2 rounded-lg text-sm font-semibold transition ${
-                    location.pathname === '/' ? 'bg-orange-50 text-orange-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
-                  }`}
+                  className={`block px-3 py-2 rounded-lg text-sm font-semibold transition ${location.pathname === '/' ? 'bg-orange-50 text-orange-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
+                    }`}
                 >
                   Home
                 </Link>
@@ -285,9 +279,8 @@ const Header = () => {
                     <Link
                       key={item.name}
                       to={item.path}
-                      className={`block px-3 py-2 rounded-lg text-sm font-semibold transition ${
-                        location.pathname === item.path ? 'bg-orange-50 text-orange-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
-                      }`}
+                      className={`block px-3 py-2 rounded-lg text-sm font-semibold transition ${location.pathname === item.path ? 'bg-orange-50 text-orange-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
+                        }`}
                     >
                       {item.name}
                     </Link>
@@ -302,9 +295,8 @@ const Header = () => {
                     <Link
                       key={item.name}
                       to={item.path}
-                      className={`block px-3 py-2 rounded-lg text-sm font-semibold transition ${
-                        location.pathname === item.path ? 'bg-orange-50 text-orange-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
-                      }`}
+                      className={`block px-3 py-2 rounded-lg text-sm font-semibold transition ${location.pathname === item.path ? 'bg-orange-50 text-orange-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
+                        }`}
                     >
                       {item.name}
                     </Link>

@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-3.5 group focus:outline-none">
               <img
-                src="/logo.png"
+                src="/logo.svg"
                 alt="Greenwood Convent School Crest"
                 className="w-13 h-13 object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-200"
               />

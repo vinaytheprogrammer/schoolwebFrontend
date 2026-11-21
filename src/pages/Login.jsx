@@ -54,7 +54,7 @@ const Login = () => {
         {/* School Warm Orange Header */}
         <div className="bg-gradient-to-r from-orange-700 via-orange-600 to-orange-700 py-6 px-4 text-center border-b-4 border-orange-400">
           <div className="w-16 h-16 mx-auto mb-2 flex items-center justify-center">
-            <img src="/logo.png" alt="Greenwood Convent Logo" className="w-full h-full object-contain drop-shadow-md" />
+            <img src="/logo.svg" alt="Greenwood Convent Logo" className="w-full h-full object-contain drop-shadow-md" />
           </div>
           <h1 className="text-xl font-black text-white tracking-wide">GREENWOOD CONVENT SCHOOL</h1>
           <p className="text-orange-200 text-xs font-semibold tracking-wider uppercase mt-0.5">Staff & Administrative Portal</p>
