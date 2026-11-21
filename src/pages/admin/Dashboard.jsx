@@ -75,19 +75,22 @@ const Dashboard = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 pb-4 border-b border-gray-200">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 p-6 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-900 border border-slate-800 text-white shadow-xl">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Admin Control Center</h1>
-          <p className="text-sm text-gray-600 mt-1">
-            Welcome back, <span className="font-semibold text-amber-700">{user?.name || user?.email || 'Administrator'}</span> ({user?.role || 'admin'})
+          <span className="text-[10px] font-bold uppercase tracking-widest text-amber-400 bg-amber-500/20 px-2.5 py-1 rounded-full border border-amber-400/30">
+            Staff Portal Active
+          </span>
+          <h1 className="text-2xl md:text-3xl font-black text-white mt-2 tracking-tight">Executive Dashboard</h1>
+          <p className="text-xs sm:text-sm text-slate-300 mt-1">
+            Welcome back, <span className="font-bold text-amber-400">{user?.name || user?.email || 'Administrator'}</span> ({user?.role || 'admin'})
           </p>
         </div>
         <div className="mt-4 md:mt-0 flex gap-2">
           <button
             onClick={fetchDashboardData}
-            className="flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white text-sm py-2 px-4 rounded-lg font-medium shadow-sm transition"
+            className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs sm:text-sm py-2.5 px-4 rounded-xl font-bold shadow-md shadow-amber-500/20 transition-all hover:scale-102"
           >
-            <FiRefreshCw size={16} />
+            <FiRefreshCw size={15} />
             <span>Refresh Metrics</span>
           </button>
         </div>

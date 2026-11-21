@@ -8,15 +8,17 @@ const VisionMission = () => {
   return (
     <div className="pt-1">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-700 to-primary-900 text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Vision & Mission</h1>
-            <div className="w-20 h-1 bg-white mx-auto mb-6"></div>
-            <p className="text-xl max-w-3xl mx-auto">
-              Our guiding principles and aspirations for educational excellence
-            </p>
-          </div>
+      <section className="bg-gradient-to-r from-slate-950 via-slate-900 to-blue-950 text-white py-16 text-center border-b border-slate-800 relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="container mx-auto px-4 max-w-4xl relative z-10">
+          <span className="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-widest border border-amber-400/30 mb-3">
+            Core Philosophy
+          </span>
+          <h1 className="text-3xl md:text-5xl font-black mb-3 tracking-tight text-white">Vision & Mission</h1>
+          <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-blue-600 mx-auto mb-4 rounded-full"></div>
+          <p className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Our guiding principles, pedagogical ethos, and aspirations for future-ready educational leadership.
+          </p>
         </div>
       </section>
 

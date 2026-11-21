@@ -204,7 +204,7 @@ const AdminGalleryView = () => {
         <div className="mt-4 md:mt-0 flex flex-wrap gap-2">
           <Link
             to="/admin/gallery/uploadLinks"
-            className="bg-yellow-700 hover:bg-ywllow-500 text-white py-2 px-4 rounded-md mr-2"
+            className="bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 rounded-md mr-2"
           >
             Upload Photos Links
           </Link>
