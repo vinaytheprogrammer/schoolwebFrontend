@@ -28,7 +28,11 @@ const Login = () => {
         setError(result.error || 'Invalid email or password');
       }
     } catch (err) {
-      setError(err.message || 'Login failed. Please try again.');
+      if (!err.response || err.code === 'ERR_NETWORK') {
+        setError('Cannot connect to backend server. Make sure the backend is running on port 5000.');
+      } else {
+        setError(err.message || 'Login failed. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }

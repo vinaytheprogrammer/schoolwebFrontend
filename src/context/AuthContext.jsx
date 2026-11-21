@@ -52,7 +52,12 @@ export const AuthProvider = ({ children }) => {
       setUser(res.data.user);
       return { success: true, user: res.data.user };
     } catch (err) {
-      const message = err.response?.data?.message || "Invalid email or password";
+      let message = "Invalid email or password";
+      if (!err.response || err.code === "ERR_NETWORK") {
+        message = "Cannot connect to backend server. Make sure the backend is running on port 5000.";
+      } else if (err.response?.data?.message) {
+        message = err.response.data.message;
+      }
       setError(message);
       return { success: false, error: message };
     } finally {
