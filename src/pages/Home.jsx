@@ -41,9 +41,9 @@ const Home = () => {
       <HeroSlider />
 
       {/* Welcome Section */}
-      <section className="py-14 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <section className="py-16 md:py-20 bg-white">
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -101,8 +101,8 @@ const Home = () => {
 
       {/* Latest News & Circulars */}
       {latestNews.length > 0 && (
-        <section className="py-14 bg-orange-50/30">
-          <div className="container mx-auto px-4 max-w-6xl">
+        <section className="py-16 md:py-20 bg-orange-50/30 border-y border-orange-100">
+          <div className="w-full max-w-7xl mx-auto px-6 lg:px-12">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8">
               <div>
                 <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">Notice Board & Circulars</h2>

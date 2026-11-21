@@ -93,14 +93,14 @@ const HeroSlider = () => {
 
                 {/* Content */}
                 <div className="relative h-full flex items-center">
-                  <div className="container mx-auto px-4 max-w-7xl">
+                  <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.2 }}
                       className="max-w-2xl text-white"
                     >
-                      <span className="text-xs sm:text-sm uppercase tracking-wider font-bold text-orange-300 bg-orange-950/70 border border-orange-400/40 px-3 py-1 rounded-full mb-3 inline-block">
+                      <span className="text-xs sm:text-sm uppercase tracking-wider font-bold text-orange-300 bg-orange-950/70 border border-orange-400/40 px-3.5 py-1.5 rounded-full mb-3.5 inline-block">
                         {slide.subtitle}
                       </span>
                       <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-4 leading-tight text-white drop-shadow-md">
@@ -111,7 +111,7 @@ const HeroSlider = () => {
                       </p>
                       <Link
                         to={slide.cta.link}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all uppercase tracking-wider text-xs sm:text-sm"
+                        className="inline-flex items-center gap-2 px-7 py-3.5 bg-orange-600 hover:bg-orange-500 text-white font-bold rounded-full shadow-lg hover:shadow-xl transition-all uppercase tracking-wider text-xs sm:text-sm"
                       >
                         <span>{slide.cta.text}</span>
                         <FiArrowRight size={15} />
